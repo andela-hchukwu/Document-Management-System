@@ -4,7 +4,7 @@
   "description": "A document management system that defines roles, privileges and access rights of users",
   "main": "index.js",
   "scripts": {
-    "test": "istanbul cover _mocha -- -R spec test/**/*.spec.js"
+    "test": "istanbul cover _mocha -- -R spec server/test/**/*.spec.js"
   },
   "repository": {
     "type": "git",

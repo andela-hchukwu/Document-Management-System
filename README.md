@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/andela-hchukwu/Document-Management-System.svg?branch=chore%2F142248823%2Fintegrate-travis-with-readme-badge)](https://travis-ci.org/andela-hchukwu/Document-Management-System)
-
 [![Coverage Status](https://coveralls.io/repos/github/andela-hchukwu/Document-Management-System/badge.svg?branch=chore%2F142312565%2Fcoveralls-code-coverage-service)](https://coveralls.io/github/andela-hchukwu/Document-Management-System?branch=chore%2F142312565%2Fcoveralls-code-coverage-service)
+[![Code Climate](https://codeclimate.com/github/andela-hchukwu/Document-Management-System/badges/gpa.svg)](https://codeclimate.com/github/andela-hchukwu/Document-Management-System)
 
 # Document-Management-System
 

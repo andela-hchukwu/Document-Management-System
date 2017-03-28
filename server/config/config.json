@@ -2,7 +2,7 @@
   "development": {
     "username": "andeladeveloper",
     "password": null,
-    "database": "database_development",
+    "database": "documents-dev",
     "host": "127.0.0.1",
     "port": 5432,
     "dialect": "postgres"
@@ -10,7 +10,7 @@
   "test": {
     "username": "andeladeveloper",
     "password": null,
-    "database": "database_test",
+    "database": "documents-dev",
     "host": "127.0.0.1",
     "port": 5432,
     "dialect": "postgres"
@@ -18,7 +18,7 @@
   "production": {
     "username": "andeladeveloper",
     "password": null,
-    "database": "database_production",
+    "database": "documents-dev",
     "host": "127.0.0.1",
     "port": 5432,
     "dialect": "postgres"

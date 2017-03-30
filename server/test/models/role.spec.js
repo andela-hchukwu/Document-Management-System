@@ -1,9 +1,7 @@
 const expect = require('chai').expect;
 const role = require('../../app/models').Roles;
+const params = require('../testHelper.js').testRole;
 
-const params = {
-  title: 'admin'
-};
 
 describe('Role Model', () => {
   const Role = role.build(params);

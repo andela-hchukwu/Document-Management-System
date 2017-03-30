@@ -2,12 +2,12 @@ const expect = require('chai').expect;
 const user = require('../../app/models').Users;
 
 const sampleUser = {
-  userName: 'oredavids',
-  firstName: 'ore',
-  lastName: 'davids',
-  email: 'oredavids@gmail.com',
-  password: '123456',
-  role: 'admin'
+  userName: 'eloka17',
+  firstName: 'henry',
+  lastName: 'chukwu',
+  email: 'henrychukwu13@gmail.com',
+  password: '123',
+  roleId: 2
 };
 
 describe('User Model', () => {

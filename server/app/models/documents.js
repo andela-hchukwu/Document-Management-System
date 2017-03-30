@@ -1,54 +1,32 @@
 module.exports = (sequelize, DataTypes) => {
-  const Documents = sequelize.define('Documents', {
-    ownerId: {
+  const Document = sequelize.define('Document', {
+    title: {
       allowNull: false,
       type: DataTypes.STRING
     },
-    title: {
+    contents: {
       allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: {
-          msg: 'This field cannot be empty'
-        }
-      }
+      type: DataTypes.TEXT
     },
-    content: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: {
-          msg: 'This field cannot be empty'
-        }
-      }
-    },
+    OwnerId: DataTypes.INTEGER,
     access: {
-      allowNull: false,
       defaultValue: 'public',
       type: DataTypes.STRING,
       validate: {
-        notEmpty: {
-          msg: 'This field cannot be empty'
-        },
-        isIn: {
-          args: [['public', 'private', 'role']],
-          msg: 'public, private or role required'
-        }
+        isIn: [['private', 'public', 'role']]
       }
     },
-    ownerRoleId: {
-      type: DataTypes.STRING
-    }
+    TypeId: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: (models) => {
         // associations can be defined here
-        Documents.belongsTo(models.Users, {
-          foreignKey: 'ownerId',
+        Document.belongsTo(models.User, {
+          as: 'Owner',
           onDelete: 'CASCADE',
         });
       }
     }
   });
-  return Documents;
+  return Document;
 };

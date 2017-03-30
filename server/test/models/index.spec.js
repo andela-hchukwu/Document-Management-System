@@ -3,8 +3,12 @@ const models = require('../../app/models');
 
 describe('Created Models', () => {
   it('should have User Model Created', () => {
-    expect(models.Users).to.exist;
-    expect(models.Roles).to.exist;
-    expect(models.Documents).to.exist;
+    expect(models.User).to.exist;
+  });
+  it('should have Role Model Created', () => {
+    expect(models.Role).to.exist;
+  });
+  it('should have Document Model Created', () => {
+    expect(models.Document).to.exist;
   });
 });

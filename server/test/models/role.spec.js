@@ -1,10 +1,9 @@
 const expect = require('chai').expect;
-const role = require('../../app/models').Roles;
+const Role = require('../../app/models').Role;
 const params = require('../testHelper.js').testRole;
 
-
 describe('Role Model', () => {
-  const Role = role.build(params);
+  const role = Role.build(params);
 
   describe('Create Role', () => {
     it('should create an instance of \'role\' ', () => {
@@ -12,7 +11,7 @@ describe('Role Model', () => {
     });
 
     it('should create an instance with a title', () => {
-      expect(Role.title).to.equal(params.title);
+      expect(role.title).to.equal(params.title);
     });
   });
 });

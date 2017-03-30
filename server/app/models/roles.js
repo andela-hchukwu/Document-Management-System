@@ -1,29 +1,21 @@
 module.exports = (sequelize, DataTypes) => {
-  const Roles = sequelize.define('Roles', {
+  const Role = sequelize.define('Role', {
     title: {
-      allowNull: true,
-      unique: {
-        args: true,
-        msg: 'role already exist'
-      },
-      validate: {
-        is: {
-          args: /\w+/g,
-          msg: 'Input a valide title'
-        },
-        notEmpty: {
-          msg: 'This field cannot be empty'
-        }
-      },
+      allowNull: false,
+      unique: true,
       type: DataTypes.STRING
     }
   }, {
     classMethods: {
-      associate: (models) => {
+      associate(models) {
         // associations can be defined here
-        Roles.hasMany(models.Users, { foreignKey: 'rolesId' });
+        Role.hasMany(models.User, {
+          foreignKey: {
+            allowNull: false
+          }
+        });
       }
     }
   });
-  return Roles;
+  return Role;
 };

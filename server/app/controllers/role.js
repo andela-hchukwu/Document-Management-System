@@ -63,7 +63,7 @@ class RolesController {
    * Method updateRole
    * @param {object} req - request object
    * @param {object} res - response object
-   * @return {object} return - updated role
+   * @return {object} return - response message
    *
    * @memberOf RolesController
    */
@@ -71,11 +71,31 @@ class RolesController {
     model.Role.findById(req.params.id)
       .then((role) => {
         if (!role) return res.status(404)
-              .send({ message: `No role with id ${req.params.role}` });
+          .send({ message: `No role with id ${req.params.role}` });
 
         role.update(req.body)
-              .then(updatedRole => res.status(202)
-                .send(updatedRole));
+          .then(updatedRole => res.status(202)
+            .send(updatedRole));
+      });
+  }
+
+  /**
+   * Method deleteRole
+   * @param {object} req - request object
+   * @param {object} res - response object
+   * @return {object} return - response message
+   *
+   * @memberOf RolesController
+   */
+  static deleteRole(req, res) {
+    model.Role.findById(req.params.id)
+      .then((role) => {
+        if (!role) return res.status(404)
+          .send({ message: `No role with id ${req.params.role}` });
+
+        role.destroy()
+          .then(() => res.status(202)
+            .send({ message: 'Role successfully deleted' }));
       });
   }
 }

@@ -51,10 +51,31 @@ class RolesController {
     model.Role.findById(req.params.id)
       .then((role) => {
         if (!role) return res.status(404)
-            .send({ message: `No role with id ${req.params.role}` });
+          .send({ message: `No role with id ${req.params.role}` });
 
         return res.status(200)
           .send(role);
+      });
+  }
+
+  /**
+   *
+   * Method updateRole
+   * @param {object} req - request object
+   * @param {object} res - response object
+   * @return {object} return - updated role
+   *
+   * @memberOf RolesController
+   */
+  static updateRole(req, res) {
+    model.Role.findById(req.params.id)
+      .then((role) => {
+        if (!role) return res.status(404)
+              .send({ message: `No role with id ${req.params.role}` });
+
+        role.update(req.body)
+              .then(updatedRole => res.status(202)
+                .send(updatedRole));
       });
   }
 }

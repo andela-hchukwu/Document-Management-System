@@ -8,12 +8,11 @@ module.exports = {
     firstName: 'henry',
     lastName: 'chukwu',
     email: 'henrychukwu13@gmail.com',
-    password: '123',
-    roleId: 1
+    password: '123'
   },
 
   testDocument: {
     title: 'Test Document',
-    text: 'Testing Testing Check'
+    content: 'Testing Testing Check, can you see me?'
   }
 };

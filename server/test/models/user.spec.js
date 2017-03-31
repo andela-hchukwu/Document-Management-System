@@ -36,9 +36,9 @@ describe('User Model', () => {
     it('should create a user with a valid email', () => {
       expect(user.email).to.equal(userParams.email);
     });
-    // it('should create a user with hashed password', () => {
-    //   expect(user.password).to.not.equal(userParams.password);
-    // });
+    it('should create a user with hashed password', () => {
+      expect(user.password).to.not.equal(userParams.password);
+    });
     it('should create a user with a defined Role', () => {
       model.User.findById(user.id, { include: [model.Role] })
         .then((foundUser) => {

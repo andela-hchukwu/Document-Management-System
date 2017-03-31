@@ -16,7 +16,7 @@ describe('User Model', () => {
     let user;
     before(() => model.Role.create(roleParams)
         .then((createdRole) => {
-          userParams.RoleId = createdRole.id;
+          userParams.roleId = createdRole.id;
           return model.User.create(userParams).then((createdUser) => {
             user = createdUser;
           });
@@ -46,7 +46,8 @@ describe('User Model', () => {
         });
     });
 
-    it('should be able to update a user', () => model.User.findById(user.id)
+    it('should be able to update a user',
+    () => model.User.findById(user.id)
         .then(foundUser => foundUser.update({ userName: 'mogims' }))
         .then((updatedUser) => {
           expect(updatedUser.userName).to.equal('mogims');
@@ -57,7 +58,7 @@ describe('User Model', () => {
     let user;
     beforeEach(() => model.Role.create(roleParams)
         .then((role) => {
-          userParams.RoleId = role.id;
+          userParams.roleId = role.id;
           user = model.User.build(userParams);
         }));
 
@@ -80,7 +81,7 @@ describe('User Model', () => {
         it(`reqires ${field} field to be Unique`, () => {
           user.save()
             .then((firstUser) => {
-              userParams.RoleId = firstUser.RoleId;
+              userParams.roleId = firstUser.roleId;
               return model.User.build(userParams).save();
             })
             .catch((error) => {

@@ -46,6 +46,7 @@
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
     "istanbul": "^1.0.0-alpha.2",
+    "jsonwebtoken": "^7.3.0",
     "pg": "^6.1.5",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.30.3"

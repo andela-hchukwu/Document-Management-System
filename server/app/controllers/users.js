@@ -1,34 +1,11 @@
-const model = require('../models');
+import db from '../models';
+import Auth from '../middlewares/auth';
+import Helper from '../Helper/Helper';
 
 /**
  * @class UsersController
  */
-class UsersController {
-
-  /**
-   * Method getUsers
-   * @param {object} req - request oject
-   * @param {object} res -response object
-   * @return {object} return - response object
-   *
-   * @memberOf usersController
-   */
-  static getUsers(req, res) {
-    model.User.findAll({
-      attributes: [
-        'id',
-        'userName',
-        'firstName',
-        'lastName',
-        'email',
-        'roleId',
-        'createdAt',
-        'updatedAt',
-      ]
-    }).then(users => res.status(200)
-        .send(users));
-  }
-
+const Users = {
   /**
    *
    * createUsers method
@@ -37,8 +14,8 @@ class UsersController {
    * @return {object} response message
    * @memberOf UsersController
    */
-  static createUsers(req, res) {
-    model.User
+  createUsers(req, res) {
+    db.User
       .create(req.userInput)
       .then((user) => {
         const token = Auth.getToken(user);
@@ -56,6 +33,6 @@ class UsersController {
             errorArray: Helper.errorArray(error)
           }));
   }
-}
+};
 
-module.exports = UsersController;
+module.exports = Users;

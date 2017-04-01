@@ -9,6 +9,7 @@ script:
     - npm test
 before_script:
     - npm install
+    - psql -c 'create database documan_test;' -U postgres
 
 
 after_script: cat coverage/*lcov.info | ./node_modules/.bin/coveralls 

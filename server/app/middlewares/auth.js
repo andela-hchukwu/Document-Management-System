@@ -1,7 +1,9 @@
 import jwt from 'jsonwebtoken';
 import db from '../models/index';
 
-const auth = {
+const secretKey = process.env.SECRET || 'secret';
+
+const Auth = {
 
   /**
    * verify web token
@@ -48,7 +50,21 @@ const auth = {
             next();
           } else { return res.send({ Message: 'permission denied' }); }
         });
-  }
+  },
+
+  /**
+  * Get token
+  * @param {Object} user user's object
+  * @returns {Boolean} true or false
+  */
+  getToken(user) {
+    const userToken = jwt.sign({
+      userId: user.id
+    },
+      secretKey, { expiresIn: '7d' }
+    );
+    return userToken;
+  },
 };
 
-export default auth;
+export default Auth;

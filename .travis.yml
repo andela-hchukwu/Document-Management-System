@@ -9,8 +9,8 @@ script:
     - npm test
 before_script:
     - npm install
-    - psql -c 'create user andeladeveloper;'
-    - psql -c 'create database documents_test;' -U andeladeveloper
+    - psql -c 'create database documents_test;' -U postgres
+    - NODE_ENV=travis npm run db:migrate
 
 
 after_script: cat coverage/*lcov.info | ./node_modules/.bin/coveralls 

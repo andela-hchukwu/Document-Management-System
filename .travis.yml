@@ -9,6 +9,7 @@ script:
     - npm test
 before_script:
     - npm install
+    - psql -c 'create user andeladeveloper;'
     - psql -c 'create database documents_test;' -U andeladeveloper
 
 

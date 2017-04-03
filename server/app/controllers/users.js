@@ -1,5 +1,5 @@
 import db from '../models';
-import Auth from '../middlewares/auth';
+import Auth from '../middlewares/Auth';
 import Helper from '../Helper/Helper';
 
 /**
@@ -34,6 +34,12 @@ const Users = {
           }));
   },
 
+  /**
+   * Method getALL users
+   * @param {Object} req - request object
+   * @param {Object} res - response object
+   * @returns {void} no returns
+   */
   getAll(req, res) {
     db.User
       .findAndCountAll(req.dmsFilter)
@@ -54,7 +60,33 @@ const Users = {
               });
           }
         });
-  }
+  },
+
+  /**
+   *
+   * @param {Object} req - request object
+   * @param {Object} res - response object
+   * @return {Object} response message
+   */
+  update(req, res) {
+    const errorArray = [];
+    req.userInstance.update(req.body)
+      .then(updatedUser =>
+        res.status(200)
+          .send({
+            message: 'Your profile has been updated',
+            updatedUser
+          }))
+          .catch((err) => {
+            err.errors.forEach((error) => {
+              errorArray.push({ path: error.path, message: error.message });
+            });
+            return res.status(400)
+              .send({
+                errorArray
+              });
+          });
+  },
 };
 
 module.exports = Users;

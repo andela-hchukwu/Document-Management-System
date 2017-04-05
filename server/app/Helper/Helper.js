@@ -69,6 +69,22 @@ const Helper = {
   },
 
   /**
+   * Get document attributes
+   * @returns {Array} return doc attributes
+   */
+  getDocAttribute() {
+    return [
+      'id',
+      'title',
+      'content',
+      'access',
+      'ownerId',
+      'createdAt',
+      'updatedAt'
+    ];
+  },
+
+  /**
    * Get errors
    * @param {Array} error client side errors
    * @returns {Array} return users attribute
@@ -79,6 +95,23 @@ const Helper = {
       errorArray.push({ path: err.path, message: err.message });
     });
     return errorArray;
+  },
+
+  /**
+   *
+   * @param {Object} data - document response from the database
+   * @returns {Object} return document attribute
+   */
+  getDocument(data) {
+    return {
+      id: data.id,
+      title: data.title,
+      content: data.content,
+      access: data.access,
+      ownerId: data.ownerId,
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt
+    };
   },
 };
 export default Helper;

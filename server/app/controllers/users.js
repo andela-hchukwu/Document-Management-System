@@ -87,6 +87,17 @@ const Users = {
               });
           });
   },
+
+  delete(req, res) {
+    req.userInstance.destroy()
+      .then(() => {
+        res.status(200)
+          .send({
+            message: 'This account has been successfully deleted'
+          });
+      })
+      .catch(err => res.status(500).send(err.errors));
+  },
 };
 
 module.exports = Users;

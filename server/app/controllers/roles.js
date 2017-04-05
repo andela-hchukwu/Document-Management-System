@@ -4,7 +4,7 @@ const model = require('../models');
 /**
  * @class RolesController
  */
-class RolesController {
+const Roles = {
 
   /**
    *
@@ -16,11 +16,11 @@ class RolesController {
    *
    * @memberOf RolesController
    */
-  static getRoles(req, res) {
+  getRoles(req, res) {
     model.Role.findAll()
       .then(roles => res.status(200)
         .send(roles));
-  }
+  },
 
 
   /**
@@ -31,13 +31,13 @@ class RolesController {
    *
    * @memberOf RolesController
    */
-  static createRole(req, res) {
+  createRole(req, res) {
     model.Role.create(req.body)
       .then(newRole => res.status(201)
         .send(newRole))
       .catch(error => res.status(400)
         .send(error.errors));
-  }
+  },
 
   /**
    * Method to get specific role
@@ -47,7 +47,7 @@ class RolesController {
    *
    * @memberOf RolesController
    */
-  static getRole(req, res) {
+  getRole(req, res) {
     model.Role.findById(req.params.id)
       .then((role) => {
         if (!role) return res.status(404)
@@ -56,7 +56,7 @@ class RolesController {
         return res.status(200)
           .send(role);
       });
-  }
+  },
 
   /**
    *
@@ -67,7 +67,7 @@ class RolesController {
    *
    * @memberOf RolesController
    */
-  static updateRole(req, res) {
+  updateRole(req, res) {
     model.Role.findById(req.params.id)
       .then((role) => {
         if (!role) return res.status(404)
@@ -77,7 +77,7 @@ class RolesController {
           .then(updatedRole => res.status(202)
             .send(updatedRole));
       });
-  }
+  },
 
   /**
    * Method deleteRole
@@ -87,7 +87,7 @@ class RolesController {
    *
    * @memberOf RolesController
    */
-  static deleteRole(req, res) {
+  deleteRole(req, res) {
     model.Role.findById(req.params.id)
       .then((role) => {
         if (!role) return res.status(404)
@@ -98,6 +98,6 @@ class RolesController {
             .send({ message: 'Role successfully deleted' }));
       });
   }
-}
+};
 
-module.exports = RolesController;
+module.exports = Roles;

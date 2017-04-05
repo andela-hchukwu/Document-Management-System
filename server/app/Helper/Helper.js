@@ -67,5 +67,18 @@ const Helper = {
       enail: data.email
     };
   },
+
+  /**
+   * Get errors
+   * @param {Array} error client side errors
+   * @returns {Array} return users attribute
+   */
+  errorArray(error) {
+    const errorArray = [];
+    error.errors.forEach((err) => {
+      errorArray.push({ path: err.path, message: err.message });
+    });
+    return errorArray;
+  },
 };
 export default Helper;

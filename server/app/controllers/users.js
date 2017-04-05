@@ -88,6 +88,12 @@ const Users = {
           });
   },
 
+  /**
+   * Method delete users
+   * @param {Object} req - request object
+   * @param {Object} res - response object
+   * @returns {void} no returns
+   */
   delete(req, res) {
     req.userInstance.destroy()
       .then(() => {

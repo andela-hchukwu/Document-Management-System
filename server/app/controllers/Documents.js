@@ -49,6 +49,21 @@ const Document = {
           });
       });
   },
+
+/**
+ * Get Document
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ * @returns {void|Object} - response object or void
+ */
+  getDocument(req, res) {
+    const document = Helper.getDocument(req.singleDocument);
+    return res.status(200)
+      .send({
+        message: 'You have successfully retrived this document',
+        document
+      });
+  },
 };
 
 module.exports = Document;

@@ -64,6 +64,38 @@ const Document = {
         document
       });
   },
+
+  /**
+   * Update document bi id
+   * @param {Object} req - request object
+   * @param {Object} res - response object
+   * @returns {void} no returns
+   */
+  update(req, res) {
+    req.docInstance.update(req.body)
+      .then(updatedDocument => res.status(200)
+        .send({
+          message: 'This document has been updated successfully',
+          updatedDocument
+        }))
+      .catch(error => res.status(500).send(error.errors));
+  },
+
+  /**
+  * Delete document by id
+  * Route: DELETE: /documents/:id
+  * @param {Object} req request object
+  * @param {Object} res response object
+  * @returns {void} no returns
+  */
+  detele(req, res) {
+    req.docInstance.destroy()
+      .then(() => res.status(200)
+         .send({
+           message: 'This document has been deleted successfully'
+         })
+      );
+  },
 };
 
 module.exports = Document;

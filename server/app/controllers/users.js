@@ -1,5 +1,5 @@
 import db from '../models';
-import Auth from '../middlewares/Auth';
+import Auth from '../middlewares/auth';
 import Helper from '../Helper/Helper';
 
 /**
@@ -14,9 +14,9 @@ const Users = {
    * @return {object} response message
    * @memberOf UsersController
    */
-  createUsers(req, res) {
+  create(req, res) {
     db.User
-      .create(req.userInput)
+      .create(req.body)
       .then((user) => {
         const token = Auth.getToken(user);
         user = Helper.userProfile(user);
@@ -103,6 +103,32 @@ const Users = {
           });
       })
       .catch(err => res.status(500).send(err.errors));
+  },
+
+  /**
+   *
+   * @param {any} req
+   * @param {any} res
+   */
+  login(req, res) {
+    db.User
+      .findOne({ where: { email: req.body.email } })
+      .then((user) => {
+        if (user && user.validPassword(req.body.password)) {
+          const token = Auth.getToken(user);
+          user = Helper.getUserProfile(user);
+          return res.status(200)
+            .send({
+              message: 'You have successfully logged in',
+              token,
+              user
+            });
+        }
+        res.status(401)
+          .send({
+            message: 'Please enter a valid email or password to log in'
+          });
+      });
   },
 };
 

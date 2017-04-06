@@ -96,6 +96,7 @@ const Document = {
          })
       );
   },
+
  /**
   * Search document
   * Route: GET: /searchs?query={}
@@ -125,4 +126,4 @@ const Document = {
   }
 };
 
-module.exports = Document;
+export default Document;

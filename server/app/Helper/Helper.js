@@ -64,7 +64,7 @@ const Helper = {
       userName: data.userName,
       firstName: data.firstName,
       lastName: data.lastName,
-      enail: data.email
+      email: data.email
     };
   },
 
@@ -78,7 +78,7 @@ const Helper = {
       'title',
       'content',
       'access',
-      'ownerId',
+      'OwnerId',
       'createdAt',
       'updatedAt'
     ];
@@ -97,6 +97,50 @@ const Helper = {
     return errorArray;
   },
 
+  docAccess(req) {
+    const access = {
+      $or:
+      [
+        { access: 'public' },
+        { OwnerId: req.tokenDecode.userId },
+        {
+          $and: [
+            { access: 'role' },
+            { OwnerRoleId: req.tokenDecode.roleId }
+          ]
+        }
+      ]
+    };
+    return access;
+  },
+
+  likeSearch(terms) {
+    const like = {
+      $or:
+      [
+        { title: { $iLike: { $any: terms } } },
+        { content: { $iLike: { $any: terms } } }
+      ]
+    };
+    return like;
+  },
+
+  isAdmin(roleId) {
+    return roleId === 1;
+  },
+
+  isRegular(roleId) {
+    return roleId === 2;
+  },
+
+  isOwner(req) {
+    return String(req.tokenDecode.userId) === String(req.params.id);
+  },
+
+  isOwnerDoc(doc, req) {
+    return doc.OwnerId === req.tokenDecode.userId;
+  },
+
   /**
    *
    * @param {Object} data - document response from the database
@@ -108,7 +152,7 @@ const Helper = {
       title: data.title,
       content: data.content,
       access: data.access,
-      ownerId: data.ownerId,
+      OwnerId: data.OwnerId,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt
     };

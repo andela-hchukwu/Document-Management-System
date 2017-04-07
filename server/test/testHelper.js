@@ -4,16 +4,15 @@ module.exports = {
   },
 
   testUser: {
-    userName: 'oredavids',
-    firstName: 'ore',
-    lastName: 'davids',
-    email: 'oredavids@gmail.com',
-    password: '123456',
-    RoleId: 1
+    userName: 'eloka17',
+    firstName: 'henry',
+    lastName: 'chukwu',
+    email: 'henrychukwu13@gmail.com',
+    password: '123'
   },
 
   testDocument: {
     title: 'Test Document',
-    text: 'Testing Testing'
+    content: 'Testing Testing Check, can you see me?'
   }
 };

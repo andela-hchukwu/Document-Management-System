@@ -15,6 +15,10 @@
     "port": 5432,
     "dialect": "postgres"
   },
+  "travis": {
+    "use_env_variable": "TRAVIS_DB_URL",
+    "dialect": "postgres"
+  },
   "production": {
     "username": "andeladeveloper",
     "password": null,

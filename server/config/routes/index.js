@@ -1,8 +1,7 @@
-const router = require('express').Router();
+// const router = require('express').Router();
 
-router.route('/')
-  .get((req, res) => {
-    res.status(200).send({ message: 'Welcome to the document Management API' });
-  });
+import userRouter from './User';
+import rolesRouter from './Role';
+import documentRouter from './Document';
 
-module.exports = router;
+export { userRouter, rolesRouter, documentRouter };

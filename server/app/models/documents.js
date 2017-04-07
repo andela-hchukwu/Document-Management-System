@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING
     },
-    contents: {
+    content: {
       allowNull: false,
       type: DataTypes.TEXT
     },
@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
         isIn: [['private', 'public', 'role']]
       }
     },
-    TypeId: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: (models) => {
@@ -24,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         Document.belongsTo(models.User, {
           as: 'Owner',
           onDelete: 'CASCADE',
+          foriegnKey: { allowNull: true }
         });
       }
     }

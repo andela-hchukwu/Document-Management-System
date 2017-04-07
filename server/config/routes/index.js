@@ -2,5 +2,6 @@
 
 import userRouter from './User';
 import rolesRouter from './Role';
+import documentRouter from './Document';
 
-export { userRouter, rolesRouter };
+export { userRouter, rolesRouter, documentRouter };

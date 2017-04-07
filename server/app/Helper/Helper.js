@@ -133,12 +133,21 @@ const Helper = {
     return roleId === 2;
   },
 
+  isPublic(doc) {
+    return doc.access === 'public';
+  },
+
   isOwner(req) {
     return String(req.tokenDecode.userId) === String(req.params.id);
   },
 
   isOwnerDoc(doc, req) {
     return doc.OwnerId === req.tokenDecode.userId;
+  },
+
+  hasRoleAccess(doc, req) {
+    return (doc.access === 'role'
+      && doc.ownerRoleId === req.tokenDecode.rolesId);
   },
 
   /**
@@ -156,6 +165,6 @@ const Helper = {
       createdAt: data.createdAt,
       updatedAt: data.updatedAt
     };
-  },
+  }
 };
 export default Helper;

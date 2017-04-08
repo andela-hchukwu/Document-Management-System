@@ -8,15 +8,11 @@ const roleParams = require('../testHelper').testRole;
 describe('Role Model', () => {
   describe('Create Role', () => {
     let role;
-    before(() => {
-      return Role.create(roleParams)
+    before(() => Role.create(roleParams)
         .then((createdRole) => {
           role = createdRole;
-        });
-    });
-    after(() => {
-      return Role.sequelize.sync({ force: true });
-    });
+        }));
+    after(() => Role.sequelize.sync({ force: true }));
     it('should be able to create a role', () => {
       expect(role).to.exist;
       expect(typeof role).to.equal('object');
@@ -28,27 +24,22 @@ describe('Role Model', () => {
   });
 
   describe('Role Model Validations', () => {
-    after(() => {
-      return Role.sequelize.sync({ force: true });
-    });
+    after(() => Role.sequelize.sync({ force: true }));
 
     describe('Title Field Validation', () => {
-      it('requires title field to create a role', () => {
-        return Role.create()
+      it('requires title field to create a role', () => Role.create()
           .catch((error) => {
             expect(/notNull Violation/.test(error.message)).to.be.true;
-          });
-      });
+          }));
 
       it('ensures a role can only be created once(unique)', () => {
         Role.create(roleParams)
-          .then(() => {
+          .then(() =>
             // attempt to create a second role with same title
-            return Role.create(roleParams)
+             Role.create(roleParams)
               .catch((error) => {
                 expect(/UniqueConstraintError/.test(error.name)).to.be.true;
-              });
-          });
+              }));
       });
     });
   });

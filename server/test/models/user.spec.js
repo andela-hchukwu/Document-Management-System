@@ -85,7 +85,6 @@ describe('User Model', () => {
               return model.User.build(userParams).save();
             })
             .catch((error) => {
-              // expect(/UniqueConstraintError/.test(error.name)).to.be.true;
               expect(/UniqueConstraintError/.test(error.name)).to.be.true;
             });
         });

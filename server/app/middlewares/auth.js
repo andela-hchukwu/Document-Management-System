@@ -66,6 +66,92 @@ const Auth = {
       });
   },
 
+    /**
+   * Validate user's input
+   * @param {Object} req req object
+   * @param {Object} res response object
+   * @param {Object} next Move to next controller handler
+   * @returns {void|Object} response object or void
+   * */
+  validateUserInput(req, res, next) {
+    if (req.body.roleId && req.body.roleId === 1) {
+      return res.status(403)
+        .send({
+          message: 'Permission denied, You cannot sign up as an admin user'
+        });
+    }
+    let userName = /\w+/g.test(req.body.userName);
+    let firstName = /\w+/g.test(req.body.firstName);
+    let lastName = /\w+/g.test(req.body.lastName);
+    let email = /\S+@\S+\.\S+/.test(req.body.email);
+    let password = /\w+/g.test(req.body.password);
+
+    if (!userName) {
+      return res.status(400)
+        .send({
+          message: 'Enter a valid userName'
+        });
+    }
+    if (!firstName) {
+      return res.status(400)
+        .send({
+          message: 'Enter a valid firstName'
+        });
+    }
+    if (!lastName) {
+      return res.status(400)
+        .send({
+          message: 'Enter a valid lastName'
+        });
+    }
+    if (!email) {
+      return res.status(400)
+        .send({
+          message: 'Enter a valid email'
+        });
+    }
+    if (!password) {
+      return res.status(400)
+        .send({
+          message: 'Enter a valid password'
+        });
+    }
+    if (req.body.password && req.body.password.length < 8) {
+      return res.status(400)
+        .send({
+          message: 'Minimum of 8 characters is allowed for password'
+        });
+    }
+
+    db.User.findOne({ where: { email: req.body.email } })
+      .then((user) => {
+        if (user) {
+          return res.status(409)
+            .send({
+              message: 'email already exists'
+            });
+        }
+        db.User.findOne({ where: { userName: req.body.userName } })
+          .then((newUser) => {
+            if (newUser) {
+              return res.status(409)
+                .send({
+                  message: 'username already exists'
+                });
+            }
+            userName = req.body.userName;
+            firstName = req.body.firstName;
+            lastName = req.body.lastName;
+            email = req.body.email;
+            password = req.body.password;
+            const roleId = req.body.roleId || 2;
+            req.userInput =
+            { userName, firstName, lastName, roleId, email, password };
+            next();
+          });
+      });
+  },
+
    /**
    * Validate user's input
    * @param {Object} req req object

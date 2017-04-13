@@ -16,7 +16,7 @@ userRouter.route('/')
 userRouter.route('/users')
   .get(Auth.verifyToken, Auth.validateSearch,
        User.getAll)
-  .post(User.create);
+  .post(Auth.validateUserInput, User.create);
 
 // logs in a user
 userRouter.route('/users/login')

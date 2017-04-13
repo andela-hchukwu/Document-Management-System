@@ -1,7 +1,5 @@
-'use strict';
-
 module.exports = {
-  up: function (queryInterface, Sequelize) {
+  up: (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('Roles', [{
       title: 'admin',
       createdAt: '2017-03-31 13:51:40.653+01',

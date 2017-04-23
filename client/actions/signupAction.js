@@ -10,12 +10,12 @@ export function setCurrentUser(user) {
   };
 }
 
-// export function createUserSuccess(user) {
-//   return {
-//     type: CREATE_USER_SUCCESS,
-//     user
-//   };
-// }
+export function createUserSuccess(user) {
+  return {
+    type: CREATE_USER_SUCCESS,
+    user
+  };
+}
 
 export function isUserExists(identifier) {
   return (dispatch) => axios.get(`/users/findUser/${identifier}`);

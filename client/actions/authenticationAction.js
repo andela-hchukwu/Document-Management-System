@@ -40,7 +40,7 @@ export function logout() {
  * @returns {function}
  */
 export function login(data) {
-  return dispatch => axios.post('/user/login', data)
+  return dispatch => axios.post('/users/login', data)
     .then((response) => {
       const token = response.data.token;
       const user = response.data.user;

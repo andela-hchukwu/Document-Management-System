@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
         isIn: [['private', 'public', 'role']]
       }
     },
+    OwnerRoleId: {
+      type: DataTypes.STRING
+    }
   }, {
     classMethods: {
       associate: (models) => {

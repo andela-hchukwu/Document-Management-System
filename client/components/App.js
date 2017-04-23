@@ -1,11 +1,14 @@
+// This component handles the App template used on every page.
 import React, { PropTypes, Component } from 'react';
 import Navbar from './Common/Header';
+import FlashMessageList from './FlashMessageList/index';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar location={this.props.location} />
+        <FlashMessageList />
         {this.props.children}
       </div>
     );
@@ -13,7 +16,8 @@ class App extends Component {
 }
 
 App.propTypes = {
-  children: PropTypes.object
+  location: PropTypes.object.isRequired,
+  children: PropTypes.object.isRequired
 };
 
 export default App;

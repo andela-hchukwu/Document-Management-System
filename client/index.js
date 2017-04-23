@@ -5,14 +5,15 @@ import { render } from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import jwtDecode from 'jwt-decode';
+import { setCurrentUser } from './actions/authenticationAction';
 import configureStore from './store/configureStore';
 import routes from './routes';
-import { setCurrentUser } from './actions/authenticationAction';
 import setAuthorizationToken from './util/util';
 import '../node_modules/materialize-css/dist/js/materialize.min';
 import '../node_modules/materialize-css/dist/css/materialize.min.css';
 import '../node_modules/material-icons/css/material-icons.css';
-// import './styles/styles.css';
+import '../node_modules/sweetalert/dist/sweetalert.css';
+import './styles/styles.css';
 
 
 const store = configureStore();

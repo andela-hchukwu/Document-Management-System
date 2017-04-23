@@ -14,7 +14,7 @@ const Auth = {
    * @returns {void} no returns
    */
   verifyToken(req, res, next) {
-    const token = req.headers['x-access-token'];
+    const token = req.headers.authorization || req.headers['x-access-token'];
     if (token) {
       jwt.verify(token, secretKey, (err, decoded) => {
         if (err) {
@@ -136,7 +136,7 @@ const Auth = {
             if (newUser) {
               return res.status(409)
                 .send({
-                  message: 'username already exists'
+                  message: 'userName already exists'
                 });
             }
             userName = req.body.userName;
@@ -324,7 +324,7 @@ const Auth = {
     query.limit = limit;
     query.offset = offset;
     query.order = [['createdAt', order]];
-
+    query.include = [db.Role];
     if (`${req.baseUrl}${req.route.path}` === '/users/search') {
       if (!req.query.query) {
         return res.status(400)
@@ -584,7 +584,9 @@ const Auth = {
   */
   getToken(user) {
     const userToken = jwt.sign({
-      userId: user.id
+      userId: user.id,
+      userName: user.userName,
+      userRoleId: user.roleId
     },
       secretKey, { expiresIn: '7d' }
     );

@@ -2,13 +2,23 @@ export default {
   isAuthenticated: false,
   user: {},
   users: {
-    allUsers: [],
+    allUsers: {
+      users: {
+        rows: []
+      }
+    },
     userDetails: false
   },
   documents: {
-    allDocuments: []
+    allDocuments: {
+      documents: {
+        rows: []
+      }
+    }
   },
   roles: {
-    allRoles: []
+    allRoles: {
+      roles: []
+    }
   },
 };

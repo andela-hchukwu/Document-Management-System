@@ -35,6 +35,10 @@ userRouter.route('/users/:id')
     Auth.validateDeleteUser,
     User.delete);
 
+
+userRouter.route('/users/findUser/:identifier')
+    .get(User.fetchExistingUser);
+
 // Find all documents belonging to the user.
 userRouter.route('/users/:id/documents')
   .get(Auth.verifyToken, Auth.validateSearch, User.findUserDocuments);

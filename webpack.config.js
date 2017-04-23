@@ -62,6 +62,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
+    historyApiFallback: true,
     contentBase: path.resolve(__dirname, 'client')
   },
   resolve: {

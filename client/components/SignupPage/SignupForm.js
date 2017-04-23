@@ -66,7 +66,7 @@ class SignupForm extends React.Component {
             type: 'success',
             text: 'Welcome! Signup Succesful.'
           });
-          this.context.router.push('/');
+          this.context.router.push('/dashboard');
         },
         err => this.setState({ errors: err.response.data, isLoading: false })
       );
@@ -82,7 +82,7 @@ class SignupForm extends React.Component {
           <TextInputTemplate
             icon="person"
             error={errors.userName}
-            label="Username"
+            label="User Name"
             onChange={this.onChange}
             checkUserExists={this.checkUserExists}
             value={this.state.userName}
@@ -164,7 +164,7 @@ class SignupForm extends React.Component {
 
 SignupForm.propTypes = {
   userSignupRequest: React.PropTypes.func.isRequired,
-  addFlashMessage: React.PropTypes.func,
+  addFlashMessage: React.PropTypes.func.isRequired,
   isUserExists: React.PropTypes.func.isRequired
 };
 

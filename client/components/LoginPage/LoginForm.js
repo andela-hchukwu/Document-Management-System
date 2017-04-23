@@ -2,15 +2,15 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import toastr from 'toastr';
 import TextFieldGroup from '../Common/TextInputTemplate';
-import validateInput from '../../util/util';
+import validateInput from '../../util/loginValidation';
 import { login } from '../../actions/authenticationAction';
-// import { addFlashMessage } from '../../actions/flashMessages';
+import { addFlashMessage } from '../../actions/flashMessages';
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      identifier: '',
+      email: '',
       password: '',
       errors: {},
       isLoading: false
@@ -47,7 +47,7 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const { errors, identifier, password, isLoading } = this.state;
+    const { errors, email, password, isLoading } = this.state;
     return (
 
         <form className="login-form" onSubmit={this.onSubmit}>
@@ -55,10 +55,10 @@ class LoginForm extends React.Component {
           <div className="row margin">
           <TextFieldGroup
             icon="contact_mail"
-            field="identifier"
-            label="Username / Email"
-            value={identifier}
-            error={errors.identifier}
+            field="email"
+            label="Email"
+            value={email}
+            error={errors.email}
             onChange={this.onChange}
             type="text"
             />
@@ -90,11 +90,11 @@ class LoginForm extends React.Component {
 
 LoginForm.propTypes = {
   login: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func
+  addFlashMessage: PropTypes.func.isRequired
 };
 
 LoginForm.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-export default connect(null, { login })(LoginForm);
+export default connect(null, { login, addFlashMessage })(LoginForm);

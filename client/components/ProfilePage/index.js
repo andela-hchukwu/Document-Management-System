@@ -98,7 +98,7 @@ class ProfilePage extends React.Component {
                             onChange={this.handleOnChange}
                             className="validate"
                           />
-                          <label className="active" htmlFor="first_name">Username</label>
+                          <label className="active" htmlFor="user_name">Username</label>
                         </div>
                         <div className="input-field col s6">
                           <input

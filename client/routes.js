@@ -16,7 +16,7 @@ import requireAdminAuth from './components/Util/requireAdminAuth';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
-    <Route path="/dashboard" component={requireAuth(DashboardPage)} />
+    <Route path="dashboard" component={requireAuth(DashboardPage)} />
     <Route path="signup" component={SignupPage} />
     <Route path="login" component={LoginPage} />
     <Route path="thedocuments" component={requireAuth(DocumentPage)} />

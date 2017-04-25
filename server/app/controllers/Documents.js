@@ -105,11 +105,12 @@ const Document = {
     * @returns {void|Response} response object or void
     */
   getDocumentByTitle(req, res) {
-    const documents = Helper.getDocument(req.singleDocument);
     return res.status(200)
       .send({
         message: 'You have successfully retrived this document',
-        documents
+        documents: {
+          rows: req.singleDocument
+        }
       });
   }
 };

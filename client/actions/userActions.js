@@ -74,7 +74,7 @@ export function updateUserAdmin(user) {
 
 export function updateUserInfo(userInfo) {
   const user = JSON.parse(localStorage.getItem('user'));
-  return dispatch => axios.put(`/users/${user.userId}`, userInfo)
+  return dispatch => axios.put(`/users/${user.id}`, userInfo)
     .then((response) => {
       dispatch(updateUserSuccess(userInfo));
     }).catch((error) => {

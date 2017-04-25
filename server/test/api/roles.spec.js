@@ -35,7 +35,7 @@ describe('ROLE API', () => {
   after(() => db.Role.destroy({ where: {} }));
 
   describe('ADMIN', () => {
-    it('should allow admin to create a role', (done) => {
+    it.only('should allow admin to create a role', (done) => {
       superRequest.post('/roles')
         .send(regularRoleParams)
         .set({ 'x-access-token': adminToken })

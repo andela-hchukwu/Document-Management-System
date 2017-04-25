@@ -114,7 +114,6 @@ export function updateDocument(document, userId) {
  * @returns {object} documents
  */
 export function deleteDocument(id, userId) {
-  console.log('id, userId===================>', id, userId);
   return dispatch => axios.delete(`/documents/${id}`)
     .then(() => {
       dispatch(loadUserDocuments(userId));

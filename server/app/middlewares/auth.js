@@ -324,9 +324,9 @@ const Auth = {
     query.limit = limit;
     query.offset = offset;
     query.order = [['createdAt', order]];
-    query.include = [db.Role];
-    if (`${req.baseUrl}${req.route.path}` === '/users/search') {
-      if (!req.query.query) {
+
+    if (`${req.baseUrl}${req.route.path}` === '/search/users') {
+      if (!req.query.q) {
         return res.status(400)
           .send({
             message: 'Please enter a search query'
@@ -341,12 +341,13 @@ const Auth = {
         ]
       };
     }
-    if (`${req.baseUrl}${req.route.path}` === '/users/') {
+    if (`${req.baseUrl}${req.route.path}` === '/users') {
+      query.include = [db.Role];
       query.where = Helper.isAdmin(req.tokenDecode.roleId)
         ? {}
         : { id: req.tokenDecode.userId };
     }
-    if (`${req.baseUrl}${req.route.path}` === '/documents/search') {
+    if (`${req.baseUrl}${req.route.path}` === '/search/documents/') {
       if (!req.query.query) {
         return res.status(400)
           .send({
@@ -362,6 +363,11 @@ const Auth = {
       }
     }
     if (`${req.baseUrl}${req.route.path}` === '/documents/') {
+      query.include = [{
+        model: db.User,
+        where: { roleId: db.userRoleId },
+        as: 'owner'
+      }];
       if (Helper.isAdmin(req.tokenDecode.roleId)) {
         query.where = {};
       } else {
@@ -428,6 +434,13 @@ const Auth = {
       });
   },
 
+ /**
+   * Get a single user's document
+   * @param {Object} req req object
+   * @param {Object} res response object
+   * @param {Object} next Move to next controller handler
+   * @returns {void|Object} response object or void
+   */
   getSingleDocument(req, res, next) {
     db.Document
       .findById(req.params.id)
@@ -505,7 +518,7 @@ const Auth = {
 
   getDocumentByTitle(req, res, next) {
     db.Document
-      .findOne({
+      .findAll({
         where: { title: req.query.q },
       })
       .then((document) => {
@@ -516,7 +529,7 @@ const Auth = {
             });
         }
         if (!Helper.isPublic(document) && !Helper.isOwnerDoc(document, req)
-           && !Helper.isAdmin(req.tokenDecode.rolesId)
+           && !Helper.isAdmin(req.tokenDecode.roleId)
            && !Helper.hasRoleAccess(document, req)) {
           return res.status(401)
             .send({
@@ -529,6 +542,13 @@ const Auth = {
       .catch(error => res.status(500).send(error.errors));
   },
 
+ /**
+   * Check for document edit and delete permission
+   * @param {Object} req req object
+   * @param {Object} res response object
+   * @param {Object} next Move to next controller handler
+   * @returns {void|Object} response object or void
+   */
   hasDocumentPermission(req, res, next) {
     db.Document.findById(req.params.id)
       .then((doc) => {

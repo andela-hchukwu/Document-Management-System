@@ -61,6 +61,11 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  externals: {
+    'cheerio': 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true,
+  },
   devServer: {
     historyApiFallback: true,
     contentBase: path.resolve(__dirname, 'client')

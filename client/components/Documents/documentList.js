@@ -32,7 +32,7 @@ class DocumentList extends Component {
         <ul className="collection">
           {docs
             .map(doc =>
-              <li key={doc.title} className="collection-item">
+              <li key={doc.id} className="collection-item">
                 <div className="row doc-collection-item">
                   <div className="col s4 offset s2 title"><a href="#">
                     {doc.title}</a></div>

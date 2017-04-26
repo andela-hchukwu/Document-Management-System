@@ -362,7 +362,7 @@ const Auth = {
         };
       }
     }
-    if (`${req.baseUrl}${req.route.path}` === '/documents/') {
+    if (`${req.baseUrl}${req.route.path}` === '/documents') {
       query.include = [{
         model: db.User,
         where: { roleId: db.userRoleId },
@@ -452,7 +452,7 @@ const Auth = {
             });
         }
         if (!Helper.isPublic(document) && !Helper.isOwnerDoc(document, req)
-           && !Helper.isAdmin(req.tokenDecode.rolesId)
+           && !Helper.isAdmin(req.tokenDecode.roleId)
            && !Helper.hasRoleAccess(document, req)) {
           return res.status(401)
             .send({
@@ -511,7 +511,7 @@ const Auth = {
       content: req.body.content,
       OwnerId: req.tokenDecode.userId,
       access: req.body.access,
-      ownerRoleId: req.tokenDecode.roleId
+      OwnerRoleId: req.tokenDecode.roleId
     };
     next();
   },

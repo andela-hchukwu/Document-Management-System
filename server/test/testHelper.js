@@ -22,13 +22,13 @@ module.exports = {
   },
 
   guestRole2: {
-    id: 3,
-    title: 'guest'
+    id: 4,
+    title: 'guest111'
   },
 
   guestRole3: {
-    id: 3,
-    title: 'guest'
+    id: 5,
+    title: 'guest222'
   },
 
   sampleRole: {

@@ -184,7 +184,7 @@ const Helper = {
    */
   hasRoleAccess(doc, req) {
     return (doc.access === 'role'
-      && doc.ownerRoleId === req.tokenDecode.roleId);
+      && doc.OwnerRoleId === req.tokenDecode.roleId);
   },
 
   /**

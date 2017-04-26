@@ -1,5 +1,5 @@
 /* dom.js */
-const jsdom = require('jsdom').jsdom;
+import { jsdom } from 'jsdom'; //eslint-disable-line
 
 const exposedProperties = ['window', 'navigator', 'document'];
 

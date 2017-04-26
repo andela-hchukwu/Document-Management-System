@@ -11,7 +11,7 @@ const Document = {
   */
   create(req, res) {
     db.Document
-      .create(req.body)
+      .create(req.docInput)
         .then((document) => {
           document = Helper.getDocument(document);
           res.status(201)

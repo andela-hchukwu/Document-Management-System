@@ -11,7 +11,7 @@ const Document = {
   */
   create(req, res) {
     db.Document
-      .create(req.body)
+      .create(req.docInput)
         .then((document) => {
           document = Helper.getDocument(document);
           res.status(201)
@@ -108,9 +108,12 @@ const Document = {
     return res.status(200)
       .send({
         message: 'You have successfully retrived this document',
-        document: Helper.getDocument(req.singleDocument)
+        documents: {
+          rows: req.singleDocument
+        }
       });
   }
 };
+
 
 export default Document;

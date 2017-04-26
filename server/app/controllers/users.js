@@ -1,6 +1,8 @@
 import db from '../models/index';
 import Auth from '../middlewares/auth';
 import Helper from '../Helper/Helper';
+// import Role from '../models/roles';
+
 
 const User = {
   /**
@@ -185,7 +187,7 @@ const User = {
     * @returns {void} no returns
     */
   findUserDocuments(req, res) {
-    const userDocuments = {};
+    let documents = {};
     db.User.findById(req.params.id)
       .then((user) => {
         if (!user) {
@@ -194,7 +196,7 @@ const User = {
               message: 'This user does not exist'
             });
         }
-        userDocuments.user = Helper.getUserProfile(user);
+        documents.user = Helper.getUserProfile(user);
         req.dmsFilter.where.OwnerId = req.params.id;
         req.dmsFilter.attributes = Helper.getDocAttribute();
         db.Document.findAndCountAll(req.dmsFilter)
@@ -206,11 +208,11 @@ const User = {
             };
             delete docs.count;
             const pagination = Helper.pagination(condition);
-            userDocuments.documents = docs;
+            documents = docs;
             return res.status(200)
               .send({
                 message: 'This user\'s documents was successfully retrieved',
-                userDocuments,
+                documents,
                 pagination
               });
           });
@@ -244,8 +246,28 @@ const User = {
             pagination
           });
       });
-  }
+  },
 
+  fetchExistingUser(req, res) {
+    db.User
+      .find({
+        where: {
+          $or: [
+            { email: req.body.identifier },
+            { userName: req.body.identifier }
+          ]
+        }
+      })
+      .then((user) => {
+        if (!user) {
+          return res.status(200).json({ message: 'User can be created' });
+        }
+        return res.status(400).json({ error: 'User already exists' });
+      })
+      .catch(error => res.status(501).json({
+        error, err: 'An error occurred while retrieving the user'
+      }));
+  }
 };
 
 export default User;

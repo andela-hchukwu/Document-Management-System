@@ -14,7 +14,7 @@ const Auth = {
    * @returns {void} no returns
    */
   verifyToken(req, res, next) {
-    const token = req.headers['x-access-token'];
+    const token = req.headers.authorization || req.headers['x-access-token'];
     if (token) {
       jwt.verify(token, secretKey, (err, decoded) => {
         if (err) {
@@ -63,6 +63,92 @@ const Auth = {
               message: 'You are not permitted to perform this action'
             });
         }
+      });
+  },
+
+    /**
+   * Validate user's input
+   * @param {Object} req req object
+   * @param {Object} res response object
+   * @param {Object} next Move to next controller handler
+   * @returns {void|Object} response object or void
+   * */
+  validateUserInput(req, res, next) {
+    if (req.body.roleId && req.body.roleId === 1) {
+      return res.status(403)
+        .send({
+          message: 'Permission denied, You cannot sign up as an admin user'
+        });
+    }
+    let userName = /\w+/g.test(req.body.userName);
+    let firstName = /\w+/g.test(req.body.firstName);
+    let lastName = /\w+/g.test(req.body.lastName);
+    let email = /\S+@\S+\.\S+/.test(req.body.email);
+    let password = /\w+/g.test(req.body.password);
+
+    if (!userName) {
+      return res.status(400)
+        .send({
+          message: 'Enter a valid userName'
+        });
+    }
+    if (!firstName) {
+      return res.status(400)
+        .send({
+          message: 'Enter a valid firstName'
+        });
+    }
+    if (!lastName) {
+      return res.status(400)
+        .send({
+          message: 'Enter a valid lastName'
+        });
+    }
+    if (!email) {
+      return res.status(400)
+        .send({
+          message: 'Enter a valid email'
+        });
+    }
+    if (!password) {
+      return res.status(400)
+        .send({
+          message: 'Enter a valid password'
+        });
+    }
+    if (req.body.password && req.body.password.length < 8) {
+      return res.status(400)
+        .send({
+          message: 'Minimum of 8 characters is allowed for password'
+        });
+    }
+
+    db.User.findOne({ where: { email: req.body.email } })
+      .then((user) => {
+        if (user) {
+          return res.status(409)
+            .send({
+              message: 'email already exists'
+            });
+        }
+        db.User.findOne({ where: { userName: req.body.userName } })
+          .then((newUser) => {
+            if (newUser) {
+              return res.status(409)
+                .send({
+                  message: 'userName already exists'
+                });
+            }
+            userName = req.body.userName;
+            firstName = req.body.firstName;
+            lastName = req.body.lastName;
+            email = req.body.email;
+            password = req.body.password;
+            const roleId = req.body.roleId || 2;
+            req.userInput =
+            { userName, firstName, lastName, roleId, email, password };
+            next();
+          });
       });
   },
 
@@ -239,8 +325,8 @@ const Auth = {
     query.offset = offset;
     query.order = [['createdAt', order]];
 
-    if (`${req.baseUrl}${req.route.path}` === '/users/search') {
-      if (!req.query.query) {
+    if (`${req.baseUrl}${req.route.path}` === '/search/users') {
+      if (!req.query.q) {
         return res.status(400)
           .send({
             message: 'Please enter a search query'
@@ -255,12 +341,13 @@ const Auth = {
         ]
       };
     }
-    if (`${req.baseUrl}${req.route.path}` === '/users/') {
+    if (`${req.baseUrl}${req.route.path}` === '/users') {
+      query.include = [db.Role];
       query.where = Helper.isAdmin(req.tokenDecode.roleId)
         ? {}
         : { id: req.tokenDecode.userId };
     }
-    if (`${req.baseUrl}${req.route.path}` === '/documents/search') {
+    if (`${req.baseUrl}${req.route.path}` === '/search/documents/') {
       if (!req.query.query) {
         return res.status(400)
           .send({
@@ -275,7 +362,12 @@ const Auth = {
         };
       }
     }
-    if (`${req.baseUrl}${req.route.path}` === '/documents/') {
+    if (`${req.baseUrl}${req.route.path}` === '/documents') {
+      query.include = [{
+        model: db.User,
+        where: { roleId: db.userRoleId },
+        as: 'owner'
+      }];
       if (Helper.isAdmin(req.tokenDecode.roleId)) {
         query.where = {};
       } else {
@@ -342,6 +434,13 @@ const Auth = {
       });
   },
 
+ /**
+   * Get a single user's document
+   * @param {Object} req req object
+   * @param {Object} res response object
+   * @param {Object} next Move to next controller handler
+   * @returns {void|Object} response object or void
+   */
   getSingleDocument(req, res, next) {
     db.Document
       .findById(req.params.id)
@@ -353,7 +452,7 @@ const Auth = {
             });
         }
         if (!Helper.isPublic(document) && !Helper.isOwnerDoc(document, req)
-           && !Helper.isAdmin(req.tokenDecode.rolesId)
+           && !Helper.isAdmin(req.tokenDecode.roleId)
            && !Helper.hasRoleAccess(document, req)) {
           return res.status(401)
             .send({
@@ -412,14 +511,14 @@ const Auth = {
       content: req.body.content,
       OwnerId: req.tokenDecode.userId,
       access: req.body.access,
-      ownerRoleId: req.tokenDecode.roleId
+      OwnerRoleId: req.tokenDecode.roleId
     };
     next();
   },
 
   getDocumentByTitle(req, res, next) {
     db.Document
-      .findOne({
+      .findAll({
         where: { title: req.query.q },
       })
       .then((document) => {
@@ -430,7 +529,7 @@ const Auth = {
             });
         }
         if (!Helper.isPublic(document) && !Helper.isOwnerDoc(document, req)
-           && !Helper.isAdmin(req.tokenDecode.rolesId)
+           && !Helper.isAdmin(req.tokenDecode.roleId)
            && !Helper.hasRoleAccess(document, req)) {
           return res.status(401)
             .send({
@@ -443,6 +542,13 @@ const Auth = {
       .catch(error => res.status(500).send(error.errors));
   },
 
+ /**
+   * Check for document edit and delete permission
+   * @param {Object} req req object
+   * @param {Object} res response object
+   * @param {Object} next Move to next controller handler
+   * @returns {void|Object} response object or void
+   */
   hasDocumentPermission(req, res, next) {
     db.Document.findById(req.params.id)
       .then((doc) => {
@@ -498,7 +604,9 @@ const Auth = {
   */
   getToken(user) {
     const userToken = jwt.sign({
-      userId: user.id
+      userId: user.id,
+      userName: user.userName,
+      userRoleId: user.roleId
     },
       secretKey, { expiresIn: '7d' }
     );

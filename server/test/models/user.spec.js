@@ -8,19 +8,23 @@ const userParams = helper.testUser;
 const roleParams = helper.testRole;
 
 const requiredFields = ['userName', 'firstName', 'lastName', 'email',
-  'password', 'roleId'];
+  'password', 'RoleId'];
 const uniqueFields = ['userName', 'email'];
 
 describe('User Model', () => {
   describe('How User Model Works', () => {
     let user;
-    before(() => model.Role.create(roleParams)
+    before((done) => {
+      model.Role.create(roleParams)
         .then((createdRole) => {
           userParams.roleId = createdRole.id;
-          return model.User.create(userParams).then((createdUser) => {
-            user = createdUser;
-          });
-        }));
+          return model.User.create(userParams);
+        })
+        .then((createdUser) => {
+          user = createdUser;
+          done();
+        });
+    });
 
     after(() => model.sequelize.sync({ force: true }));
 
@@ -46,21 +50,26 @@ describe('User Model', () => {
         });
     });
 
-    it('should be able to update a user',
-    () => model.User.findById(user.id)
+    it('should be able to update a user', (done) => {
+      model.User.findById(user.id)
         .then(foundUser => foundUser.update({ userName: 'mogims' }))
         .then((updatedUser) => {
           expect(updatedUser.userName).to.equal('mogims');
-        }));
+          done();
+        });
+    });
   });
 
   describe('How User model does Validation', () => {
     let user;
-    beforeEach(() => model.Role.create(roleParams)
+    beforeEach((done) => {
+      model.Role.create(roleParams)
         .then((role) => {
           userParams.roleId = role.id;
           user = model.User.build(userParams);
-        }));
+          done();
+        });
+    });
 
     afterEach(() => model.sequelize.sync({ force: true }));
 
@@ -78,14 +87,14 @@ describe('User Model', () => {
 
     describe('Unique Fields', () => {
       uniqueFields.forEach((field) => {
-        it(`reqires ${field} field to be Unique`, () => {
+        it(`requires ${field} field to be Unique`, () => {
           user.save()
             .then((firstUser) => {
               userParams.roleId = firstUser.roleId;
+              // attempt to create another user with same parameters
               return model.User.build(userParams).save();
             })
             .catch((error) => {
-              // expect(/UniqueConstraintError/.test(error.name)).to.be.true;
               expect(/UniqueConstraintError/.test(error.name)).to.be.true;
             });
         });
@@ -94,7 +103,7 @@ describe('User Model', () => {
 
     describe('Mail Validation', () => {
       it('requires user mail to be authentic', () => {
-        user.email = 'henrychukwu13 yahoo';
+        user.email = 'oredavids yahoo';
         return user.save()
           .then((unsavedUser) => {
             expect(unsavedUser).to.exist;

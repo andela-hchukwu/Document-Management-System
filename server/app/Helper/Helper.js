@@ -97,6 +97,11 @@ const Helper = {
     return errorArray;
   },
 
+  /**
+   * Query for document's access
+   * @param {Object} req request object
+   * @returns {Object} return access query
+   */
   docAccess(req) {
     const access = {
       $or:
@@ -125,29 +130,61 @@ const Helper = {
     return like;
   },
 
+  /**
+   * Check for admin permission
+   * @param {String} roleId user role id
+   * @returns {Boolean} true or false
+   */
   isAdmin(roleId) {
     return roleId === 1;
   },
 
+  /**
+   * Check for regular permission
+   * @param {String} roleId user role id
+   * @returns {Boolean} true or false
+   */
   isRegular(roleId) {
     return roleId === 2;
   },
 
+  /**
+   * Check if document's access level is public
+   * @param {Object} doc object
+   * @returns {Boolean} true or false
+   */
   isPublic(doc) {
     return doc.access === 'public';
   },
 
+  /**
+   * Check for owner
+   * @param {Object} req request object
+   * @returns {Boolean} true or false
+   */
   isOwner(req) {
     return String(req.tokenDecode.userId) === String(req.params.id);
   },
 
+    /**
+   * Check for document's owner
+   * @param {Object} doc object
+   * @param {Object} req request object
+   * @returns {Boolean} true or false
+   */
   isOwnerDoc(doc, req) {
     return doc.OwnerId === req.tokenDecode.userId;
   },
 
+    /**
+   * Check for document's role permission
+   * @param {Object} doc object
+   * @param {Object} req request object
+   * @returns {Boolean} true or false
+   */
   hasRoleAccess(doc, req) {
     return (doc.access === 'role'
-      && doc.ownerRoleId === req.tokenDecode.rolesId);
+      && doc.OwnerRoleId === req.tokenDecode.roleId);
   },
 
   /**

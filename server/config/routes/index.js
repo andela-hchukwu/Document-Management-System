@@ -1,7 +1,7 @@
 // const router = require('express').Router();
 
-import userRouter from './Users';
-import rolesRouter from './Role';
-import documentRouter from './Document';
+import userRouter from './users';
+import rolesRouter from './role';
+import documentRouter from './document';
 
 export { userRouter, rolesRouter, documentRouter };

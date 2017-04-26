@@ -14,7 +14,8 @@ describe('Document Model', () => {
     let document;
     let owner;
 
-    before(() => model.Role.create(params.testRole)
+    before((done) => {
+      model.Role.create(params.testRole)
         .then((createdRole) => {
           userParams.roleId = createdRole.id;
           return model.User.create(userParams);
@@ -22,51 +23,66 @@ describe('Document Model', () => {
         .then((createdUser) => {
           owner = createdUser;
           documentParams.OwnerId = owner.id;
-          return model.Document.create(documentParams);
-        })
-        .then((createdDocument) => {
-          document = createdDocument;
-        }));
+          done();
+        });
+    });
+
+    beforeEach(() => {
+      document = model.Document.build(documentParams);
+    });
+
+    afterEach(() => model.Document.destroy({ where: {} }));
+
     after(() => model.sequelize.sync({ force: true }));
 
-    it('should be able to create a document', () => {
-      expect(document).to.exist;
-      expect(typeof document).to.equal('object');
+    it('should be able to create a document', (done) => {
+      document.save()
+        .then((createdDocument) => {
+          expect(createdDocument).to.exist;
+          expect(typeof createdDocument).to.equal('object');
+          done();
+        });
     });
-    it('should create a document with title and content', () => {
-      expect(document.title).to.equal(documentParams.title);
-      expect(document.content).to.equal(documentParams.content);
+    it('should create a document with title and content', (done) => {
+      document.save()
+        .then((createdDocument) => {
+          expect(createdDocument.title).to.equal(documentParams.title);
+          expect(createdDocument.content).to.equal(documentParams.content);
+          done();
+        });
     });
-    it('should create a document with correct OwnerId', () => {
-      expect(document.OwnerId).to.equal(owner.id);
+    it('should create a document with correct OwnerId', (done) => {
+      document.save()
+        .then((createdDocument) => {
+          expect(createdDocument.OwnerId).to.equal(owner.id);
+          done();
+        });
     });
-    it('should create a document with access set to public', () => {
-      expect(document.access).to.equal('public');
+    it('should create a document with publish date', (done) => {
+      document.save()
+      .then((createdDocument) => {
+        expect(createdDocument.createdAt).to.exist;
+        done();
+      });
     });
-  });
+    it('should create a document with access set to public', (done) => {
+      document.save()
+        .then((createdDocument) => {
+          expect(createdDocument.access).to.equal('public');
+          done();
+        });
+    });
 
-  describe('Document Model Validations', () => {
-    let document;
-
-    beforeEach(() => model.Role.create(params.testRole)
-        .then((createdRole) => {
-          userParams.roleId = createdRole.id;
-          return model.User.create(userParams);
-        })
-        .then((createdUser) => {
-          documentParams.OwnerId = createdUser.id;
-          document = model.Document.build(documentParams);
-        }));
-    afterEach(() => model.sequelize.sync({ force: true }));
-
-    describe('Required Fields Validation', () => {
-      requiredFields.forEach((field) => {
-        it(`requires a ${field} field to create a document`, () => {
-          document[field] = null;
-          return document.save()
-            .catch((error) => {
-              expect(/notNull Violation/.test(error.message)).to.be.true;
-            });
+    describe('Document Model Validations', () => {
+      describe('Required Fields Validation', () => {
+        requiredFields.forEach((field) => {
+          it(`requires a ${field} field to create a document`, () => {
+            document[field] = null;
+            return document.save()
+              .catch((error) => {
+                expect(/notNull Violation/.test(error.message)).to.be.true;
+              });
+          });
         });
       });
     });

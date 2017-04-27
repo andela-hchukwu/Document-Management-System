@@ -48,7 +48,7 @@ app.use(express.static(path.join(__dirname, 'client')));
 
 app.use(express.static(path.join(__dirname, 'server/swagger')));
 
-app.get('/app/*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(`${__dirname}/client/dist/index.html`);
 });
 

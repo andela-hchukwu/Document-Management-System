@@ -1,4 +1,3 @@
-import path from 'path';
 import express from 'express';
 import User from '../../app/controllers/users';
 import Auth from '../../app/middlewares/auth';

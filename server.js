@@ -25,15 +25,8 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(webpackHotMiddleware(compiler));
 }
 
-app.use(express.static(path.join(__dirname, 'server/swagger')));
-
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
-
-app.get('/doc', (req, res) => {
-  res.status(200)
-  .sendFile(path.join(__dirname, 'server/swagger', 'index.html'));
-});
 
 app.get('/swagger.json', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
@@ -46,9 +39,14 @@ app.get('/swagger.json', (req, res) => {
 app.use('/', route.userRouter);
 app.use('/', route.rolesRouter);
 app.use('/', route.documentRouter);
-
+app.get('/doc', (req, res) => {
+  res.status(200)
+  .sendFile(path.join(__dirname, 'server/swagger', 'index.html'));
+});
 
 app.use(express.static(path.join(__dirname, 'client')));
+
+app.use(express.static(path.join(__dirname, 'server/swagger')));
 
 app.get('/app/*', (req, res) => {
   res.sendFile(`${__dirname}/client/dist/index.html`);

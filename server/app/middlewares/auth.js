@@ -363,11 +363,11 @@ const Auth = {
       }
     }
     if (`${req.baseUrl}${req.route.path}` === '/documents') {
-      query.include = [{
-        model: db.User,
-        where: { roleId: db.userRoleId },
-        as: 'owner'
-      }];
+      // query.include = [{
+      //   model: db.User,
+      //   where: { roleId: db.roleId },
+      //   as: 'owner'
+      // }];
       if (Helper.isAdmin(req.tokenDecode.roleId)) {
         query.where = {};
       } else {

@@ -1,8 +1,5 @@
 
 import swaggerJSDoc from 'swagger-jsdoc';
-import express from 'express';
-
-const router = express.Router();
 
   // swagger definition
 const swaggerDefinition = {

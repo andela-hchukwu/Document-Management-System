@@ -57,7 +57,8 @@ const User = {
           .send({
             message: 'Please enter a valid email or password to log in'
           });
-      });
+      }).catch(err => (res.status(400)
+        .send(err)));
   },
 
   /**

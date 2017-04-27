@@ -13,7 +13,13 @@ Source code employs ES6 syntax traspiled down to ES5 using Babel.
 - Node.js
 - Express
 - Postgresql
+- React/Redux
 - Sequelize ORM.
+
+## Development
+This application was developed using [NodeJs](https://nodejs.org) with express for routing. Postgres was used for persisting data with [Sequelize](https://sequelizejs.org) as [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping).
+
+The frontend was built with the [react](https://facebook.github.io/react/) and [redux](reduxjs.org) framework.
 
 
 ### Installation
@@ -23,7 +29,42 @@ Source code employs ES6 syntax traspiled down to ES5 using Babel.
 - Run git clone https://github.com/andela-hchukwu/Document-Management-System.git.
 - Change directory into the Document-Management-System directory.
 - Run npm install to install the dependencies in the package.json file.
-- Use Postman or any API testing tool of your choice to access the endpoints defined above.
+- Use Postman or any API testing tool of your choice to access the endpoints.
+
+## Usage
+- Run DB migrate commmand with `sequelize db:migrate`.
+- Run DB seeder command with `sequelize db:seed` to seed initial data into your DB.
+- Start the app with `$ npm start`
+- Login, Sign Up and start creating Documents once the app opens up on the browser
+
+#### Key Application Features
+A created user will have a role: admin, regular, rated/restricted, children.
+- Regular, rated/restricted and children Users can:
+    - Create an account
+    - Login
+    - Create a document
+    - Limit access to a document by specifying an access group `i.e. public, private or role`.
+    - View public documents created by other users.
+    - View documents created by their access group with access level set as `role`.
+    - Edit already created documents.
+    - View `public` and `role` access level documents of other regular users.
+    - Logout.
+
+- In addition to the general user functions, an admin user can:
+    - View all users.
+    - View all created documents.
+    - Delete any user.
+    - Update any user's records.
+    - Create a new role.
+    - View all created roles.
+    - Delete created roles aside the default roles `admin` and `regular`
+
+
+**Documents**:
+Documents can be created and must have:
+- title
+- content
+- access; set by default to public but can be any of `private, public or role`
 
 #### Contributing
 ---

@@ -57,9 +57,7 @@
     "sinon": "^2.1.0",
     "style-loader": "0.13.1",
     "supertest": "^3.0.0",
-    "url-loader": "0.5.7",
-    "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "2.10.0"
+    "url-loader": "0.5.7"
   },
   "dependencies": {
     "axios": "0.13.1",
@@ -123,6 +121,8 @@
     "swagger-jsdoc": "^1.9.2",
     "toastr": "^2.1.2",
     "validator": "^7.0.0",
-    "webpack": "^1.14.0"
+    "webpack": "^1.14.0",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "2.10.0"
   }
 }

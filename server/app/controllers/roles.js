@@ -1,9 +1,7 @@
 import db from '../models/index';
 import Helper from '../Helper/Helper';
 
-
 const Roles = {
-
 
  /**
   * Get all roles
@@ -23,7 +21,6 @@ const Roles = {
         });
       });
   },
-
 
  /**
   * Create a new role

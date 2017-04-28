@@ -4,7 +4,7 @@ import * as types from './actionTypes';
 /**
  * action to successfully get a user
  * @export
- * @param {any} users
+ * @param {object} users
  * @returns  {object} user
  */
 export function retrieveUsersSuccess(allUsers) {
@@ -14,6 +14,12 @@ export function retrieveUsersSuccess(allUsers) {
   };
 }
 
+/**
+ * action to successfully update a user
+ * @export
+ * @param {object} user
+ * @returns {object} user
+ */
 export function updateUserSuccess(user) {
   return {
     type: types.UPDATE_USER_SUCCESS,
@@ -21,6 +27,12 @@ export function updateUserSuccess(user) {
   };
 }
 
+/**
+ * action to successfully users profile
+ * @export
+ * @param {object} user
+ * @returns {object} user
+ */
 export function getUserInfoSuccess(user) {
   return {
     type: types.GET_USER_INFO_SUCCESS,
@@ -44,7 +56,7 @@ export function retrieveUsers() {
 
 /**
  * dispatching the action to get users
- * @param {any} id
+ * @param {integer} id
  * @export
  * @returns {object}
  */
@@ -60,7 +72,7 @@ export function deleteUser(id) {
 /**
  * dispatching the action to update a user details
  * @export
- * @param {any} user
+ * @param {object} user
  * @returns {object}
  */
 export function updateUserAdmin(user) {
@@ -72,6 +84,12 @@ export function updateUserAdmin(user) {
       });
 }
 
+/**
+ * dispatching the action to update a regularUser's details
+ * @export
+ * @param {object} userInfo
+ * @returns {object}
+ */
 export function updateUserInfo(userInfo) {
   const user = JSON.parse(localStorage.getItem('user'));
   return dispatch => axios.put(`/users/${user.id}`, userInfo)
@@ -82,6 +100,12 @@ export function updateUserInfo(userInfo) {
     });
 }
 
+/**
+ * dispatching the action to get a user's details
+ * @export
+ * @param {null}
+ * @returns {object}
+ */
 export function getUserInfo() {
   const user = JSON.parse(localStorage.getItem('user'));
   return dispatch => axios.get(`/users/${user.id}`)

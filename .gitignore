@@ -3,3 +3,6 @@
 /.istabul.yml
 /.env
 /dist
+/.vscode
+/server/db/seeders
+/.DS_Store

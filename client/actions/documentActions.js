@@ -4,7 +4,7 @@ import * as types from './actionTypes';
 /**
  * Load document success action creator
  * @export
- * @param {any} document
+ * @param {object} document
  * @returns {object} action
  */
 export function loadDocumentSuccess(document) {
@@ -17,7 +17,7 @@ export function loadDocumentSuccess(document) {
 /**
  * Update document success action creator
  * @export
- * @param {any} document
+ * @param {object} document
  * @returns {object} action
  */
 export function updateDocumentSuccess(document) {
@@ -80,8 +80,8 @@ export function loadAllDocuments() {
 
 /**
  * Action creator to save a document after adding content and title
- * @param {any} document
- * @param {any} userId
+ * @param {object} document
+ * @param {number} userId
  * @returns {function}
  */
 export function saveDocument(document, id) {
@@ -109,9 +109,9 @@ export function updateDocument(document, userId) {
 
 /**
  * @export
- * @param {any} id
- * @param {any} userId
- * @returns {object} documents
+ * @param {number} id
+ * @param {number} userId
+ * @returns {function}
  */
 export function deleteDocument(id, userId) {
   return dispatch => axios.delete(`/documents/${id}`)
@@ -122,6 +122,11 @@ export function deleteDocument(id, userId) {
     });
 }
 
+/**
+ * @export
+ * @param {string/number} query
+ * @returns {function}
+ */
 export function searchDocuments(query) {
   return dispatch => axios.get(`/search/documents/?q=${query}`)
     .then((response) => {

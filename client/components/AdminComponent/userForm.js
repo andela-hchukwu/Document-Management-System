@@ -16,8 +16,6 @@ class UserForm extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
     this.updateUser = this.updateUser.bind(this);
-    // this.saveUser = this.saveUser.bind(this);
-    // this.clearError = this.clearError.bind(this);
   }
 
   componentDidMount() {

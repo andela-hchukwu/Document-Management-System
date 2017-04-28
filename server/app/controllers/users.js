@@ -1,8 +1,6 @@
 import db from '../models/index';
 import Auth from '../middlewares/auth';
 import Helper from '../Helper/Helper';
-// import Role from '../models/roles';
-
 
 const User = {
   /**

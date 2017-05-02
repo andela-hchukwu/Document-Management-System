@@ -101,8 +101,8 @@ describe('User Model', () => {
       });
     });
 
-    describe('Mail Validation', () => {
-      it('requires user mail to be authentic', () => {
+    describe('Email Validation', () => {
+      it('requires user email to be authentic', () => {
         user.email = 'oredavids yahoo';
         return user.save()
           .then((unsavedUser) => {

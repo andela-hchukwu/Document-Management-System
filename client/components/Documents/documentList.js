@@ -36,7 +36,7 @@ class DocumentList extends Component {
                 <div className="row doc-collection-item">
                   <div className="col s4 offset s2 title"><a href="#">
                     {doc.title}</a></div>
-                  <div className="user-buttons row col s3">
+                  <div className="user-buttons row col s3 editButton" id="editButton">
                     <a
                       className="waves-effect waves-light btn blue-grey"
                       id="editButton"

@@ -6,3 +6,9 @@
 /.vscode
 /server/db/seeders
 /.DS_Store
+/selenium.jar
+/chromedriver
+/doc-man-signup.png
+/reports
+/screenshots
+/document-management-login.png

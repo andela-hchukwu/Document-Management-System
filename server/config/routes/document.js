@@ -263,7 +263,7 @@ documentRouter.route('/documents/:id')
    */
 documentRouter.route('/search/documents')
   .get(Auth.verifyToken,
-    Auth.getDocumentByTitle,
-    Documents.getDocumentByTitle);
+    Auth.validateSearch,
+    Documents.search);
 
 export default documentRouter;

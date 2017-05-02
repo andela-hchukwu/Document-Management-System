@@ -326,7 +326,7 @@ const Auth = {
     query.order = [['createdAt', order]];
 
     if (`${req.baseUrl}${req.route.path}` === '/search/users') {
-      if (!req.query.q) {
+      if (!req.query.query) {
         return res.status(400)
           .send({
             message: 'Please enter a search query'
@@ -347,7 +347,7 @@ const Auth = {
         ? {}
         : { id: req.tokenDecode.userId };
     }
-    if (`${req.baseUrl}${req.route.path}` === '/search/documents/') {
+    if (`${req.baseUrl}${req.route.path}` === '/search/documents') {
       if (!req.query.query) {
         return res.status(400)
           .send({
@@ -358,7 +358,7 @@ const Auth = {
         query.where = Helper.likeSearch(terms);
       } else {
         query.where = {
-          $and: [Helper.docAccess(req), Helper.likeSearch(terms)]
+          $and: [Helper.documentAccess(req), Helper.likeSearch(terms)]
         };
       }
     }
@@ -371,14 +371,14 @@ const Auth = {
       if (Helper.isAdmin(req.tokenDecode.roleId)) {
         query.where = {};
       } else {
-        query.where = Helper.docAccess(req);
+        query.where = Helper.documentAccess(req);
       }
     }
     if (`${req.baseUrl}${req.route.path}` === '/users/:id/documents') {
       const adminSearch = req.query.query ? Helper.likeSearch(terms) : { };
       const userSearch = req.query.query
-        ? [Helper.docAccess(req), Helper.likeSearch(terms)]
-        : Helper.docAccess(req);
+        ? [Helper.documentAccess(req), Helper.likeSearch(terms)]
+        : Helper.documentAccess(req);
       if (Helper.isAdmin(req.tokenDecode.roleId)) {
         query.where = adminSearch;
       } else {
@@ -442,6 +442,7 @@ const Auth = {
    * @returns {void|Object} response object or void
    */
   getSingleDocument(req, res, next) {
+    console.log('document');
     db.Document
       .findById(req.params.id)
       .then((document) => {

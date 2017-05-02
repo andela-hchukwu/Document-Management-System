@@ -142,6 +142,7 @@ const User = {
     */
   update(req, res) {
     const errorArray = [];
+    console.log('req.body========>', req.body);
     req.userInstance.update(req.body)
       .then(updatedUser =>
         res.status(200)
@@ -197,7 +198,7 @@ const User = {
         }
         documents.user = Helper.getUserProfile(user);
         req.dmsFilter.where.OwnerId = req.params.id;
-        req.dmsFilter.attributes = Helper.getDocAttribute();
+        req.dmsFilter.attributes = Helper.getDocumentAttribute();
         db.Document.findAndCountAll(req.dmsFilter)
           .then((docs) => {
             const condition = {

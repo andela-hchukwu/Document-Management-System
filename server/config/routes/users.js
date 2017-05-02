@@ -395,6 +395,6 @@ userRouter.route('/search/users')
    *           items:
    *             $ref: '#/definitions/SearchUser'
    */
-  .get(Auth.verifyToken, Auth.getUserName, User.getUserName);
+  .get(Auth.verifyToken, Auth.validateSearch, User.search);
 
 export default userRouter;

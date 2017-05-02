@@ -42,12 +42,12 @@ app.use('/', route.rolesRouter);
 app.use('/', route.documentRouter);
 app.get('/doc', (req, res) => {
   res.status(200)
-  .sendFile(path.join(__dirname, 'server/swagger', 'index.html'));
+  .sendFile(path.join(__dirname, 'server/Swagger', 'index.html'));
 });
 
 app.use(express.static(path.join(__dirname, 'client')));
 
-app.use(express.static(path.join(__dirname, 'server/swagger')));
+app.use(express.static(path.join(__dirname, 'server/Swagger')));
 
 app.get('/*', (req, res) => {
   res.sendFile(`${__dirname}/client/dist/index.html`);

@@ -37,8 +37,7 @@ export class Header extends React.Component {
               </div>
             </form>
           </li>
-          <li><Link to="/dashboard" activeClassName="active">
-            <i className="material-icons left" id="dashboard">dashboard</i>Dashboard</Link></li>
+          <li><Link to="/dashboard" activeClassName="active">Dashboard</Link></li>
           <li activeClassName="active">
             <a href="#">Welcome, {user.userName}!</a>
           </li>

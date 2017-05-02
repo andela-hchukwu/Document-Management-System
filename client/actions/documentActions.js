@@ -128,7 +128,7 @@ export function deleteDocument(id, userId) {
  * @returns {function}
  */
 export function searchDocuments(query) {
-  return dispatch => axios.get(`/search/documents/?q=${query}`)
+  return dispatch => axios.get(`/search/documents/?query=${query}`)
     .then((response) => {
       dispatch(loadDocumentSuccess(response.data));
     }).catch((error) => {

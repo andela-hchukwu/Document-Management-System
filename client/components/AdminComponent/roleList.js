@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react';
 import { addDisabledClass } from './disabledItems';
 
 
-const RoleList = ({ rolesArray, editRole, deleteRole }) =>
+const RoleList = ({ roles, editRole, deleteRole }) =>
   (
     <div className="role-collection">
       <ul className="collection">
-        {rolesArray
+        {roles
           .map(role =>
             <li key={role.title} className="collection-item">
               <div className="row user-collection-item">
@@ -30,7 +30,7 @@ const RoleList = ({ rolesArray, editRole, deleteRole }) =>
 RoleList.propTypes = {
   editRole: PropTypes.func.isRequired,
   deleteRole: PropTypes.func.isRequired,
-  rolesArray: React.PropTypes.array.isRequired
+  roles: React.PropTypes.array.isRequired
 };
 
 

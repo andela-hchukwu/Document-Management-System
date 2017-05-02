@@ -30,7 +30,7 @@ const Document = {
    * @return {Object|void} response object or void
    */
   getAll(req, res) {
-    req.dmsFilter.attributes = Helper.getDocAttribute();
+    req.dmsFilter.attributes = Helper.getDocumentAttribute();
     db.Document
       .findAndCountAll(req.dmsFilter)
       .then((documents) => {
@@ -95,6 +95,34 @@ const Document = {
            message: 'This document has been deleted successfully'
          })
       );
+  },
+
+    /**
+    * Search document
+    * Route: GET: /searchs?query={}
+    * @param {Object} req request object
+    * @param {Object} res response object
+    * @returns {void|Response} response object or void
+    */
+  search(req, res) {
+    req.dmsFilter.attributes = Helper.getDocumentAttribute();
+    db.Document
+      .findAndCountAll(req.dmsFilter)
+      .then((documents) => {
+        const condition = {
+          count: documents.count,
+          limit: req.dmsFilter.limit,
+          offset: req.dmsFilter.offset
+        };
+        delete documents.count;
+        const pagination = Helper.pagination(condition);
+        res.status(200)
+          .send({
+            message: 'This search was successfull',
+            documents,
+            pagination
+          });
+      });
   },
 
   /**

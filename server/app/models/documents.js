@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.TEXT
     },
-    OwnerId: DataTypes.INTEGER,
+    OwnerId: {
+      type: DataTypes.INTEGER
+    },
     access: {
       defaultValue: 'public',
       type: DataTypes.STRING,
@@ -24,9 +26,9 @@ module.exports = (sequelize, DataTypes) => {
       associate: (models) => {
         // associations can be defined here
         Document.belongsTo(models.User, {
-          as: 'Owner',
+          // as: 'Owner',
+          foreignKey: 'OwnerId',
           onDelete: 'CASCADE',
-          foriegnKey: { allowNull: true }
         });
       }
     }

@@ -65,8 +65,7 @@ class ManangeRolePage extends React.Component {
 
 
   render() {
-    const { rolesArray } = this.props;
-    console.log('roles========>', rolesArray, this.props);
+    const { roles } = this.props;
     return (
       <div>
         <div className="row">
@@ -75,7 +74,7 @@ class ManangeRolePage extends React.Component {
               <h4 className="center">Manage Role Details and Permissions</h4>
               <div className="row manage-user">
                 <div className="col user-list">
-                  <RoleList editRole={this.renderRoleForm} deleteRole={this.renderAlert} rolesArray={rolesArray} />
+                  <RoleList editRole={this.renderRoleForm} deleteRole={this.renderAlert} roles={roles} />
                 </div>
                 {this.state.displayForm && <div className="col s5">
                   <div>
@@ -96,7 +95,7 @@ class ManangeRolePage extends React.Component {
 ManangeRolePage.propTypes = {
   loadRoles: PropTypes.func.isRequired,
   deleteRole: PropTypes.func.isRequired,
-  rolesArray: PropTypes.array.isRequired,
+  roles: PropTypes.array.isRequired,
   swal: PropTypes.func.isRequired,
   close: PropTypes.func.isRequired,
   addFlashMessage: React.PropTypes.func.isRequired
@@ -108,9 +107,9 @@ ManangeRolePage.propTypes = {
  */
 function mapStateToProps(state) {
   console.log(state.roles);
-  const { allRoles: { rolesArray } } = state.roles;
+  const { allRoles: { roles } } = state.roles;
   return {
-    rolesArray
+    roles
   };
 }
 

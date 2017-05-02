@@ -11,7 +11,17 @@ module.exports = {
     title: 'admin'
   },
 
+  adminRole2: {
+    id: 1,
+    title: 'adminUser'
+  },
+
   regularRole: {
+    id: 2,
+    title: 'regular'
+  },
+
+  regularRole2: {
     id: 2,
     title: 'regular'
   },
@@ -29,6 +39,11 @@ module.exports = {
   guestRole3: {
     id: 5,
     title: 'guest222'
+  },
+
+  guestRole4: {
+    id: 6,
+    title: 'guest1234'
   },
 
   sampleRole: {
@@ -67,6 +82,22 @@ module.exports = {
     password: faker.internet.password()
   },
 
+  regularUser4: {
+    userName: faker.internet.userName(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    password: faker.internet.password()
+  },
+
+  regularUser5: {
+    userName: faker.internet.userName(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    password: faker.internet.password()
+  },
+
   firstUser: {
     userName: faker.internet.userName(),
     firstName: faker.name.firstName(),
@@ -83,6 +114,14 @@ module.exports = {
     password: faker.internet.password()
   },
 
+  sixthUser: {
+    userName: faker.internet.userName(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    password: faker.internet.password()
+  },
+
   adminUser: {
     userName: faker.internet.userName(),
     firstName: faker.name.firstName(),
@@ -92,6 +131,14 @@ module.exports = {
   },
 
   adminUser1: {
+    userName: faker.internet.userName(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    password: faker.internet.password()
+  },
+
+  adminUser2: {
     userName: faker.internet.userName(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),

@@ -53,7 +53,7 @@ class ProfilePage extends React.Component {
   }
 
   render() {
-    const { firstName = '', lastName = '', userName = '', email = '' } = this.state.user;
+    const { firstName = '', lastName = '', userName = '', email = '', password = '' } = this.state.user;
     return (
       <div>
         <div className="row">
@@ -106,10 +106,23 @@ class ProfilePage extends React.Component {
                             type="email"
                             value={email}
                             name="email"
-                            onChange={this.handleOnChange}
                             className="validate"
                           />
                           <label className="active" htmlFor="email">Email</label>
+                        </div>
+                        <div className="input-field col s6">
+                          <input
+                            id="password"
+                            type="password"
+                            value={password}
+                            name="password"
+                            onChange={this.handleOnChange}
+                            className="validate"
+                          />
+                          <label className="active" htmlFor="password">Password</label>
+                        </div>
+                        <div className="row">
+                          <div className="col s6"></div>
                         </div>
                         <div className="row">
                           <div className="col s6">
@@ -150,12 +163,12 @@ ProfilePage.propTypes = {
  * @param {any} state
  * @returns {any}
  */
-function mapStateToProps(state) {
-  const { user } = state.users;
-  return {
-    user
-  };
-}
+// function mapStateToProps(state) {
+//   const { user } = state.users.allUsers;
+//   return {
+//     user
+//   };
+// }
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -166,4 +179,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
+export default connect(null, mapDispatchToProps)(ProfilePage);

@@ -25,7 +25,7 @@ const Helper = {
    * get user's attribute
    * @returns {Array} return user's attribute
    */
-  getUserAtrribute() {
+  getUserAttribute() {
     return [
       'id',
       'userName',
@@ -72,7 +72,7 @@ const Helper = {
    * Get document attributes
    * @returns {Array} return doc attributes
    */
-  getDocAttribute() {
+  getDocumentAttribute() {
     return [
       'id',
       'title',
@@ -102,7 +102,7 @@ const Helper = {
    * @param {Object} req request object
    * @returns {Object} return access query
    */
-  docAccess(req) {
+  documentAccess(req) {
     const access = {
       $or:
       [

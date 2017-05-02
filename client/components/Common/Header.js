@@ -38,7 +38,7 @@ export class Header extends React.Component {
             </form>
           </li>
           <li><Link to="/dashboard" activeClassName="active">
-            <i className="material-icons left">dashboard</i>Dashboard</Link></li>
+            <i className="material-icons left" id="dashboard">dashboard</i>Dashboard</Link></li>
           <li activeClassName="active">
             <a href="#">Welcome, {user.userName}!</a>
           </li>
@@ -64,8 +64,8 @@ export class Header extends React.Component {
     }
     return (
       <ul>
-        <li><Link to="/signup" activeClassName="active">Signup</Link></li>
-        <li><Link to="/login" activeClassName="active">Login</Link></li>
+        <li><Link to="/signup" activeClassName="active" id="signup">Signup</Link></li>
+        <li><Link to="/login" activeClassName="active" id="login">Login</Link></li>
       </ul>
     );
   }

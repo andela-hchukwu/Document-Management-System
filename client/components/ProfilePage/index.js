@@ -163,12 +163,12 @@ ProfilePage.propTypes = {
  * @param {any} state
  * @returns {any}
  */
-function mapStateToProps(state) {
-  const { user } = state.users.allUsers;
-  return {
-    user
-  };
-}
+// function mapStateToProps(state) {
+//   const { user } = state.users.allUsers;
+//   return {
+//     user
+//   };
+// }
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -179,4 +179,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
+export default connect(null, mapDispatchToProps)(ProfilePage);

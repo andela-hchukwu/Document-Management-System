@@ -142,7 +142,6 @@ const User = {
     */
   update(req, res) {
     const errorArray = [];
-    console.log('req.body========>', req.body);
     req.userInstance.update(req.body)
       .then(updatedUser =>
         res.status(200)

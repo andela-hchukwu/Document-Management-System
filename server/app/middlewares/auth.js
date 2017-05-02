@@ -442,7 +442,6 @@ const Auth = {
    * @returns {void|Object} response object or void
    */
   getSingleDocument(req, res, next) {
-    console.log('document');
     db.Document
       .findById(req.params.id)
       .then((document) => {

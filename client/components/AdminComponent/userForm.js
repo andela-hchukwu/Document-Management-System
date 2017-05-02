@@ -70,7 +70,6 @@ class UserForm extends React.Component {
               value={firstName}
               placeholder="first name"
               icon="person_outline"
-              onChange={this.onChange}
             />
           </div>
           <div className="row margin">
@@ -81,7 +80,6 @@ class UserForm extends React.Component {
               value={lastName}
               placeholder="last name"
               icon="person_outline"
-              onChange={this.onChange}
             />
           </div>
           <div className="row margin">
@@ -92,7 +90,6 @@ class UserForm extends React.Component {
               value={userName}
               placeholder="username"
               icon="person"
-              onChange={this.onChange}
             />
           </div>
           <div className="row margin">
@@ -103,7 +100,6 @@ class UserForm extends React.Component {
               value={email}
               placeholder="email"
               icon="email"
-              onChange={this.onChange}
             />
           </div>
           <div className="row margin">

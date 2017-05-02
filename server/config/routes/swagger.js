@@ -4,9 +4,9 @@ import swaggerJSDoc from 'swagger-jsdoc';
   // swagger definition
 const swaggerDefinition = {
   info: {
-    title: 'iamdocuman API',
+    title: 'Document Management System API',
     version: '1.0.0',
-    description: 'API documentation for iAmDocuman',
+    description: 'API documentation for to create, manage and edit documents',
   }
 };
 

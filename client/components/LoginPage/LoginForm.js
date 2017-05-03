@@ -28,22 +28,23 @@ class LoginForm extends React.Component {
     return isValid;
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  onSubmit(event) {
+    event.preventDefault();
     if (this.isValid()) {
       this.setState({ errors: {}, isLoading: true });
       this.props.login(this.state).then(
-        (res) => {
+        () => {
           this.context.router.push('/dashboard');
           toastr.success('Logged in Successfully!');
         },
-        err => this.setState({ errors: err.response.data.errors, isLoading: false })
+        err => this.setState({ errors: err.response.data.errors,
+          isLoading: false })
       );
     }
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
@@ -77,10 +78,11 @@ class LoginForm extends React.Component {
           </div>
 
           <div className="center-align">
-            <button disabled={isLoading} className="btn blue-grey" type="submit">
+          <button disabled={isLoading} className="btn blue-grey" type="submit">
               Login<i className="material-icons right">thumb_up</i>
             </button>
-          {errors.form && <div className="card-panel red darken-1">{errors.form}</div>}
+          {errors.form && <div className="card-panel red darken-1">{errors.form}
+          </div>}
          </div>
 
         </form>

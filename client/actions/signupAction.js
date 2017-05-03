@@ -1,6 +1,6 @@
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import setAuthorizationToken from '../util/util';
+import setAuthorizationToken from '../util/setAuthorizationToken';
 import { SET_CURRENT_USER, CREATE_USER_SUCCESS } from './actionTypes';
 
 export function setCurrentUser(user) {

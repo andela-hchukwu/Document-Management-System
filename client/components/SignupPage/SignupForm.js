@@ -24,8 +24,8 @@ class SignupForm extends React.Component {
     this.checkUserExists = this.checkUserExists.bind(this);
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  onChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   isValid() {
@@ -36,11 +36,11 @@ class SignupForm extends React.Component {
     return isValid;
   }
 
-  checkUserExists(e) {
-    const field = e.target.name;
-    const val = e.target.value;
-    if (val !== '') {
-      this.props.isUserExists(val).then((response) => {
+  checkUserExists(event) {
+    const field = event.target.name;
+    const value = event.target.value;
+    if (value !== '') {
+      this.props.isUserExists(value).then((response) => {
         const errors = this.state.errors;
         let invalid;
         if (response.data.user) {
@@ -55,8 +55,8 @@ class SignupForm extends React.Component {
     }
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  onSubmit(event) {
+    event.preventDefault();
 
     if (this.isValid()) {
       this.setState({ errors: {}, isLoading: true });

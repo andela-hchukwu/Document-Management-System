@@ -10,8 +10,8 @@ import DashboardPage from './components/DashBoard/index';
 import ManangeRolePage from './components/AdminComponent/manageRolePage';
 import HandleUsersPage from './components/AdminComponent/handleUsersPage';
 import ProfilePage from './components/ProfilePage/index';
-import requireAuth from './components/Util/requireAuth';
-import requireAdminAuth from './components/Util/requireAdminAuth';
+import requireAuth from './components/Util/requireAuthentication';
+import requireAdminAuth from './components/Util/requireAdminAuthentication';
 
 export default (
   <Route path="/" component={App}>

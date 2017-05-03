@@ -22,7 +22,6 @@ class DocumentForm extends React.Component {
       displaySaveButton: true
     };
     this.onChange = this.onChange.bind(this);
-    // this.updateSelectState = this.updateSelectState.bind(this);
     this.handleModelChange = this.handleModelChange.bind(this);
     this.saveDocument = this.saveDocument.bind(this);
     this.updateDocument = this.updateDocument.bind(this);

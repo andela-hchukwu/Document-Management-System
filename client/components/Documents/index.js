@@ -42,7 +42,6 @@ class DocumentPage extends React.Component {
     return (
       <div className="document-page row">
         <div className="col s12 z-depth-5 card-panel">
-          {/* <h4 className="center">MY DOCUMENTS</h4>*/}
           <div className="row">
             <div className="col s12">
               <div className="row">

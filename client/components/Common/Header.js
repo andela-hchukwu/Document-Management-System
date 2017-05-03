@@ -11,15 +11,15 @@ export class Header extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
   }
 
-  logout(e) {
-    e.preventDefault();
+  logout(event) {
+    event.preventDefault();
     this.props.logout();
   }
 
-  handleSearch(e) {
+  handleSearch(event) {
     const path = this.props.location.pathname.slice(1);
     if (['dashboard', 'allDocuments'].includes(path)) {
-      this.props.searchDocuments(e.target.value);
+      this.props.searchDocuments(event.target.value);
     }
   }
 
@@ -75,7 +75,7 @@ export class Header extends React.Component {
       <nav className="blue-grey">
         <div className="nav-wrapper">
           <IndexLink to="/" activeClassName="active">
-            <i className="material-icons left">home</i>Home</IndexLink>
+            <i className="material-icons left">home</i>idocman</IndexLink>
           <ul id="nav-mobile" className="right">
             <li>
               {navLinks}

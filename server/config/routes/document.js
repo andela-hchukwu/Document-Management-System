@@ -1,7 +1,7 @@
 import express from 'express';
 import Documents from '../../app/controllers/documents';
 import Auth from '../../app/middlewares/authentication';
-import Validate from '../../app/middlewares/validateInput';
+import ValidateInput from '../../app/middlewares/validateInput';
 import getUserDocument from '../../app/middlewares/getUserDocument';
 import hasPermission from '../../app/middlewares/hasPermission';
 
@@ -88,10 +88,10 @@ documentRouter.route('/documents')
    *           $ref: '#/definitions/Document'
    */
   .get(Auth.verifyToken,
-    Validate.validateSearch,
+    ValidateInput.validateSearch,
     Documents.getAll)
   .post(Auth.verifyToken,
-    Validate.validateDocumentsInput,
+    ValidateInput.validateDocumentsInput,
     Documents.create);
 
 /**
@@ -266,7 +266,7 @@ documentRouter.route('/documents/:id')
    */
 documentRouter.route('/search/documents')
   .get(Auth.verifyToken,
-    Validate.validateSearch,
+    ValidateInput.validateSearch,
     Documents.search);
 
 export default documentRouter;

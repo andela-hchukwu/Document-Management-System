@@ -1,7 +1,7 @@
 import express from 'express';
 import User from '../../app/controllers/users';
 import Auth from '../../app/middlewares/authentication';
-import Validate from '../../app/middlewares/validateInput';
+import ValidateInput from '../../app/middlewares/validateInput';
 import getUserDocument from '../../app/middlewares/getUserDocument';
 import hasPermission from '../../app/middlewares/hasPermission';
 
@@ -91,9 +91,9 @@ userRouter.route('/users')
    *         schema:
    *           $ref: '#/definitions/User'
    */
-  .get(Auth.verifyToken, Validate.validateSearch,
+  .get(Auth.verifyToken, ValidateInput.validateSearch,
        User.getAll)
-  .post(Validate.validateUserInput, User.create);
+  .post(ValidateInput.validateUserInput, User.create);
 
 // logs in a user
 /**
@@ -144,7 +144,7 @@ userRouter.route('/users/login')
    *         schema:
    *           $ref: '#/definitions/Logout'
    */
-  .post(Validate.validateLoginInput, User.login);
+  .post(ValidateInput.validateLoginInput, User.login);
 
 // logs out a user
 /**
@@ -294,10 +294,10 @@ userRouter.route('/users/:id')
    *              $ref: '#/definitions/Update'
    */
   .get(Auth.verifyToken, getUserDocument.getSingleUser, User.getUser)
-  .put(Auth.verifyToken, Validate.validateUserUpdate, User.update)
+  .put(Auth.verifyToken, ValidateInput.validateUserUpdate, User.update)
   .delete(Auth.verifyToken,
     hasPermission.hasAdminPermission,
-    Validate.validateDeleteUser,
+    ValidateInput.validateDeleteUser,
     User.delete);
 
 
@@ -350,7 +350,7 @@ userRouter.route('/users/:id/documents')
    *           items:
    *             $ref: '#/definitions/FetchDoc'
    */
-  .get(Auth.verifyToken, Validate.validateSearch, User.findUserDocuments);
+  .get(Auth.verifyToken, ValidateInput.validateSearch, User.findUserDocuments);
 
 // Search for a user
 /**
@@ -398,6 +398,6 @@ userRouter.route('/search/users')
    *           items:
    *             $ref: '#/definitions/SearchUser'
    */
-  .get(Auth.verifyToken, Validate.validateSearch, User.search);
+  .get(Auth.verifyToken, ValidateInput.validateSearch, User.search);
 
 export default userRouter;

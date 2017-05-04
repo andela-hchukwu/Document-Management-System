@@ -1,7 +1,9 @@
 import express from 'express';
 import Documents from '../../app/controllers/documents';
 import Auth from '../../app/middlewares/authentication';
-import Validate from '../../app/middlewares/validate';
+import Validate from '../../app/middlewares/validateInput';
+import getUserDocument from '../../app/middlewares/getUserDocument';
+import hasPermission from '../../app/middlewares/hasPermission';
 
 const documentRouter = express.Router();
 
@@ -210,13 +212,13 @@ documentRouter.route('/documents/:id')
    *              $ref: '#/definitions/DocUpdate'
    */
   .get(Auth.verifyToken,
-    Validate.getSingleDocument,
+    getUserDocument.getSingleDocument,
     Documents.getDocument)
   .put(Auth.verifyToken,
-    Validate.hasDocumentPermission,
+    hasPermission.hasDocumentPermission,
     Documents.update)
   .delete(Auth.verifyToken,
-    Validate.hasDocumentPermission,
+    hasPermission.hasDocumentPermission,
     Documents.delete);
 
 /**

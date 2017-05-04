@@ -1,7 +1,7 @@
 import express from 'express';
 import Roles from '../../app/controllers/roles';
 import Auth from '../../app/middlewares/authentication';
-import Validate from '../../app/middlewares/validate';
+import hasPermission from '../../app/middlewares/hasPermission';
 
 const rolesRouter = express.Router();
 
@@ -80,10 +80,10 @@ rolesRouter.route('/roles')
    *           $ref: '#/definitions/Role'
    */
   .get(Auth.verifyToken,
-    Validate.hasAdminPermission,
+    hasPermission.hasAdminPermission,
     Roles.getAll)
   .post(Auth.verifyToken,
-    Validate.hasAdminPermission,
+    hasPermission.hasAdminPermission,
     Roles.create);
 
 /**
@@ -200,16 +200,15 @@ rolesRouter.route('/roles/:id')
    *              $ref: '#/definitions/RoleUpdate'
    */
   .get(Auth.verifyToken,
-    Validate.hasAdminPermission,
+    hasPermission.hasAdminPermission,
     Roles.getRole)
   .put(Auth.verifyToken,
-    Validate.hasAdminPermission,
-    Validate.checkTitle,
-    Validate.modifyRolePermission,
+    hasPermission.hasAdminPermission,
+    hasPermission.modifyRolePermission,
     Roles.update)
   .delete(Auth.verifyToken,
-    Validate.hasAdminPermission,
-    Validate.modifyRolePermission,
+    hasPermission.hasAdminPermission,
+    hasPermission.modifyRolePermission,
     Roles.delete);
 
 export default rolesRouter;

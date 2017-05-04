@@ -1,7 +1,9 @@
 import express from 'express';
 import User from '../../app/controllers/users';
 import Auth from '../../app/middlewares/authentication';
-import Validate from '../../app/middlewares/validate';
+import Validate from '../../app/middlewares/validateInput';
+import getUserDocument from '../../app/middlewares/getUserDocument';
+import hasPermission from '../../app/middlewares/hasPermission';
 
 const userRouter = express.Router();
 
@@ -291,10 +293,10 @@ userRouter.route('/users/:id')
    *            items:
    *              $ref: '#/definitions/Update'
    */
-  .get(Auth.verifyToken, Validate.getSingleUser, User.getUser)
+  .get(Auth.verifyToken, getUserDocument.getSingleUser, User.getUser)
   .put(Auth.verifyToken, Validate.validateUserUpdate, User.update)
   .delete(Auth.verifyToken,
-    Validate.hasAdminPermission,
+    hasPermission.hasAdminPermission,
     Validate.validateDeleteUser,
     User.delete);
 

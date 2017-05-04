@@ -1,6 +1,13 @@
 import Validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
 
+/**
+ *
+ *
+ * @export
+ * @param {data} data
+ * @returns
+ */
 export default function validateInput(data) {
   const errors = {};
 

@@ -4,6 +4,11 @@ import React, { PropTypes } from 'react';
 import validateInput from '../../util/signupValidation';
 import TextInputTemplate from '../Common/TextInputTemplate';
 
+/**
+ *
+ * @class SignupForm
+ * @extends {React.Component}
+ */
 class SignupForm extends React.Component {
   constructor(props) {
     super(props);
@@ -24,10 +29,22 @@ class SignupForm extends React.Component {
     this.checkUserExists = this.checkUserExists.bind(this);
   }
 
+  /**
+   *
+   * @param {object} event
+   *
+   * @memberOf SignupForm
+   */
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  /**
+   *
+   * @returns
+   *
+   * @memberOf SignupForm
+   */
   isValid() {
     const { errors, isValid } = validateInput(this.state);
     if (!isValid) {
@@ -36,6 +53,12 @@ class SignupForm extends React.Component {
     return isValid;
   }
 
+  /**
+   *
+   * @param {object} event
+   *
+   * @memberOf SignupForm
+   */
   checkUserExists(event) {
     const field = event.target.name;
     const value = event.target.value;
@@ -55,6 +78,12 @@ class SignupForm extends React.Component {
     }
   }
 
+  /**
+   *
+   * @param {object} event
+   *
+   * @memberOf SignupForm
+   */
   onSubmit(event) {
     event.preventDefault();
 
@@ -73,6 +102,12 @@ class SignupForm extends React.Component {
     }
   }
 
+  /**
+   *
+   * @returns
+   *
+   * @memberOf SignupForm
+   */
   render() {
     const { errors } = this.state;
     const form = (

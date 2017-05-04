@@ -4,18 +4,42 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/authenticationAction';
 import { searchDocuments } from '../../actions/documentActions';
 
+
+/**
+ * Header componenet
+ * @export
+ * @class Header
+ * @extends {React.Component}
+ */
 export class Header extends React.Component {
+
+  /**
+   * Creates an instance of Header.
+   * @param {Object} props
+   *
+   * @memberOf Header
+   */
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   }
 
+  /**
+   * logout
+   * @param {Object} event
+   * @memberOf Header
+   */
   logout(event) {
     event.preventDefault();
     this.props.logout();
   }
 
+  /**
+   * handleSearch
+   * @param {Object} event
+   * @memberOf Header
+   */
   handleSearch(event) {
     const path = this.props.location.pathname.slice(1);
     if (['dashboard', 'allDocuments'].includes(path)) {
@@ -23,6 +47,13 @@ export class Header extends React.Component {
     }
   }
 
+  /**
+   *
+   * @param {Object} { isAuthenticated, user, isAdmin }
+   * @returns header state
+   *
+   * @memberOf Header
+   */
   getLinks({ isAuthenticated, user, isAdmin }) {
     const path = this.props.location.pathname.slice(1);
     const enabled = ['dashboard', 'allDocuments'].includes(path);
@@ -69,6 +100,11 @@ export class Header extends React.Component {
     );
   }
 
+  /**
+   *
+   * @returns header home
+   * @memberOf Header
+   */
   render() {
     const navLinks = this.getLinks(this.props);
     return (

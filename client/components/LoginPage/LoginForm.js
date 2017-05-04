@@ -6,7 +6,19 @@ import validateInput from '../../util/loginValidation';
 import { login } from '../../actions/authenticationAction';
 import { addFlashMessage } from '../../actions/flashMessages';
 
+/**
+ *
+ * @class LoginForm
+ * @extends {React.Component}
+ */
 class LoginForm extends React.Component {
+
+  /**
+   * Creates an instance of LoginForm.
+   * @param {object} props
+   *
+   * @memberOf LoginForm
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +31,12 @@ class LoginForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  /**
+   *
+   * @returns {states}
+   *
+   * @memberOf LoginForm
+   */
   isValid() {
     const { errors, isValid } = validateInput(this.state);
 
@@ -28,6 +46,12 @@ class LoginForm extends React.Component {
     return isValid;
   }
 
+  /**
+   *
+   * @param {object} event
+   *
+   * @memberOf LoginForm
+   */
   onSubmit(event) {
     event.preventDefault();
     if (this.isValid()) {
@@ -43,10 +67,22 @@ class LoginForm extends React.Component {
     }
   }
 
+  /**
+   *
+   * @param {object} event
+   *
+   * @memberOf LoginForm
+   */
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  /**
+   *
+   * @returns {html} login form
+   *
+   * @memberOf LoginForm
+   */
   render() {
     const { errors, email, password, isLoading } = this.state;
     return (
@@ -62,6 +98,7 @@ class LoginForm extends React.Component {
             error={errors.email}
             onChange={this.onChange}
             type="text"
+            required
             />
           </div>
 

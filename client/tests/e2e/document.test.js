@@ -30,15 +30,10 @@ module.exports = {
       .moveToElement('div[id="editButton"]', 0, 0)
       .mouseButtonClick(0)
       .assert.elementPresent('Input[id="title"]')
-      // .waitForElementVisible('Input[id="title"]', 5000)
-      // .waitForElementVisible('Input[id="title"]', 10000)
-      // .waitForElementVisible('select[id="mySelectBox"]')
       .setValue('Input[id="title"]', 'Surgical Precision')
       .setValue('div.fr-element', 'Masterful Dodgery')
       .setValue('select[id="accessDropdown"]', 'public')
       .click('input[type="submit"]')
-      // .waitForElementVisible('div[id="card-alert"]', 5000)
-      // .waitForElementVisible('div[id="card-alert"]', 10000)
       .end();
   }
 };

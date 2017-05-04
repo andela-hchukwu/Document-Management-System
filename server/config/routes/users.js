@@ -1,6 +1,7 @@
 import express from 'express';
 import User from '../../app/controllers/users';
-import Auth from '../../app/middlewares/auth';
+import Auth from '../../app/middlewares/authentication';
+import Validate from '../../app/middlewares/validate';
 
 const userRouter = express.Router();
 
@@ -88,9 +89,9 @@ userRouter.route('/users')
    *         schema:
    *           $ref: '#/definitions/User'
    */
-  .get(Auth.verifyToken, Auth.validateSearch,
+  .get(Auth.verifyToken, Validate.validateSearch,
        User.getAll)
-  .post(Auth.validateUserInput, User.create);
+  .post(Validate.validateUserInput, User.create);
 
 // logs in a user
 /**
@@ -141,7 +142,7 @@ userRouter.route('/users/login')
    *         schema:
    *           $ref: '#/definitions/Logout'
    */
-  .post(Auth.validateLoginInput, User.login);
+  .post(Validate.validateLoginInput, User.login);
 
 // logs out a user
 /**
@@ -290,11 +291,11 @@ userRouter.route('/users/:id')
    *            items:
    *              $ref: '#/definitions/Update'
    */
-  .get(Auth.verifyToken, Auth.getSingleUser, User.getUser)
-  .put(Auth.verifyToken, Auth.validateUserUpdate, User.update)
+  .get(Auth.verifyToken, Validate.getSingleUser, User.getUser)
+  .put(Auth.verifyToken, Validate.validateUserUpdate, User.update)
   .delete(Auth.verifyToken,
-    Auth.hasAdminPermission,
-    Auth.validateDeleteUser,
+    Validate.hasAdminPermission,
+    Validate.validateDeleteUser,
     User.delete);
 
 
@@ -347,7 +348,7 @@ userRouter.route('/users/:id/documents')
    *           items:
    *             $ref: '#/definitions/FetchDoc'
    */
-  .get(Auth.verifyToken, Auth.validateSearch, User.findUserDocuments);
+  .get(Auth.verifyToken, Validate.validateSearch, User.findUserDocuments);
 
 // Search for a user
 /**
@@ -395,6 +396,6 @@ userRouter.route('/search/users')
    *           items:
    *             $ref: '#/definitions/SearchUser'
    */
-  .get(Auth.verifyToken, Auth.validateSearch, User.search);
+  .get(Auth.verifyToken, Validate.validateSearch, User.search);
 
 export default userRouter;

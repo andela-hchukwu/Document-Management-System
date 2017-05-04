@@ -3,16 +3,39 @@
 import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
+/**
+ *
+ * @class FlashMessage
+ * @extends {React.Component}
+ */
 class FlashMessage extends React.Component {
+
+  /**
+   * Creates an instance of FlashMessage.
+   * @param {object} props
+   *
+   * @memberOf FlashMessage
+   */
   constructor(props) {
     super(props);
     this.onClick = this.onClick.bind(this);
   }
 
+  /**
+   *
+   *
+   * @memberOf FlashMessage
+   */
   onClick() {
     this.props.deleteFlashMessage(this.props.message.id);
   }
 
+  /**
+   *
+   * @returns {text}
+   *
+   * @memberOf FlashMessage
+   */
   render() {
     const { type, text } = this.props.message;
     return (

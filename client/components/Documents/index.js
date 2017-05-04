@@ -6,8 +6,19 @@ import DocumentList from './documentList';
 import * as documentActions from '../../actions/documentActions';
 import CommonModal from '../Common/CommonModal';
 
+/**
+ *
+ * @class DocumentPage
+ * @extends {React.Component}
+ */
 class DocumentPage extends React.Component {
 
+  /**
+   * Creates an instance of DocumentPage.
+   * @param {any} props
+   *
+   * @memberOf DocumentPage
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -17,17 +28,32 @@ class DocumentPage extends React.Component {
     this.addNewDocument = this.addNewDocument.bind(this);
   }
 
+  /**
+   *
+   *
+   * @memberOf DocumentPage
+   */
   componentWillMount() {
     const { userId } = this.props.user;
     this.props.actions.loadUserDocuments(userId);
   }
 
+  /**
+   *
+   * @memberOf DocumentPage
+   */
   componentDidMount() {
     $('.modal').modal();
     $('select').material_select();
     $('.tooltipped').tooltip({ delay: 50 });
   }
 
+  /**
+   *
+   * @param {object} [doc={}]
+   *
+   * @memberOf DocumentPage
+   */
   addNewDocument(doc = {}) {
     this.setState({ doc }, () => {
       $('#docDisplayModal').modal('open');
@@ -35,6 +61,12 @@ class DocumentPage extends React.Component {
   }
 
 
+  /**
+   *
+   * @returns
+   *
+   * @memberOf DocumentPage
+   */
   render() {
     const { personalDocuments } = this.props;
     const count = personalDocuments.length;
@@ -42,7 +74,6 @@ class DocumentPage extends React.Component {
     return (
       <div className="document-page row">
         <div className="col s12 z-depth-5 card-panel">
-          {/* <h4 className="center">MY DOCUMENTS</h4>*/}
           <div className="row">
             <div className="col s12">
               <div className="row">
@@ -99,8 +130,8 @@ function mapStateToProps({
 }
 
 /**
- * @param {any} dispatch
- * @returns {any}
+ * @param {object} dispatch
+ * @returns {object}
  */
 function mapDispatchToProps(dispatch) {
   return {

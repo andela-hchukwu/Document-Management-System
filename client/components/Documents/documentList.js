@@ -3,7 +3,18 @@ import toastr from 'toastr';
 import { connect } from 'react-redux';
 import { deleteDocument } from '../../actions/documentActions';
 
+/**
+ *
+ * @class DocumentList
+ * @extends {Component}
+ */
 class DocumentList extends Component {
+
+  /**
+   * Creates an instance of DocumentList.
+   *
+   * @memberOf DocumentList
+   */
   constructor() {
     super();
     this.state = {
@@ -12,10 +23,20 @@ class DocumentList extends Component {
     this.deleteDocument = this.deleteDocument.bind(this);
   }
 
+  /**
+   *
+   * @memberOf DocumentList
+   */
   componentDidMount() {
     $('.tooltipped').tooltip({ delay: 50 });
   }
 
+  /**
+   *
+   * @param {number} id
+   *
+   * @memberOf DocumentList
+   */
   deleteDocument(id) {
     const { user: { userId } } = this.props;
     const result = confirm('Do you want to delete this docuement?');
@@ -25,6 +46,12 @@ class DocumentList extends Component {
     }
   }
 
+  /**
+   *
+   * @returns
+   *
+   * @memberOf DocumentList
+   */
   render() {
     const { docs } = this.props;
     return (

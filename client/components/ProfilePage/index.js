@@ -5,7 +5,19 @@ import { bindActionCreators } from 'redux';
 import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';
 import { updateUserInfo, getUserInfo } from '../../actions/userActions';
 
+/**
+ *
+ * @class ProfilePage
+ * @extends {React.Component}
+ */
 class ProfilePage extends React.Component {
+
+  /**
+   * Creates an instance of ProfilePage.
+   * @param {object} props
+   *
+   * @memberOf ProfilePage
+   */
   constructor(props) {
     super(props);
     const user = JSON.parse(localStorage.getItem('user'));
@@ -17,17 +29,34 @@ class ProfilePage extends React.Component {
     this.renderAlert = this.renderAlert.bind(this);
   }
 
+  /**
+   *
+   * @memberOf ProfilePage
+   */
   componentWillMount() {
     this.props.getUserInfo();
     $('.tooltipped').tooltip({ delay: 50 });
   }
 
+  /**
+   *
+   * @param {object} nextProps
+   *
+   * @memberOf ProfilePage
+   */
   componentWillReceiveProps(nextProps) {
     this.setState({
       user: nextProps.user
     });
   }
 
+  /**
+   *
+   * @param {object} event
+   * @returns
+   *
+   * @memberOf ProfilePage
+   */
   handleOnChange(event) {
     const { name: field, value } = event.target;
     return this.setState((state) => {
@@ -36,11 +65,22 @@ class ProfilePage extends React.Component {
     });
   }
 
+  /**
+   *
+   * @returns
+   *
+   * @memberOf ProfilePage
+   */
   submitData() {
     const userInfo = this.state.user;
     return this.props.updateUserInfo(userInfo);
   }
 
+  /**
+   *
+   *
+   * @memberOf ProfilePage
+   */
   renderAlert() {
     this.props.swal({
       title: 'Are you sure you want to update your details?',
@@ -52,6 +92,12 @@ class ProfilePage extends React.Component {
     });
   }
 
+  /**
+   *
+   * @returns
+   *
+   * @memberOf ProfilePage
+   */
   render() {
     const { firstName = '', lastName = '', userName = '', email = '', password = '' } = this.state.user;
     return (
@@ -163,12 +209,6 @@ ProfilePage.propTypes = {
  * @param {any} state
  * @returns {any}
  */
-// function mapStateToProps(state) {
-//   const { user } = state.users.allUsers;
-//   return {
-//     user
-//   };
-// }
 
 function mapDispatchToProps(dispatch) {
   return {

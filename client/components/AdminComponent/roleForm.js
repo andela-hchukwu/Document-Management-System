@@ -9,7 +9,6 @@ class RoleForm extends React.Component {
     super(props);
     this.state = {
       role: props.role || {},
-      // titleValue: Object.assign({}, props.roleValue).title,
     };
 
     this.onChange = this.onChange.bind(this);

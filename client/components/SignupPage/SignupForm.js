@@ -4,6 +4,11 @@ import React, { PropTypes } from 'react';
 import validateInput from '../../util/signupValidation';
 import TextInputTemplate from '../Common/TextInputTemplate';
 
+/**
+ *
+ * @class SignupForm
+ * @extends {React.Component}
+ */
 class SignupForm extends React.Component {
   constructor(props) {
     super(props);
@@ -24,10 +29,22 @@ class SignupForm extends React.Component {
     this.checkUserExists = this.checkUserExists.bind(this);
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  /**
+   *
+   * @param {object} event
+   *
+   * @memberOf SignupForm
+   */
+  onChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
+  /**
+   *
+   * @returns
+   *
+   * @memberOf SignupForm
+   */
   isValid() {
     const { errors, isValid } = validateInput(this.state);
     if (!isValid) {
@@ -36,11 +53,17 @@ class SignupForm extends React.Component {
     return isValid;
   }
 
-  checkUserExists(e) {
-    const field = e.target.name;
-    const val = e.target.value;
-    if (val !== '') {
-      this.props.isUserExists(val).then((response) => {
+  /**
+   *
+   * @param {object} event
+   *
+   * @memberOf SignupForm
+   */
+  checkUserExists(event) {
+    const field = event.target.name;
+    const value = event.target.value;
+    if (value !== '') {
+      this.props.isUserExists(value).then((response) => {
         const errors = this.state.errors;
         let invalid;
         if (response.data.user) {
@@ -55,8 +78,14 @@ class SignupForm extends React.Component {
     }
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  /**
+   *
+   * @param {object} event
+   *
+   * @memberOf SignupForm
+   */
+  onSubmit(event) {
+    event.preventDefault();
 
     if (this.isValid()) {
       this.setState({ errors: {}, isLoading: true });
@@ -73,6 +102,12 @@ class SignupForm extends React.Component {
     }
   }
 
+  /**
+   *
+   * @returns
+   *
+   * @memberOf SignupForm
+   */
   render() {
     const { errors } = this.state;
     const form = (

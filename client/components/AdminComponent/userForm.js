@@ -43,7 +43,6 @@ class UserForm extends React.Component {
   updateUser(e) {
     e.preventDefault();
     const { user } = this.state;
-    // this.props.updateUserAdmin(this.state.user).then(() => {
     this.props.updateUserAdmin(user).then(() => {
       toastr.success('User Updated Successfully');
     }).catch(() => {

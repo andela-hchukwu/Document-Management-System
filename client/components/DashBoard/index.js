@@ -6,21 +6,40 @@ import DocumentList from '../Documents/documentList';
 import CommonModal from '../Common/CommonModal';
 
 
+/**
+ * Dashboard to render documents
+ * @class DashboardPage
+ * @extends {React.Component}
+ */
 class DashboardPage extends React.Component {
+
+  /**
+   * Creates an instance of DashboardPage.
+   * @param {Objct} props
+   *
+   * @memberOf DashboardPage
+   */
   constructor(props) {
     super(props);
     this.state = {
-      isPrivate: false,
       doc: {}
     };
 
     this.renderModal = this.renderModal.bind(this);
   }
 
+  /**
+   * Render all documents
+   * @memberOf DashboardPage
+   */
   componentWillMount() {
     this.props.loadAllDocuments();
   }
 
+  /**
+   * Selects tabs
+   * @memberOf DashboardPage
+   */
   componentDidMount() {
     $('.modal').modal();
     $('select').material_select();
@@ -30,12 +49,23 @@ class DashboardPage extends React.Component {
     $('ul.tabs').tabs('select_tab', 'public');
   }
 
+  /**
+   * @param {Object} [doc={}]
+   *
+   * @memberOf DashboardPage
+   */
   renderModal(doc = {}) {
     this.setState({ doc }, () => {
       $('#docDisplayModal').modal('open');
     });
   }
 
+  /**
+   *
+   * @returns {ReactElement} returns component
+   *
+   * @memberOf DashboardPage
+   */
   render() {
     const { publicDocuments, roleDocuments, privateDocuments } = this.props;
     return (

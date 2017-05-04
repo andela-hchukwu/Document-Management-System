@@ -4,10 +4,10 @@ import flashMessages from './flashMessagesReducer';
 import users from './userReducer';
 import documents from './documentReducer';
 import roles from './roleReducer';
-import auth from './auth';
+import authentication from './authentication';
 
 export const rootReducer = combineReducers({
-  auth,
+  authentication,
   flashMessages,
   users,
   documents,

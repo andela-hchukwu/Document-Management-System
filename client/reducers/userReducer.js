@@ -1,6 +1,13 @@
 import * as types from '../actions/actionTypes';
 import initialState from './initialState';
 
+/**
+ *
+ * @export
+ * @param {objeect} [state=initialState.users]
+ * @param {object} [action={}]
+ * @returns
+ */
 export default function userReducer(state = initialState.users, action = {}) {
   switch (action.type) {
     case types.RETRIEVE_USERS_SUCCESS:

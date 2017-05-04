@@ -3,13 +3,28 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import DocumentForm from '../Documents/documentForm';
 
+/**
+ *
+ * @class CommonModal
+ * @extends {React.Component}
+ */
 class CommonModal extends React.Component {
+
+  /**
+   *
+   * @memberOf CommonModal
+   */
   componentDidMount() {
     $('.modal').modal();
     $('select').material_select();
     $('#title').parent().find('label').addClass('active');
   }
 
+  /**
+   * @returns
+   *
+   * @memberOf CommonModal
+   */
   render() {
     const { auth, doc = {} } = this.props;
     return (

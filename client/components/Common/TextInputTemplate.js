@@ -1,5 +1,11 @@
 import React, { PropTypes } from 'react';
 
+/**
+ *
+ * @param {function} { field, value, label, error, type, onChange,
+ *   checkUserExists, clearError, placeholder, icon }
+ * @returns
+ */
 const TextInputTemplate = ({ field, value, label, error, type, onChange,
   checkUserExists, clearError, placeholder, icon }) => {
   let errorClass = 'input-field col s12';

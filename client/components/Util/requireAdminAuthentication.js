@@ -2,8 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addFlashMessage } from '../../actions/flashMessages';
 
+/**
+ *
+ * @export
+ * @param {object} ComposedComponent
+ * @returns
+ */
 export default function (ComposedComponent) {
+
+  /**
+   *
+   * @class Authenticate
+   * @extends {React.Component}
+   */
   class Authenticate extends React.Component {
+
+    /**
+     *
+     *
+     * @memberOf Authenticate
+     */
     componentWillMount() {
       if (!this.props.isAuthenticated) {
         this.props.addFlashMessage({
@@ -21,12 +39,24 @@ export default function (ComposedComponent) {
       }
     }
 
+    /**
+     *
+     * @param {object} nextProps
+     *
+     * @memberOf Authenticate
+     */
     componentWillUpdate(nextProps) {
       if (!nextProps.isAuthenticated) {
         this.context.router.push('/login');
       }
     }
 
+    /**
+     *
+     * @returns
+     *
+     * @memberOf Authenticate
+     */
     render() {
       return (<ComposedComponent {...this.props} />
       );
@@ -44,6 +74,11 @@ export default function (ComposedComponent) {
     router: React.PropTypes.object.isRequired
   };
 
+  /**
+   *
+   * @param {object} state
+   * @returns
+   */
   function mapStateToProps(state) {
     let admin;
     if (state.auth.isAuthenticated) {

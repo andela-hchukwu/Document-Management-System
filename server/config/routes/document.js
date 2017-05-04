@@ -1,6 +1,9 @@
 import express from 'express';
 import Documents from '../../app/controllers/documents';
-import Auth from '../../app/middlewares/auth';
+import Auth from '../../app/middlewares/authentication';
+import ValidateInput from '../../app/middlewares/validateInput';
+import getUserDocument from '../../app/middlewares/getUserDocument';
+import hasPermission from '../../app/middlewares/hasPermission';
 
 const documentRouter = express.Router();
 
@@ -85,10 +88,10 @@ documentRouter.route('/documents')
    *           $ref: '#/definitions/Document'
    */
   .get(Auth.verifyToken,
-    Auth.validateSearch,
+    ValidateInput.validateSearch,
     Documents.getAll)
   .post(Auth.verifyToken,
-    Auth.validateDocumentsInput,
+    ValidateInput.validateDocumentsInput,
     Documents.create);
 
 /**
@@ -209,13 +212,13 @@ documentRouter.route('/documents/:id')
    *              $ref: '#/definitions/DocUpdate'
    */
   .get(Auth.verifyToken,
-    Auth.getSingleDocument,
+    getUserDocument.getSingleDocument,
     Documents.getDocument)
   .put(Auth.verifyToken,
-    Auth.hasDocumentPermission,
+    hasPermission.hasDocumentPermission,
     Documents.update)
   .delete(Auth.verifyToken,
-    Auth.hasDocumentPermission,
+    hasPermission.hasDocumentPermission,
     Documents.delete);
 
 /**
@@ -263,7 +266,7 @@ documentRouter.route('/documents/:id')
    */
 documentRouter.route('/search/documents')
   .get(Auth.verifyToken,
-    Auth.validateSearch,
+    ValidateInput.validateSearch,
     Documents.search);
 
 export default documentRouter;

@@ -12,6 +12,11 @@ import * as documentActions from '../../actions/documentActions';
 import { addFlashMessage } from '../../actions/flashMessages';
 
 
+/**
+ *
+ * @class DocumentForm
+ * @extends {React.Component}
+ */
 class DocumentForm extends React.Component {
   constructor(props) {
     super(props);
@@ -22,16 +27,25 @@ class DocumentForm extends React.Component {
       displaySaveButton: true
     };
     this.onChange = this.onChange.bind(this);
-    // this.updateSelectState = this.updateSelectState.bind(this);
     this.handleModelChange = this.handleModelChange.bind(this);
     this.saveDocument = this.saveDocument.bind(this);
     this.updateDocument = this.updateDocument.bind(this);
   }
 
+  /**
+   *
+   * @memberOf DocumentForm
+   */
   componentDidMount() {
     $('#accessDropdown').on('change', this.onChange);
   }
 
+  /**
+   *
+   * @param {object} nextProps
+   *
+   * @memberOf DocumentForm
+   */
   componentWillReceiveProps(nextProps) {
     const editable = nextProps.doc.OwnerId === this.props.auth.user.userId
       || !nextProps.doc.id;
@@ -44,6 +58,12 @@ class DocumentForm extends React.Component {
     });
   }
 
+  /**
+   *
+   * @param {array} event
+   *
+   * @memberOf DocumentForm
+   */
   onChange(event) {
     const { name: field, value } = event.target;
     const OwnerId = this.props.auth.user.userId;
@@ -59,6 +79,12 @@ class DocumentForm extends React.Component {
     });
   }
 
+  /**
+   *
+   * @param {object} model
+   *
+   * @memberOf DocumentForm
+   */
   handleModelChange(model) {
     this.setState((state) => {
       const doc = Object.assign({},
@@ -67,6 +93,12 @@ class DocumentForm extends React.Component {
     });
   }
 
+  /**
+   *
+   * @param {object} event
+   *
+   * @memberOf DocumentForm
+   */
   saveDocument(event) {
     event.preventDefault();
     this.props.actions.saveDocument(this.state.doc, this.props.auth.user.userId)
@@ -84,6 +116,12 @@ class DocumentForm extends React.Component {
       });
   }
 
+  /**
+   *
+   * @param {object} event
+   *
+   * @memberOf DocumentForm
+   */
   updateDocument(event) {
     event.preventDefault();
     this.props.actions.updateDocument(this.state.doc, this.props.auth.user.userId)
@@ -101,12 +139,22 @@ class DocumentForm extends React.Component {
       });
   }
 
+  /**
+   *
+   * @memberOf DocumentForm
+   */
   redirect() {
     toastr.success('Document Successfully Saved');
     this.context.router.push('/documents');
     $('#docDisplayModal').modal('close');
   }
 
+  /**
+   *
+   * @returns
+   *
+   * @memberOf DocumentForm
+   */
   render() {
     const { displaySaveButton, doc } = this.state;
     const { id, title = '', content = '', access } = doc;

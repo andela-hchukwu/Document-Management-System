@@ -9,7 +9,6 @@ import initialState from './initialState';
  */
 export default function
 documentReducer(state = initialState.documents, action) {
-  console.log(action);
   switch (action.type) {
     case types.LOAD_DOCUMENT_SUCCESS:
       return Object.assign({}, ...state, { allDocuments: action.document });

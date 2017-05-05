@@ -226,18 +226,6 @@ describe('ROLE API', () => {
         });
     });
 
-    it('should not update a role when given an empty title string', (done) => {
-      superRequest.put(`/roles/${newRole.id}`)
-        .send({ title: '' })
-        .set({ 'x-access-token': adminToken })
-        .end((er, re) => {
-          expect(re.status).to.equal(400);
-          expect(re.body.message).to
-            .equal('Please input a value to update role with');
-          done();
-        });
-    });
-
     const roleArray = [1, 2];
     roleArray.forEach((roleId) => {
       it(`should not allow admin to update role with id ${roleId}`, (done) => {

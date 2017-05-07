@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import
 { loadUserDocuments, loadAllDocuments } from '../../actions/documentActions';
-import DocumentList from '../Documents/documentList';
+import DocumentList from '../Documents/DocumentList';
 import CommonModal from '../Common/CommonModal';
 
 
@@ -117,7 +117,7 @@ class DashboardPage extends React.Component {
 }
 
 DashboardPage.propTypes = {
-  auth: PropTypes.object,
+  authentication: PropTypes.object,
   privateDocuments: PropTypes.array.isRequired,
   roleDocuments: PropTypes.array.isRequired,
   publicDocuments: PropTypes.array.isRequired,
@@ -141,7 +141,7 @@ function mapStateToProps(state) {
   const privateDocuments = filterDocument('private', rows);
 
   return {
-    auth: state.auth,
+    authentication: state.authentication,
     publicDocuments,
     roleDocuments,
     privateDocuments

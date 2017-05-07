@@ -1,7 +1,7 @@
 import Helper from '../Helper/Helper';
 import db from '../models/index';
 
-const Validate = {
+const ValidateInput = {
 
     /**
    * Validate user's input
@@ -275,11 +275,6 @@ const Validate = {
       }
     }
     if (`${req.baseUrl}${req.route.path}` === '/documents') {
-      // query.include = [{
-      //   model: db.User,
-      //   where: { roleId: db.roleId },
-      //   as: 'owner'
-      // }];
       if (Helper.isAdmin(req.tokenDecode.roleId)) {
         query.where = {};
       } else {
@@ -353,4 +348,4 @@ const Validate = {
   },
 };
 
-export default Validate;
+export default ValidateInput;

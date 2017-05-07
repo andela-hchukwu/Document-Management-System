@@ -104,7 +104,7 @@ DocumentList.propTypes = {
  * @returns {any}
  */
 function mapStateToProps({
-  auth: { user }
+  authentication: { user }
 }) {
   return {
     user

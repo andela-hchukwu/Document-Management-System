@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
+// import App from './components/App';
 import App from './components/App';
 import HomePage from './components/HomePage/index';
 import AboutPage from './components/AboutPage/index';
@@ -7,11 +8,11 @@ import SignupPage from './components/SignupPage/index';
 import LoginPage from './components/LoginPage/index';
 import DocumentPage from './components/Documents/index';
 import DashboardPage from './components/DashBoard/index';
-import ManangeRolePage from './components/AdminComponent/manageRolePage';
-import HandleUsersPage from './components/AdminComponent/handleUsersPage';
+import ManangeRolePage from './components/AdminComponent/ManageRolePage';
+import HandleUsersPage from './components/AdminComponent/HandleUsersPage';
 import ProfilePage from './components/ProfilePage/index';
-import requireAuth from './components/Util/requireAuthentication';
-import requireAdminAuth from './components/Util/requireAdminAuthentication';
+import requireAuth from './components/Util/RequireAuthentication';
+import requireAdminAuth from './components/Util/RequireAdminAuthentication';
 
 export default (
   <Route path="/" component={App}>

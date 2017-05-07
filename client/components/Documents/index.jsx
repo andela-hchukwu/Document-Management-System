@@ -2,7 +2,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import DocumentList from './documentList';
+import DocumentList from './DocumentList';
 import * as documentActions from '../../actions/documentActions';
 import CommonModal from '../Common/CommonModal';
 
@@ -109,7 +109,7 @@ DocumentPage.propTypes = {
  */
 function mapStateToProps({
   documents: { allDocuments, chosenDocument },
-  auth: { user, isAuthenticated }
+  authentication: { user, isAuthenticated }
 }) {
   let personalDocuments = [];
   if (isAuthenticated) {

@@ -3,7 +3,7 @@ import db from '../models/index';
 
 const secretKey = process.env.SECRET || 'secret';
 
-const Auth = {
+const Authentication = {
 
   /**
    * verify web token
@@ -60,4 +60,4 @@ const Auth = {
   },
 };
 
-export default Auth;
+export default Authentication;

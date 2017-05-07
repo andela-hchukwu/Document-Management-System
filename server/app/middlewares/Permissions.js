@@ -1,7 +1,7 @@
 import Helper from '../Helper/Helper';
 import db from '../models/index';
 
-const HasPermission = {
+const Permissions = {
 
   /**
    * Check for admin permission
@@ -81,4 +81,4 @@ const HasPermission = {
   },
 };
 
-export default HasPermission;
+export default Permissions;

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { addDisabledClass, disabledUsers } from './disabledItems';
+import { addDisabledClass, disabledUsers } from './DisabledItems';
 
 const UserList = ({ rows, editUser, deleteUser }) =>
   (

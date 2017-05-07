@@ -1,5 +1,5 @@
 import db from '../models/index';
-import Auth from '../middlewares/authentication';
+import Auth from '../middlewares/Authentication';
 import Helper from '../Helper/Helper';
 
 const User = {

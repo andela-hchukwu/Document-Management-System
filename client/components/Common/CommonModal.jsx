@@ -1,7 +1,7 @@
 /* eslint class-methods-use-this: "off"*/
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import DocumentForm from '../Documents/documentForm';
+import DocumentForm from '../Documents/DocumentForm';
 
 /**
  *
@@ -26,7 +26,7 @@ class CommonModal extends React.Component {
    * @memberOf CommonModal
    */
   render() {
-    const { auth, doc = {} } = this.props;
+    const { authentication, doc = {} } = this.props;
     return (
       <div>
         <div id="docDisplayModal" className="modal">
@@ -38,7 +38,7 @@ class CommonModal extends React.Component {
           </div>
           <div className="modal-content">
             <h4>Document</h4>
-            <DocumentForm auth={auth} doc={doc} />
+            <DocumentForm authentication={authentication} doc={doc} />
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@ class CommonModal extends React.Component {
 }
 
 CommonModal.propTypes = {
-  auth: PropTypes.object.isRequired,
+  authentication: PropTypes.object.isRequired,
   doc: PropTypes.object
 };
 
@@ -57,7 +57,7 @@ CommonModal.propTypes = {
  */
 function mapStateToProps(state) {
   return {
-    auth: state.auth,
+    authentication: state.authentication,
   };
 }
 

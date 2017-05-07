@@ -47,7 +47,7 @@ class DocumentForm extends React.Component {
    * @memberOf DocumentForm
    */
   componentWillReceiveProps(nextProps) {
-    const editable = nextProps.doc.OwnerId === this.props.auth.user.userId
+    const editable = nextProps.doc.OwnerId === this.props.authentication.user.userId
       || !nextProps.doc.id;
     if (!editable) {
       $('.fr-wrapper').froalaEditor('edit.off');
@@ -66,8 +66,8 @@ class DocumentForm extends React.Component {
    */
   onChange(event) {
     const { name: field, value } = event.target;
-    const OwnerId = this.props.auth.user.userId;
-    const role = String(this.props.auth.user.userRoleId);
+    const OwnerId = this.props.authentication.user.userId;
+    const role = String(this.props.authentication.user.userRoleId);
     this.setState((state) => {
       const doc = Object.assign({},
         state.doc, {
@@ -101,7 +101,7 @@ class DocumentForm extends React.Component {
    */
   saveDocument(event) {
     event.preventDefault();
-    this.props.actions.saveDocument(this.state.doc, this.props.auth.user.userId)
+    this.props.actions.saveDocument(this.state.doc, this.props.authentication.user.userId)
       .then(() => {
         toastr.success('Document Successfully Saved');
         $('#docDisplayModal').modal('close');
@@ -124,7 +124,7 @@ class DocumentForm extends React.Component {
    */
   updateDocument(event) {
     event.preventDefault();
-    this.props.actions.updateDocument(this.state.doc, this.props.auth.user.userId)
+    this.props.actions.updateDocument(this.state.doc, this.props.authentication.user.userId)
       .then(() => {
         toastr.success('Document Successfully Updated');
         $('#docDisplayModal').modal('close');
@@ -221,7 +221,7 @@ class DocumentForm extends React.Component {
 }
 
 DocumentForm.propTypes = {
-  auth: PropTypes.object.isRequired,
+  authentication: PropTypes.object.isRequired,
   onChange: PropTypes.func,
   doc: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,

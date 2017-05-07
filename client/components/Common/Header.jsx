@@ -78,11 +78,6 @@ export class Header extends React.Component {
           <li activeClassName="active" id="personalDocs">
             <Link to="/thedocuments">Saved Documents</Link>
           </li>
-          {isAdmin &&
-            <li className="admin">
-              <Link to="/admin/manageroles">Manage Roles</Link>
-            </li>
-          }
           {isAdmin && <li className="admin" id="adminTab">
             <Link to="/admin/handleusers">Manage Users</Link>
           </li>}
@@ -137,7 +132,7 @@ Header.propTypes = {
  * @returns {object} data
  */
 export const mapStateToProps = (state) => {
-  const { auth: { isAuthenticated, user } } = state;
+  const { authentication: { isAuthenticated, user } } = state;
   const isAdmin = isAuthenticated && user.userRoleId === 1;
   return {
     isAuthenticated,

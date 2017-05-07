@@ -7,10 +7,11 @@ import supertest from 'supertest';
 import app from '../../../server';
 import helper from '../testHelper';
 import db from '../../app/models';
-import Auth from '../../app/middlewares/authentication';
-import getUserDocument from '../../app/middlewares/getUserDocument';
-import hasPermission from '../../app/middlewares/hasPermission';
-import validateInput from '../../app/middlewares/validateInput';
+import Authentication from '../../app/middlewares/Authentication';
+import GetDocument from '../../app/middlewares/GetDocument';
+import GetUser from '../../app/middlewares/GetUser';
+import Permissions from '../../app/middlewares/Permissions';
+import validateInput from '../../app/middlewares/ValidateInput';
 
 const expect = chai.expect;
 const superRequest = supertest(app);
@@ -66,7 +67,7 @@ describe('MIDDLEWARE UNIT TEST', () => {
         callback: () => { }
       };
       sinon.spy(middlewareStub, 'callback');
-      Auth.verifyToken(request, response, middlewareStub.callback);
+      Authentication.verifyToken(request, response, middlewareStub.callback);
       expect(middlewareStub.callback).to.have.been.called;
       done();
     });
@@ -82,7 +83,7 @@ describe('MIDDLEWARE UNIT TEST', () => {
         callback: () => { }
       };
       sinon.spy(middlewareStub, 'callback');
-      Auth.verifyToken(request, response, middlewareStub.callback);
+      Authentication.verifyToken(request, response, middlewareStub.callback);
       response.on('end', () => {
         expect(response._getData().message).to
           .equal('The token you supplied has expired');
@@ -104,7 +105,7 @@ describe('MIDDLEWARE UNIT TEST', () => {
         callback: () => { }
       };
       sinon.spy(middlewareStub, 'callback');
-      hasPermission.hasAdminPermission(request, response, middlewareStub.callback);
+      Permissions.hasAdminPermission(request, response, middlewareStub.callback);
       expect(middlewareStub.callback).to.have.been.called;
       done();
     });
@@ -259,7 +260,7 @@ describe('MIDDLEWARE UNIT TEST', () => {
       response.on('end', () => {
         expect(response._getData()).to.equal('This user does not exist');
       });
-      getUserDocument.getSingleUser(request, response, middlewareStub.callback);
+      GetUser.getSingleUser(request, response, middlewareStub.callback);
     });
 
     it('should continue when user exist', (done) => {
@@ -275,7 +276,7 @@ describe('MIDDLEWARE UNIT TEST', () => {
         callback: () => { }
       };
       sinon.spy(middlewareStub, 'callback');
-      getUserDocument.getSingleUser(request, response, middlewareStub.callback);
+      GetUser.getSingleUser(request, response, middlewareStub.callback);
       expect(middlewareStub.callback).not.to.have.been.called;
       done();
     });
@@ -400,7 +401,7 @@ describe('MIDDLEWARE UNIT TEST', () => {
         expect(response._getData().message).to
           .equal('This document cannot be found');
       });
-      getUserDocument.getSingleDocument(request, response, middlewareStub.callback);
+      GetDocument.getSingleDocument(request, response, middlewareStub.callback);
     });
 
     it('should not continue when document is private', () => {
@@ -419,7 +420,7 @@ describe('MIDDLEWARE UNIT TEST', () => {
         expect(response._getData().message).to
           .equal('You are not permitted to view this document');
       });
-      getUserDocument.getSingleDocument(request, response, middlewareStub.callback);
+      GetDocument.getSingleDocument(request, response, middlewareStub.callback);
     });
 
     it('should continue when document is public', (done) => {
@@ -434,7 +435,7 @@ describe('MIDDLEWARE UNIT TEST', () => {
         callback: () => { }
       };
       sinon.spy(middlewareStub, 'callback');
-      getUserDocument.getSingleDocument(request, response, middlewareStub.callback);
+      GetDocument.getSingleDocument(request, response, middlewareStub.callback);
       expect(middlewareStub.callback).not.to.have.been.called;
       done();
     });
@@ -462,7 +463,7 @@ describe('MIDDLEWARE UNIT TEST', () => {
         expect(response._getData().message).to
           .equal('This document does not exist');
       });
-      hasPermission.hasDocumentPermission(request, response, middlewareStub);
+      Permissions.hasDocumentPermission(request, response, middlewareStub);
     });
 
     it('should continue when user is the owner of the document', (done) => {
@@ -479,7 +480,7 @@ describe('MIDDLEWARE UNIT TEST', () => {
         callback: () => { }
       };
       sinon.spy(middlewareStub, 'callback');
-      hasPermission.hasDocumentPermission(request, response, middlewareStub.callback);
+      Permissions.hasDocumentPermission(request, response, middlewareStub.callback);
       expect(middlewareStub.callback).not.to.have.been.called;
       done();
     });
@@ -505,7 +506,7 @@ describe('MIDDLEWARE UNIT TEST', () => {
         expect(response._getData().message).to
           .equal('You are not permitted to modify this role');
       });
-      hasPermission.modifyRolePermission(request, response, middlewareStub.callback);
+      Permissions.modifyRolePermission(request, response, middlewareStub.callback);
     });
 
     it('should not continue when admin want to delete the default regular role',
@@ -527,7 +528,7 @@ describe('MIDDLEWARE UNIT TEST', () => {
         expect(response._getData().message).to
           .equal('You are not permitted to modify this role');
       });
-      hasPermission.modifyRolePermission(request, response, middlewareStub.callback);
+      Permissions.modifyRolePermission(request, response, middlewareStub.callback);
       done();
     });
   });

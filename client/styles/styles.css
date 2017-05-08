@@ -114,3 +114,6 @@ body {
     color: black;
     font-size: 18px;
 }
+a#editButton.waves-effect.waves-light.btn.blue-grey{
+  margin-right: 22px;
+}

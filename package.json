@@ -6,7 +6,7 @@
   "scripts": {
     "start": "babel-node server.js",
     "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install",
-    "test": "NODE_ENV=test babel-istanbul cover _mocha -- -R spec server/test/**/*.spec.js --compilers js:babel-core/register --timeout 20000",
+    "test": "NODE_ENV=test nyc --reporter=html --reporter=text _mocha --reporter spec server/test/**/*.spec.js --compilers js:babel-core/register --timeout 20000",
     "client:test": "mocha client/tests --compilers js:babel-register --require ./client/tests/helpers.js --require ./client/tests/dom.js --recursive",
     "test-e2e": "node_modules/.bin/nightwatch --config nightwatch.conf.js",
     "db:migrate": "node_modules/.bin/sequelize db:migrate"
@@ -96,6 +96,7 @@
     "materialize-css": "^0.98.1",
     "nightwatch": "^0.9.14",
     "node-mocks-http": "^1.6.1",
+    "nyc": "^10.3.2",
     "pg": "^6.1.5",
     "pg-hstore": "^2.3.2",
     "react": "^15.0.2",

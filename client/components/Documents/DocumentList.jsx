@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import toastr from 'toastr';
+import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';
 import { connect } from 'react-redux';
+import { addFlashMessage } from '../../actions/flashMessages';
 import { deleteDocument } from '../../actions/documentActions';
 
 /**
@@ -20,7 +22,8 @@ class DocumentList extends Component {
     this.state = {
       doc: {}
     };
-    this.deleteDocument = this.deleteDocument.bind(this);
+    // this.deleteDocument = this.deleteDocument.bind(this);
+    this.renderAlert = this.renderAlert.bind(this);
   }
 
   /**
@@ -37,13 +40,15 @@ class DocumentList extends Component {
    *
    * @memberOf DocumentList
    */
-  deleteDocument(id) {
-    const { user: { userId } } = this.props;
-    const result = confirm('Do you want to delete this docuement?');
-    if (result) {
-      this.props.deleteDocument(id, userId)
-        .then(() => toastr.success('Document Successfully Deleted'));
-    }
+  renderAlert(id) {
+    this.props.swal({
+      title: 'Warning!',
+      text: 'Are you sure you want to delete document?',
+      type: 'info',
+      showCancelButton: true,
+      onConfirm: () => this.props.deleteDocument(id, this.props.user.userId),
+      onCancel: this.props.close,
+    });
   }
 
   /**
@@ -64,6 +69,7 @@ class DocumentList extends Component {
                   <div className="col s4 offset s2 title"><a href="#">
                     {doc.title}</a></div>
                   <div className="user-buttons row col s3 editButton" id="editButton">
+                    {this.props.user.userId === doc.OwnerId && <div>
                     <a
                       className="waves-effect waves-light btn blue-grey"
                       id="editButton"
@@ -71,12 +77,13 @@ class DocumentList extends Component {
                       <i className="tiny material-icons left">edit</i>edit</a>
                     <a
                       className="waves-effect waves-light btn blue-grey"
-                      onClick={() => this.deleteDocument(doc.id)}>
-                      <i className="tiny material-icons left">delete</i>delete</a>
+                      onClick={() => this.renderAlert(doc.id)}>
+                      <i className="tiny material-icons left">delete</i>delete</a></div>}
                   </div>
                 </div>
               </li>
             )}
+            <ReduxSweetAlert />
         </ul>
         <div className="fixed-action-btn horizontal">
           <a className="btn-floating btn-large tooltipped blue-grey"
@@ -95,7 +102,10 @@ class DocumentList extends Component {
 DocumentList.propTypes = {
   deleteDocument: PropTypes.func.isRequired,
   docs: React.PropTypes.array.isRequired,
+  swal: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
   showModal: PropTypes.func.isRequired,
+  addFlashMessage: React.PropTypes.func.isRequired,
   user: React.PropTypes.object.isRequired,
 };
 
@@ -111,4 +121,7 @@ function mapStateToProps({
   };
 }
 
-export default connect(mapStateToProps, { deleteDocument })(DocumentList);
+export default connect(mapStateToProps, { swal,
+  close,
+  deleteDocument,
+  addFlashMessage })(DocumentList);

@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use(express.static(path.join(__dirname, 'server/Swagger')));
 
 app.get('/*', (req, res) => {
-  res.sendFile(`${__dirname}/client/dist/index.html`);
+  res.sendFile(`${__dirname}/client/index.html`);
 });
 
 app.listen(port, () => {

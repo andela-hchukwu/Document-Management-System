@@ -1,11 +1,13 @@
+---
 engines:
   csslint:
     enabled: true
   duplication:
     enabled: true
-  checks:
-    Similar code:
-      enabled: false
+    # ... CONFIG CONTENT ...
+    checks:
+      Similar code:
+        enabled: false
     config:
       languages:
       - ruby
@@ -26,8 +28,4 @@ ratings:
   - "**.php"
   - "**.py"
   - "**.rb"
-exclude_paths:
-  - server/tests/**
-  - server/models/**
-  - server/seeders/**
-  - migrations/**
+exclude_paths: []

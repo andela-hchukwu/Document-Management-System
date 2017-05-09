@@ -87,7 +87,7 @@ export function loadAllDocuments() {
 export function saveDocument(document, id) {
   return dispatch => axios.post('/documents', document)
     .then(() => {
-      dispatch(loadUserDocuments(id));
+      dispatch(loadAllDocuments(id));
     }).catch((error) => {
       throw (error);
     });
@@ -101,7 +101,7 @@ export function saveDocument(document, id) {
 export function updateDocument(document, userId) {
   return dispatch => axios.put(`/documents/${document.id}`, document)
       .then(() => {
-        dispatch(loadUserDocuments(userId));
+        dispatch(loadAllDocuments(userId));
       }).catch((error) => {
         throw (error);
       });
@@ -116,7 +116,7 @@ export function updateDocument(document, userId) {
 export function deleteDocument(id, userId) {
   return dispatch => axios.delete(`/documents/${id}`)
     .then(() => {
-      dispatch(loadUserDocuments(userId));
+      dispatch(loadAllDocuments(userId));
     }).catch((error) => {
       throw (error);
     });

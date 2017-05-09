@@ -110,7 +110,7 @@ export function getUserInfo() {
   const user = JSON.parse(localStorage.getItem('user'));
   return dispatch => axios.get(`/users/${user.id}`)
     .then((response) => {
-      dispatch(getUserInfoSuccess(response.data));
+      dispatch(getUserInfoSuccess(response.data.user));
     }).catch((error) => {
       throw error;
     });

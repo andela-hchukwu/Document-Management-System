@@ -6,10 +6,12 @@
   "scripts": {
     "start": "babel-node server.js",
     "e2e-setup": "node_modules/selenium-standalone/bin/selenium-standalone install",
-    "test": "NODE_ENV=test nyc --reporter=html --reporter=text _mocha --reporter spec server/test/**/*.spec.js --compilers js:babel-core/register --timeout 20000",
+    "test": "NODE_ENV=travis nyc --reporter=html --reporter=text _mocha --reporter spec server/test/**/*.spec.js --compilers js:babel-core/register --timeout 20000",
     "client:test": "mocha client/tests --compilers js:babel-register --require ./client/tests/helpers.js --require ./client/tests/dom.js --recursive",
     "test-e2e": "node_modules/.bin/nightwatch --config nightwatch.conf.js",
-    "db:migrate": "node_modules/.bin/sequelize db:migrate"
+    "db:migrate": "node_modules/.bin/sequelize db:migrate",
+    "db:migrate:test": "NODE_ENV=test node_modules/.bin/sequelize db:migrate",
+    "db:migrate:test:undo": "NODE_ENV=travis node_modules/.bin/sequelize db:migrate:undo:all"
   },
   "repository": {
     "type": "git",
@@ -70,7 +72,6 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.23.0",
-    "bcrypt": "^1.0.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
     "cheerio": "^0.22.0",

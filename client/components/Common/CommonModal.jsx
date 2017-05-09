@@ -32,10 +32,6 @@ class CommonModal extends React.Component {
       <div>
         <div id="docDisplayModal" className="modal">
           <div>
-            <a href="#"
-              className="btn-floating btn-flat blue-grey closeModal modal-close">
-              <i className="material-icons">close</i>
-            </a>
           </div>
           <div className="modal-content">
             <h4>Document</h4>
@@ -44,10 +40,6 @@ class CommonModal extends React.Component {
         </div>
         <div id="docDisplay" className="modal">
           <div>
-            <a href="#"
-              className="btn-floating btn-flat blue-grey closeModal modal-close">
-              <i className="material-icons">close</i>
-            </a>
           </div>
           <div className="modal-content">
             <DocumentView authentication={authentication} doc={doc} content={doc.content} />

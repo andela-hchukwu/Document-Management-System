@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import toastr from 'toastr';
+// import toastr from 'toastr';
 import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';
 import { connect } from 'react-redux';
 import { addFlashMessage } from '../../actions/flashMessages';
@@ -66,7 +66,7 @@ class DocumentList extends Component {
             .map(doc =>
               <li key={doc.id} className="collection-item">
                 <div className="row doc-collection-item">
-                  <div className="col s4 offset s2 title"><a href="#">
+                  <div className="col s4 offset s2 title"><a onClick={() => this.props.showDocument(doc)}>
                     {doc.title}</a></div>
                   <div className="user-buttons row col s3 editButton" id="editButton">
                     {this.props.user.userId === doc.OwnerId && <div>
@@ -105,6 +105,7 @@ DocumentList.propTypes = {
   swal: PropTypes.func.isRequired,
   close: PropTypes.func.isRequired,
   showModal: PropTypes.func.isRequired,
+  showDocument: PropTypes.func.isRequired,
   addFlashMessage: React.PropTypes.func.isRequired,
   user: React.PropTypes.object.isRequired,
 };

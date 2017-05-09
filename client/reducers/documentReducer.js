@@ -29,4 +29,3 @@ documentReducer(state = initialState.documents, action) {
       return state;
   }
 }
-

@@ -2,6 +2,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import DocumentForm from '../Documents/DocumentForm';
+import DocumentView from '../Documents/DocumentView';
 
 /**
  *
@@ -39,6 +40,17 @@ class CommonModal extends React.Component {
           <div className="modal-content">
             <h4>Document</h4>
             <DocumentForm authentication={authentication} doc={doc} />
+          </div>
+        </div>
+        <div id="docDisplay" className="modal">
+          <div>
+            <a href="#"
+              className="btn-floating btn-flat blue-grey closeModal modal-close">
+              <i className="material-icons">close</i>
+            </a>
+          </div>
+          <div className="modal-content">
+            <DocumentView authentication={authentication} doc={doc} content={doc.content} />
           </div>
         </div>
       </div>

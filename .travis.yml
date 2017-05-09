@@ -4,13 +4,14 @@ node_js:
 
 services:
     - postgresql
- 
-script:
-    - npm test
+
+# script:
+#     - npm test
 before_script:
-    - npm install
+    # - npm install
     - psql -c 'create database documents_test;' -U postgres
+    - npm run db:migrate:test:undo
     - NODE_ENV=travis npm run db:migrate
 
 
-after_script: cat coverage/*lcov.info | ./node_modules/.bin/coveralls 
+after_script: cat coverage/*lcov.info | ./node_modules/.bin/coveralls

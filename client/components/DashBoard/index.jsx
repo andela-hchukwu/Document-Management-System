@@ -26,6 +26,7 @@ class DashboardPage extends React.Component {
     };
 
     this.renderModal = this.renderModal.bind(this);
+    this.viewDocument = this.viewDocument.bind(this);
   }
 
   /**
@@ -57,6 +58,12 @@ class DashboardPage extends React.Component {
   renderModal(doc = {}) {
     this.setState({ doc }, () => {
       $('#docDisplayModal').modal('open');
+    });
+  }
+
+  viewDocument(doc = {}) {
+    this.setState({ doc }, () => {
+      $('#docDisplay').modal('open');
     });
   }
 
@@ -96,15 +103,15 @@ class DashboardPage extends React.Component {
                   <CommonModal doc={this.state.doc}/>
                   <div id="private" className="col s12 tab-style">
                     <h6 className="center">All Private Documents</h6>
-                    <DocumentList showModal={this.renderModal} docs={privateDocuments} />
+                    <DocumentList showModal={this.renderModal} showDocument={this.viewDocument} docs={privateDocuments} />
                   </div>
                   <div id="public" className="col s12 tab-style">
                     <h6 className="center">All Public Documents</h6>
-                    <DocumentList showModal={this.renderModal} docs={publicDocuments} />
+                    <DocumentList showModal={this.renderModal} showDocument={this.viewDocument} docs={publicDocuments} />
                   </div>
                   <div id="role" className="col s12 tab-style">
                     <h6 className="center">All Accessible Role Documents</h6>
-                    <DocumentList showModal={this.renderModal} docs={roleDocuments} />
+                    <DocumentList showModal={this.renderModal} showDocument={this.viewDocument} docs={roleDocuments} />
                   </div>
                 </div>
               </div>

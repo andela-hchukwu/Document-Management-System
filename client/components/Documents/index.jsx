@@ -26,6 +26,7 @@ class DocumentPage extends React.Component {
     };
 
     this.addNewDocument = this.addNewDocument.bind(this);
+    this.viewDocument = this.viewDocument.bind(this);
   }
 
   /**
@@ -60,6 +61,12 @@ class DocumentPage extends React.Component {
     });
   }
 
+  viewDocument(doc = {}) {
+    this.setState({ doc }, () => {
+      $('#docDisplay').modal('open');
+    });
+  }
+
 
   /**
    *
@@ -70,7 +77,7 @@ class DocumentPage extends React.Component {
   render() {
     const { personalDocuments } = this.props;
     const count = personalDocuments.length;
-
+    console.log('view doc', this.viewDocument);
     return (
       <div className="document-page row">
         <div className="col s12 z-depth-5 card-panel">
@@ -85,7 +92,7 @@ class DocumentPage extends React.Component {
                   </div>
                 </div>
                 <div className="col s12">
-                  <DocumentList showModal={this.addNewDocument} docs={personalDocuments} />
+                  <DocumentList showModal={this.addNewDocument} showDocument={this.viewDocument} docs={personalDocuments} />
                 </div>
               </div>
             </div>

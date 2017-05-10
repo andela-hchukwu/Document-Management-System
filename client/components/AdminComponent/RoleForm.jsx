@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import toastr from 'toastr';
 import { saveRole, updateRole, loadRoles } from '../../actions/roleActions';
@@ -120,12 +121,12 @@ class RoleForm extends React.Component {
 }
 
 RoleForm.propTypes = {
-  rolesArray: PropTypes.array.isRequired,
-  role: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
+  rolesArray: PropTypes.array,
+  role: PropTypes.object,
+  auth: PropTypes.object,
   saveRole: PropTypes.func,
   updateRole: PropTypes.func,
-  addFlashMessage: PropTypes.func.isRequired,
+  addFlashMessage: PropTypes.func,
   cancel: PropTypes.func
 };
 

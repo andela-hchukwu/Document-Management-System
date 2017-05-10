@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import 'froala-editor/js/froala_editor.pkgd.min';
 import 'froala-editor/css/froala_style.min.css';
 import 'froala-editor/css/froala_editor.pkgd.min.css';
@@ -44,8 +45,8 @@ class DocumentForm extends React.Component {
 }
 
 DocumentForm.propTypes = {
-  authentication: PropTypes.object.isRequired,
-  doc: PropTypes.object.isRequired,
+  authentication: PropTypes.object,
+  doc: PropTypes.object,
 };
 
 export default connect(null)(DocumentForm);

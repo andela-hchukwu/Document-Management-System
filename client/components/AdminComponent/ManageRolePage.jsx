@@ -1,5 +1,6 @@
 /* eslint class-methods-use-this: "off"*/
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import toastr from 'toastr';
 import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';
@@ -93,12 +94,12 @@ class ManangeRolePage extends React.Component {
 }
 
 ManangeRolePage.propTypes = {
-  loadRoles: PropTypes.func.isRequired,
-  deleteRole: PropTypes.func.isRequired,
-  roles: PropTypes.array.isRequired,
-  swal: PropTypes.func.isRequired,
-  close: PropTypes.func.isRequired,
-  addFlashMessage: React.PropTypes.func.isRequired
+  loadRoles: PropTypes.func,
+  deleteRole: PropTypes.func,
+  roles: PropTypes.array,
+  swal: PropTypes.func,
+  close: PropTypes.func,
+  addFlashMessage: PropTypes.func
 };
 
 /**

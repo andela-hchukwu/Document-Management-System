@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { addDisabledClass, disabledUsers } from './DisabledItems';
 
 const UserList = ({ rows, editUser, deleteUser }) =>
@@ -28,9 +29,9 @@ const UserList = ({ rows, editUser, deleteUser }) =>
   );
 
 UserList.propTypes = {
-  editUser: PropTypes.func.isRequired,
-  deleteUser: PropTypes.func.isRequired,
-  rows: React.PropTypes.array
+  editUser: PropTypes.func,
+  deleteUser: PropTypes.func,
+  rows: PropTypes.array
 };
 
 export default UserList;

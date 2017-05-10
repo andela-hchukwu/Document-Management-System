@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import validateInput from '../../util/signupValidation';
 import TextInputTemplate from '../Common/TextInputTemplate';
 
@@ -112,7 +113,6 @@ class SignupForm extends React.Component {
     const { errors } = this.state;
     const form = (
       <form onSubmit={this.onSubmit}>
-
         <div className="row margin">
           <TextInputTemplate
             icon="person"
@@ -198,13 +198,13 @@ class SignupForm extends React.Component {
 }
 
 SignupForm.propTypes = {
-  userSignupRequest: React.PropTypes.func.isRequired,
-  addFlashMessage: React.PropTypes.func.isRequired,
-  isUserExists: React.PropTypes.func.isRequired
+  userSignupRequest: PropTypes.func,
+  addFlashMessage: PropTypes.func,
+  isUserExists: PropTypes.func
 };
 
 SignupForm.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.checkPropTypes().object
 };
 
 export default SignupForm;

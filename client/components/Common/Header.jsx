@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link, IndexLink } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/authenticationAction';
@@ -119,12 +120,12 @@ export class Header extends React.Component {
 }
 
 Header.propTypes = {
-  user: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  logout: PropTypes.func.isRequired,
-  searchDocuments: PropTypes.func.isRequired,
-  isAdmin: PropTypes.bool.isRequired
+  user: PropTypes.object,
+  location: PropTypes.object,
+  isAuthenticated: PropTypes.bool,
+  logout: PropTypes.func,
+  searchDocuments: PropTypes.func,
+  isAdmin: PropTypes.bool
 };
 
 /**

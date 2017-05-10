@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { addDisabledClass } from './DisabledItems';
 
 
@@ -28,9 +29,9 @@ const RoleList = ({ roles, editRole, deleteRole }) =>
   );
 
 RoleList.propTypes = {
-  editRole: PropTypes.func.isRequired,
-  deleteRole: PropTypes.func.isRequired,
-  roles: React.PropTypes.array.isRequired
+  editRole: PropTypes.func,
+  deleteRole: PropTypes.func,
+  roles: PropTypes.array
 };
 
 

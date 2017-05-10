@@ -13,7 +13,6 @@ let adminToken;
 let regularToken;
 let regularUser;
 const emptyValue = ['userName', 'lastName', 'firstName', 'password', 'email'];
-const uniqueField = ['userName', 'email'];
 
 describe('User API', () => {
   before((done) => {

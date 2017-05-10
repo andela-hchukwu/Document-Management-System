@@ -1,5 +1,6 @@
 /* eslint class-methods-use-this: "off"*/
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import DocumentForm from '../Documents/DocumentForm';
 import DocumentView from '../Documents/DocumentView';
@@ -51,7 +52,7 @@ class CommonModal extends React.Component {
 }
 
 CommonModal.propTypes = {
-  authentication: PropTypes.object.isRequired,
+  authentication: PropTypes.object,
   doc: PropTypes.object
 };
 

@@ -13,7 +13,6 @@ let adminToken;
 let regularToken;
 let regularUser;
 const emptyValue = ['userName', 'lastName', 'firstName', 'password', 'email'];
-const uniqueField = ['userName', 'email'];
 
 describe('User API', () => {
   before((done) => {
@@ -28,9 +27,7 @@ describe('User API', () => {
     });
   });
 
-  after(() => {
-    db.Role.destroy({ where: {} });
-  });
+  after(() => db.sequelize.sync({ force: true }));
 
   describe('New Users', () => {
     describe('Create User', () => {
@@ -49,21 +46,6 @@ describe('User API', () => {
             expect(response.body.user.roleId).to.equal(2);
             done();
           });
-      });
-
-      uniqueField.forEach((field) => {
-        const uniqueUser = Object.assign({}, helper.firstUser);
-        uniqueUser[field] = helper.regularUser[field];
-        it(`should fail when already existing ${field} is supplied`, (done) => {
-          superRequest.post('/users')
-            .send(uniqueUser)
-            .end((err, res) => {
-              expect(res.status).to.equal(409);
-              expect(res.body.message).to
-                .equal(`${field} already exists`);
-              done();
-            });
-        });
       });
 
       emptyValue.forEach((field) => {
@@ -130,17 +112,6 @@ describe('User API', () => {
             expect(res.body.token).to.not.equal(null);
             expect(res.body.message).to
               .equal('You have successfully logged in');
-            done();
-          });
-      });
-
-      it('should not allow unregistered users to login', (done) => {
-        superRequest.post('/users/login')
-          .send(helper.firstUser)
-          .end((err, res) => {
-            expect(res.status).to.equal(401);
-            expect(res.body.message).to
-              .equal('Please enter a valid email or password to log in');
             done();
           });
       });

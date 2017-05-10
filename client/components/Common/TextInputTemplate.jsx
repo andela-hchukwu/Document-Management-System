@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  *
@@ -36,11 +37,11 @@ const TextInputTemplate = ({ field, value, label, error, type, onChange,
 
 TextInputTemplate.propTypes = {
   field: PropTypes.string,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   label: PropTypes.string,
   icon: PropTypes.string,
   error: PropTypes.string,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   onChange: PropTypes.func,
   checkUserExists: PropTypes.func,
   clearError: PropTypes.func,

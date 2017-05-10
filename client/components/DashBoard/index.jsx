@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import
 { loadUserDocuments, loadAllDocuments } from '../../actions/documentActions';
@@ -125,11 +126,11 @@ class DashboardPage extends React.Component {
 
 DashboardPage.propTypes = {
   authentication: PropTypes.object,
-  privateDocuments: PropTypes.array.isRequired,
-  roleDocuments: PropTypes.array.isRequired,
-  publicDocuments: PropTypes.array.isRequired,
-  loadUserDocuments: PropTypes.func.isRequired,
-  loadAllDocuments: PropTypes.func.isRequired,
+  privateDocuments: PropTypes.array,
+  roleDocuments: PropTypes.array,
+  publicDocuments: PropTypes.array,
+  loadUserDocuments: PropTypes.func,
+  loadAllDocuments: PropTypes.func,
 };
 
 const filterDocument = (role, rows) =>

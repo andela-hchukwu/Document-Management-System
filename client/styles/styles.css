@@ -15,6 +15,10 @@ nav {
   padding-left: 30px;
 }
 
+div.title {
+  cursor: pointer;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   width: 100%
@@ -41,7 +45,7 @@ body {
 #signupcard {
   width: 40%;
   margin: 0 auto;
-  margin-top: 7px;
+  margin-top: 10px;
 }
 
 #card-alert {

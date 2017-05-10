@@ -7,7 +7,7 @@
 This is a system (API) that manages documents with users and user roles. Each document defines access rights; the document defines which roles can access it. Also, each document specifies the date it was published. It is built with NodeJS, Express and Postgres as it's database.
 Source code employs ES6 syntax traspiled down to ES5 using Babel.
 
-#### Key Application Features
+### Key Application Features
 A created user will have a role: admin, regular.
 - Regular, rated/restricted Users can:
     - Create an account
@@ -41,7 +41,7 @@ Users are authenticated and validated using JSON web token (JWT).
 By generating a token on registration and login, API endpoints and documents are protected from unauthorised access.
 Requests to protected routes are validated using the generated token.
 
-## Development
+### Development
 This application was developed using [NodeJs](https://nodejs.org) with express for routing. Postgres was used for persisting data with [Sequelize](https://sequelizejs.org) as [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping).
 
 The frontend was built with the [react](https://facebook.github.io/react/) and [redux](reduxjs.org) framework.
@@ -55,17 +55,23 @@ The frontend was built with the [react](https://facebook.github.io/react/) and [
 - Run npm install to install the dependencies in the package.json file.
 - Use Postman or any API testing tool of your choice to access the endpoints.
 
-## Usage
+### Usage
 - Run DB migrate commmand with `sequelize db:migrate`.
 - Run DB seeder command with `sequelize db:seed` to seed initial data into your DB.
 - Start the app with `$ npm start`
 - Login, Sign Up and start creating Documents once the app opens up on the browser
 
-## Endpoints
+
+### Testing with Postman
+  ---
+  #### Read the docs: [Documentation](https://i-docman.herokuapp.com/doc)
+  * Then play around with the available routes
+
+### Endpoints
 Here's the collection of routes. They can be checked out on Postman
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/89b63da4a2a0c98485e7)
 
-#### Users
+### Users
 EndPoint                      |   Functionality
 ------------------------------|------------------------
 POST /users/login         |   Logs in a user.
@@ -77,7 +83,7 @@ PUT /users/:id           |   Updates a user's attributes based on the id specifi
 DELETE /users/:id        |   Deletes user (available only to the Admin)
 GET /users/:id/documents   | Gets all documents for a particular user
 
-#### Documents
+### Documents
 EndPoint                      |   Functionality
 ------------------------------|------------------------
 POST /documents/          |   Creates a new document instance.
@@ -87,7 +93,7 @@ PUT /documents/:id       |   Updates a document attributes.
 DELETE /documents/:id    |   Delete document.
 GET search/documents/?q=${query} | Get all documents with title containing the search query
 
-#### Roles
+### Roles
 EndPoint                      |   Functionality
 ------------------------------|------------------------
 GET /roles/               |   Get all Roles.
@@ -106,7 +112,7 @@ It should be noted that the endpoints for roles here are only available to the A
 - React/Redux
 - Sequelize ORM.
 
-#### Contributing
+### Contributing
 ---
 
 1. Fork this repositry to your account.
@@ -116,7 +122,7 @@ It should be noted that the endpoints for roles here are only available to the A
 5. Push to the remote branch: git push origin new-feature
 6. Open a pull request.
 
-#### Licence
+### Licence
 ISC
 
 Copyright (c) 2017 Henry Chukwu

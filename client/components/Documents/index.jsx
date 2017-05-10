@@ -77,7 +77,6 @@ class DocumentPage extends React.Component {
   render() {
     const { personalDocuments } = this.props;
     const count = personalDocuments.length;
-    console.log('view doc', this.viewDocument);
     return (
       <div className="document-page row">
         <div className="col s12 z-depth-5 card-panel">

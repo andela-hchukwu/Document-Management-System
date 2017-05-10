@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import toastr from 'toastr';
 import TextFieldGroup from '../Common/TextInputTemplate';
@@ -145,7 +146,7 @@ class UserForm extends React.Component {
 
 UserForm.propTypes = {
   roles: PropTypes.array,
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
   loadRoles: PropTypes.func,
   updateUserAdmin: PropTypes.func,
   saveUserAdmin: PropTypes.func,

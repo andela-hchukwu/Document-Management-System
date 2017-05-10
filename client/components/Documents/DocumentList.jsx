@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react';
-// import toastr from 'toastr';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';
 import { connect } from 'react-redux';
 import { addFlashMessage } from '../../actions/flashMessages';
@@ -100,14 +100,14 @@ class DocumentList extends Component {
 }
 
 DocumentList.propTypes = {
-  deleteDocument: PropTypes.func.isRequired,
-  docs: React.PropTypes.array.isRequired,
-  swal: PropTypes.func.isRequired,
-  close: PropTypes.func.isRequired,
-  showModal: PropTypes.func.isRequired,
-  showDocument: PropTypes.func.isRequired,
-  addFlashMessage: React.PropTypes.func.isRequired,
-  user: React.PropTypes.object.isRequired,
+  deleteDocument: PropTypes.func,
+  docs: PropTypes.array,
+  swal: PropTypes.func,
+  close: PropTypes.func,
+  showModal: PropTypes.func,
+  showDocument: PropTypes.func,
+  addFlashMessage: PropTypes.func,
+  user: PropTypes.object,
 };
 
 /**

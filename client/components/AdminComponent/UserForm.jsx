@@ -90,6 +90,7 @@ class UserForm extends React.Component {
               value={userName}
               placeholder="username"
               icon="person"
+              onChange={this.onChange}
             />
           </div>
           <div className="row margin">

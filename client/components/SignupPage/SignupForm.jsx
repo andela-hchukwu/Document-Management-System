@@ -113,6 +113,7 @@ class SignupForm extends React.Component {
     const { errors } = this.state;
     const form = (
       <form onSubmit={this.onSubmit}>
+        <h4>Register</h4>
         <div className="row margin">
           <TextInputTemplate
             icon="person"
@@ -204,7 +205,7 @@ SignupForm.propTypes = {
 };
 
 SignupForm.contextTypes = {
-  router: PropTypes.checkPropTypes().object
+  router: PropTypes.object
 };
 
 export default SignupForm;

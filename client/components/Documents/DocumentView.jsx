@@ -29,15 +29,12 @@ class DocumentForm extends React.Component {
    * @memberOf DocumentForm
    */
   render() {
-    const { doc } = this.state;
-    const { title = '' } = doc;
-
     const form = (
       <FroalaEditorView model={this.props.content} />
     );
     return (
       <div>
-        <h5>Title: {title}</h5>
+        <h5>Title: {this.props.doc.title}</h5>
         {form}
       </div>
     );
@@ -47,6 +44,7 @@ class DocumentForm extends React.Component {
 DocumentForm.propTypes = {
   authentication: PropTypes.object,
   doc: PropTypes.object,
+  content: PropTypes.string
 };
 
 export default connect(null)(DocumentForm);

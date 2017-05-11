@@ -13,3 +13,4 @@
 /screenshots
 /document-management-login.png
 /.nyc_output
+/.env.sample

@@ -69,10 +69,16 @@ export function loadUserDocuments(id) {
  * Action creator to get all documents accessible to current user
  * @returns {object} documents
  */
-export function loadAllDocuments() {
-  return dispatch => axios.get('/documents')
+export function loadAllDocuments(offset) {
+  const pageOffset = offset || 0;
+  const limit = 7;
+  return dispatch => axios.get(`/documents?limit=${limit}&offset=${pageOffset}`)
     .then((response) => {
       dispatch(loadDocumentSuccess(response.data));
+      dispatch({
+        type: types.SET_PAGINATION,
+        pagination: response.data.pagination
+      });
     }).catch((error) => {
       throw (error);
     });
@@ -84,10 +90,10 @@ export function loadAllDocuments() {
  * @param {number} userId
  * @returns {function}
  */
-export function saveDocument(document, id) {
+export function saveDocument(document) {
   return dispatch => axios.post('/documents', document)
     .then(() => {
-      dispatch(loadAllDocuments(id));
+      dispatch(loadAllDocuments());
     }).catch((error) => {
       throw (error);
     });
@@ -98,10 +104,10 @@ export function saveDocument(document, id) {
  * @param {object} document
  * @returns {function}
  */
-export function updateDocument(document, userId) {
+export function updateDocument(document) {
   return dispatch => axios.put(`/documents/${document.id}`, document)
       .then(() => {
-        dispatch(loadAllDocuments(userId));
+        dispatch(loadAllDocuments());
       }).catch((error) => {
         throw (error);
       });
@@ -113,10 +119,10 @@ export function updateDocument(document, userId) {
  * @param {number} userId
  * @returns {function}
  */
-export function deleteDocument(id, userId) {
+export function deleteDocument(id) {
   return dispatch => axios.delete(`/documents/${id}`)
     .then(() => {
-      dispatch(loadAllDocuments(userId));
+      dispatch(loadAllDocuments());
     }).catch((error) => {
       throw (error);
     });

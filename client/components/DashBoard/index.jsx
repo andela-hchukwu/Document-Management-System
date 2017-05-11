@@ -1,8 +1,9 @@
 import React from 'react';
+import { Pagination, Button } from 'react-materialize';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import
-{ loadUserDocuments, loadAllDocuments } from '../../actions/documentActions';
+{ loadUserDocuments, loadAllDocuments, searchDocuments } from '../../actions/documentActions';
 import DocumentList from '../Documents/DocumentList';
 import CommonModal from '../Common/CommonModal';
 
@@ -28,6 +29,8 @@ class DashboardPage extends React.Component {
 
     this.renderModal = this.renderModal.bind(this);
     this.viewDocument = this.viewDocument.bind(this);
+    this.displayDocuments = this.displayDocuments.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   /**
@@ -68,6 +71,22 @@ class DashboardPage extends React.Component {
     });
   }
 
+  displayDocuments(pageNumber) {
+    const offset = (pageNumber - 1)
+      * this.props.metadata.page_size;
+    this.props.loadAllDocuments(offset);
+  }
+
+    /**
+   * handleSearch
+   * @param {Object} event
+   * @memberOf Header
+   */
+  handleSearch(event) {
+    event.preventDefault();
+    this.props.searchDocuments(event.target.value);
+  }
+
   /**
    *
    * @returns {ReactElement} returns component
@@ -76,8 +95,15 @@ class DashboardPage extends React.Component {
    */
   render() {
     const { publicDocuments, roleDocuments, privateDocuments } = this.props;
+    const { total_count, page_size, page, page_count } = this.props.metadata;
     return (
       <div className="dashboard row">
+        <form>
+        <div className="input-field col s6 push-s8">
+          <i className="material-icons prefix">search</i>
+          <input id="search" type="search" onChange={this.handleSearch} />
+          <label htmlFor="search"><i className="mdi mdi-name"></i>Search</label>
+       </div></form>
         <div className="col s12">
           <div className="col s12 z-depth-5 card-panel">
             <h5 className="center">DASHBOARD</h5>
@@ -105,14 +131,17 @@ class DashboardPage extends React.Component {
                   <div id="private" className="col s12 tab-style">
                     <h6 className="center">All Private Documents</h6>
                     <DocumentList showModal={this.renderModal} showDocument={this.viewDocument} docs={privateDocuments} />
+                    <Pagination items={page_count} activePage={page} maxButtons={Math.ceil(total_count / page_size)} onSelect={this.displayDocuments} />
                   </div>
                   <div id="public" className="col s12 tab-style">
                     <h6 className="center">All Public Documents</h6>
                     <DocumentList showModal={this.renderModal} showDocument={this.viewDocument} docs={publicDocuments} />
+                    <Pagination items={page_count} activePage={page} maxButtons={Math.ceil(total_count / page_size)} onSelect={this.displayDocuments} />
                   </div>
                   <div id="role" className="col s12 tab-style">
                     <h6 className="center">All Accessible Role Documents</h6>
                     <DocumentList showModal={this.renderModal} showDocument={this.viewDocument} docs={roleDocuments} />
+                    <Pagination items={page_count} activePage={page} maxButtons={Math.ceil(total_count / page_size)} onSelect={this.displayDocuments} />
                   </div>
                 </div>
               </div>
@@ -131,6 +160,8 @@ DashboardPage.propTypes = {
   publicDocuments: PropTypes.array,
   loadUserDocuments: PropTypes.func,
   loadAllDocuments: PropTypes.func,
+  searchDocuments: PropTypes.func,
+  metadata: PropTypes.object
 };
 
 const filterDocument = (role, rows) =>
@@ -152,10 +183,11 @@ function mapStateToProps(state) {
     authentication: state.authentication,
     publicDocuments,
     roleDocuments,
-    privateDocuments
+    privateDocuments,
+    metadata: state.paginate
   };
 }
 
 
 export default connect(mapStateToProps,
-  { loadUserDocuments, loadAllDocuments })(DashboardPage);
+  { loadUserDocuments, loadAllDocuments, searchDocuments })(DashboardPage);

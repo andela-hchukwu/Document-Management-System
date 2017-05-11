@@ -5,10 +5,12 @@ import users from './userReducer';
 import documents from './documentReducer';
 import roles from './roleReducer';
 import authentication from './authentication';
+import paginate from './paginate';
 
 export const rootReducer = combineReducers({
   authentication,
   flashMessages,
+  paginate,
   users,
   documents,
   roles,

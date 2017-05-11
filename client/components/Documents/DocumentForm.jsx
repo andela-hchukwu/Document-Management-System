@@ -125,6 +125,7 @@ class DocumentForm extends React.Component {
    */
   updateDocument(event) {
     event.preventDefault();
+    console.log('jjj');
     this.props.actions.updateDocument(this.state.doc, this.props.authentication.user.userId)
       .then(() => {
         toastr.success('Document Successfully Updated');
@@ -159,7 +160,6 @@ class DocumentForm extends React.Component {
   render() {
     const { displaySaveButton, doc } = this.state;
     const { id, title = '', content = '', access } = doc;
-
     const form = (
       <form>
         <div className="row">
@@ -208,7 +208,7 @@ class DocumentForm extends React.Component {
               type="submit"
               value="Save"
               className="btn waves-effect waves-light blue-grey"
-              onClick={id ? this.updateDocument : this.saveDocument} />
+              onClick={id ? this.updateDocument : event => this.saveDocument(event)} />
           </div>
         </div>
       </form>

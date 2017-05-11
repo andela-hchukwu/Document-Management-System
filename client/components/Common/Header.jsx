@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Link, IndexLink } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/authenticationAction';
-import { searchDocuments } from '../../actions/documentActions';
 
 
 /**
@@ -23,7 +22,6 @@ export class Header extends React.Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
   }
 
   /**
@@ -34,18 +32,6 @@ export class Header extends React.Component {
   logout(event) {
     event.preventDefault();
     this.props.logout();
-  }
-
-  /**
-   * handleSearch
-   * @param {Object} event
-   * @memberOf Header
-   */
-  handleSearch(event) {
-    const path = this.props.location.pathname.slice(1);
-    if (['dashboard', 'allDocuments'].includes(path)) {
-      this.props.searchDocuments(event.target.value);
-    }
   }
 
   /**
@@ -61,14 +47,6 @@ export class Header extends React.Component {
     if (isAuthenticated) {
       return (
         <ul>
-          <li>
-            <form className="leftsearchbox">
-              <div className="input-field">
-                <input disabled={!enabled} id="search" type="search" onChange={this.handleSearch} />
-                <label htmlFor="search"><i className="mdi mdi-magnify"></i></label>
-              </div>
-            </form>
-          </li>
           <li><Link to="/dashboard" activeClassName="active">Dashboard</Link></li>
           <li activeClassName="active">
             <a href="#">Welcome, {user.userName}!</a>
@@ -120,12 +98,11 @@ export class Header extends React.Component {
 }
 
 Header.propTypes = {
-  user: PropTypes.object,
-  location: PropTypes.object,
-  isAuthenticated: PropTypes.bool,
-  logout: PropTypes.func,
-  searchDocuments: PropTypes.func,
-  isAdmin: PropTypes.bool
+  user: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  logout: PropTypes.func.isRequired,
+  isAdmin: PropTypes.bool.isRequired
 };
 
 /**
@@ -142,4 +119,4 @@ export const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { logout, searchDocuments })(Header);
+export default connect(mapStateToProps, { logout })(Header);

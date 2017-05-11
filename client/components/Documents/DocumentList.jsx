@@ -22,7 +22,6 @@ class DocumentList extends Component {
     this.state = {
       doc: {}
     };
-    // this.deleteDocument = this.deleteDocument.bind(this);
     this.renderAlert = this.renderAlert.bind(this);
   }
 

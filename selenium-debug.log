@@ -1,0 +1,107 @@
+11:47:10.102 INFO - Selenium build info: version: '3.3.1', revision: '5234b32'
+11:47:10.102 INFO - Launching a standalone Selenium Server
+2017-05-11 11:47:10.121:INFO::main: Logging initialized @249ms to org.seleniumhq.jetty9.util.log.StdErrLog
+11:47:10.180 INFO - Driver provider org.openqa.selenium.ie.InternetExplorerDriver registration is skipped:
+ registration capabilities Capabilities [{ensureCleanSession=true, browserName=internet explorer, version=, platform=WINDOWS}] does not match the current platform MAC
+11:47:10.180 INFO - Driver provider org.openqa.selenium.edge.EdgeDriver registration is skipped:
+ registration capabilities Capabilities [{browserName=MicrosoftEdge, version=, platform=WINDOWS}] does not match the current platform MAC
+11:47:10.181 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+11:47:10.181 INFO - Driver provider com.opera.core.systems.OperaDriver registration is skipped:
+Unable to create new instances on this machine.
+11:47:10.181 INFO - Driver class not found: com.opera.core.systems.OperaDriver
+11:47:10.181 INFO - Driver provider com.opera.core.systems.OperaDriver is not registered
+2017-05-11 11:47:10.229:INFO:osjs.Server:main: jetty-9.2.20.v20161216
+2017-05-11 11:47:10.276:INFO:osjsh.ContextHandler:main: Started o.s.j.s.ServletContextHandler@685cb137{/,null,AVAILABLE}
+2017-05-11 11:47:10.307:INFO:osjs.AbstractConnector:main: Started ServerConnector@5bcab519{HTTP/1.1,[http/1.1]}{0.0.0.0:4444}
+2017-05-11 11:47:10.308:INFO:osjs.Server:main: Started @436ms
+11:47:10.308 INFO - Selenium Server is up and running
+11:47:10.569 INFO - SessionCleaner initialized with insideBrowserTimeout 0 and clientGoneTimeout 1800000 polling every 180000
+11:47:10.594 INFO - Executing: [new session: Capabilities [{acceptSslCerts=true, marionette=false, name=Search Test, browserName=chrome, javascriptEnabled=true, platform=ANY}]])
+11:47:10.608 INFO - Creating a new session for Capabilities [{acceptSslCerts=true, marionette=false, name=Search Test, browserName=chrome, javascriptEnabled=true, platform=ANY}]
+Starting ChromeDriver 2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b) on port 33373
+Only local connections are allowed.
+11:47:11.803 INFO - Detected dialect: OSS
+11:47:11.834 INFO - Done: [new session: Capabilities [{acceptSslCerts=true, marionette=false, name=Search Test, browserName=chrome, javascriptEnabled=true, platform=ANY}]]
+11:47:11.862 INFO - Executing: [get: http://localhost:4000])
+11:47:13.267 INFO - Done: [get: http://localhost:4000]
+11:47:13.280 INFO - Executing: [find element: By.cssSelector: #login])
+11:47:13.315 INFO - Done: [find element: By.cssSelector: #login]
+11:47:13.321 INFO - Executing: [click: 0 [[ChromeDriver: chrome on MAC (7d52bd20ec03223f26ed3ee1b3027d02)] -> css selector: #login]])
+11:47:13.425 INFO - Done: [click: 0 [[ChromeDriver: chrome on MAC (7d52bd20ec03223f26ed3ee1b3027d02)] -> css selector: #login]]
+11:47:13.434 INFO - Executing: [find element: By.cssSelector: input[type=text]])
+11:47:13.456 INFO - Done: [find element: By.cssSelector: input[type=text]]
+11:47:13.467 INFO - Executing: [send keys: 1 [[ChromeDriver: chrome on MAC (7d52bd20ec03223f26ed3ee1b3027d02)] -> css selector: input[type=text]], [t, b, a, n, e, k, a, @, j, q, g, n, ., c, o, m]])
+11:47:13.731 INFO - Done: [send keys: 1 [[ChromeDriver: chrome on MAC (7d52bd20ec03223f26ed3ee1b3027d02)] -> css selector: input[type=text]], [t, b, a, n, e, k, a, @, j, q, g, n, ., c, o, m]]
+11:47:13.736 INFO - Executing: [find element: By.cssSelector: input[type=password]])
+11:47:13.763 INFO - Done: [find element: By.cssSelector: input[type=password]]
+11:47:13.767 INFO - Executing: [send keys: 2 [[ChromeDriver: chrome on MAC (7d52bd20ec03223f26ed3ee1b3027d02)] -> css selector: input[type=password]], [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]])
+11:47:13.948 INFO - Done: [send keys: 2 [[ChromeDriver: chrome on MAC (7d52bd20ec03223f26ed3ee1b3027d02)] -> css selector: input[type=password]], [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]]
+11:47:13.954 INFO - Executing: [find element: By.cssSelector: button[type="submit"]])
+11:47:13.981 INFO - Done: [find element: By.cssSelector: button[type="submit"]]
+11:47:13.985 INFO - Executing: [click: 3 [[ChromeDriver: chrome on MAC (7d52bd20ec03223f26ed3ee1b3027d02)] -> css selector: button[type="submit"]]])
+11:47:14.062 INFO - Done: [click: 3 [[ChromeDriver: chrome on MAC (7d52bd20ec03223f26ed3ee1b3027d02)] -> css selector: button[type="submit"]]]
+11:47:19.073 INFO - Executing: [get current url])
+11:47:19.087 INFO - Done: [get current url]
+11:47:19.096 INFO - Executing: [find elements: By.cssSelector: body])
+11:47:19.124 INFO - Done: [find elements: By.cssSelector: body]
+11:47:19.127 INFO - Executing: [is displayed: 4 [[ChromeDriver: chrome on MAC (7d52bd20ec03223f26ed3ee1b3027d02)] -> css selector: body]])
+11:47:19.146 INFO - Done: [is displayed: 4 [[ChromeDriver: chrome on MAC (7d52bd20ec03223f26ed3ee1b3027d02)] -> css selector: body]]
+11:47:19.152 INFO - Executing: [find elements: By.cssSelector: #search])
+11:47:19.173 INFO - Done: [find elements: By.cssSelector: #search]
+11:47:19.179 INFO - Executing: [find element: By.cssSelector: #search])
+11:47:19.202 INFO - Done: [find element: By.cssSelector: #search]
+11:47:19.208 INFO - Executing: [click: 5 [[ChromeDriver: chrome on MAC (7d52bd20ec03223f26ed3ee1b3027d02)] -> css selector: #search]])
+11:47:19.905 WARN - Exception thrown
+org.openqa.selenium.WebDriverException: unknown error: Element <input type="search" id="search"> is not clickable at point (825, 105). Other element would receive the click: <div class="toast toast-success" style="display: flex;">...</div>
+  (Session info: chrome=57.0.2987.133)
+  (Driver info: chromedriver=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b),platform=Mac OS X 10.12.3 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 59 milliseconds
+Build info: version: '3.3.1', revision: '5234b32', time: '2017-03-10 09:04:52 -0800'
+System info: host: 'Andelas-MacBook-Pro-54.local', ip: 'fe80:0:0:0:c1f:edc8:8a23:b398%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.3', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b), userDataDir=/var/folders/d5/5ssw36f53wj7g055hngch_540000gn/T/.org.chromium.Chromium.RgNZJd}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=57.0.2987.133, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 7d52bd20ec03223f26ed3ee1b3027d02
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:216)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:168)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:638)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:274)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement$1.invoke(EventFiringWebDriver.java:332)
+	at com.sun.proxy.$Proxy5.click(Unknown Source)
+	at org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement.click(EventFiringWebDriver.java:345)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.remote.server.KnownElements$1.invoke(KnownElements.java:64)
+	at com.sun.proxy.$Proxy6.click(Unknown Source)
+	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:30)
+	at org.openqa.selenium.remote.server.handler.ClickElement.call(ClickElement.java:22)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at org.openqa.selenium.remote.server.DefaultSession$1.run(DefaultSession.java:176)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+11:47:19.908 WARN - Exception: unknown error: Element <input type="search" id="search"> is not clickable at point (825, 105). Other element would receive the click: <div class="toast toast-success" style="display: flex;">...</div>
+  (Session info: chrome=57.0.2987.133)
+  (Driver info: chromedriver=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b),platform=Mac OS X 10.12.3 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 59 milliseconds
+Build info: version: '3.3.1', revision: '5234b32', time: '2017-03-10 09:04:52 -0800'
+System info: host: 'Andelas-MacBook-Pro-54.local', ip: 'fe80:0:0:0:c1f:edc8:8a23:b398%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.12.3', java.version: '1.8.0_121'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.29.461585 (0be2cd95f834e9ee7c46bcc7cf405b483f5ae83b), userDataDir=/var/folders/d5/5ssw36f53wj7g055hngch_540000gn/T/.org.chromium.Chromium.RgNZJd}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=57.0.2987.133, platform=MAC, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 7d52bd20ec03223f26ed3ee1b3027d02
+11:47:19.995 INFO - Executing: [find element: By.cssSelector: #search])
+11:47:20.004 INFO - Done: [find element: By.cssSelector: #search]
+11:47:20.010 INFO - Executing: [send keys: 5 [[ChromeDriver: chrome on MAC (7d52bd20ec03223f26ed3ee1b3027d02)] -> css selector: #search], [N, e, w,  , T, i, t, l, e]])
+11:47:20.702 INFO - Done: [send keys: 5 [[ChromeDriver: chrome on MAC (7d52bd20ec03223f26ed3ee1b3027d02)] -> css selector: #search], [N, e, w,  , T, i, t, l, e]]
+11:47:22.709 INFO - Executing: [delete session: 337cd8fe-f53d-43ed-8315-b0d1816475b5])
+11:47:22.785 INFO - Done: [delete session: 337cd8fe-f53d-43ed-8315-b0d1816475b5]

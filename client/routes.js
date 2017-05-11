@@ -13,7 +13,7 @@ import ProfilePage from './components/ProfilePage/index';
 import requireAuth from './components/Util/RequireAuthentication';
 import requireAdminAuth from './components/Util/RequireAdminAuthentication';
 
-export default (;lmkjhkj,nl
+export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
     <Route path="dashboard" component={requireAuth(DashboardPage)} />

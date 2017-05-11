@@ -160,7 +160,7 @@ UserForm.propTypes = {
  * @returns {any}
  */
 function mapStateToProps(state) {
-  const { roles } = state.roles;
+  const { allRoles: { roles } } = state.roles;
   return {
     roles
   };

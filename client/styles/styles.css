@@ -53,6 +53,11 @@ body {
   margin: 0 auto;
 }
 
+.pagination li.active a {
+    color: #fff;
+    background-color: blue-grey !important;
+}
+
 #dismissSignup {
   background-color: black;
 }

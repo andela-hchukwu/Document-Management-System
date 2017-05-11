@@ -89,7 +89,7 @@ class LoginForm extends React.Component {
     return (
 
         <form className="login-form" onSubmit={this.onSubmit}>
-
+          <h4 className="center">Login</h4>
           <div className="row margin">
           <TextFieldGroup
             icon="contact_mail"

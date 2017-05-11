@@ -125,7 +125,6 @@ class DocumentForm extends React.Component {
    */
   updateDocument(event) {
     event.preventDefault();
-    console.log('jjj');
     this.props.actions.updateDocument(this.state.doc, this.props.authentication.user.userId)
       .then(() => {
         toastr.success('Document Successfully Updated');

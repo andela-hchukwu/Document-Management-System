@@ -113,7 +113,7 @@ class SignupForm extends React.Component {
     const { errors } = this.state;
     const form = (
       <form onSubmit={this.onSubmit}>
-        <h4>Register</h4>
+        <h4 className="center">Register</h4>
         <div className="row margin">
           <TextInputTemplate
             icon="person"

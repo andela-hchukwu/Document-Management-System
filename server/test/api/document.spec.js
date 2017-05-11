@@ -17,7 +17,7 @@ const compareDates = (firstDate, secondDate) =>
 
 describe('DOCUMENT API', () => {
   let adminToken, regularToken, regularToken2;
-  let regularUser4;
+  let regularUser4, regularUser5;
   let createdDoc, roleDocument, publicDocument, privateDocument;
   let document, updateDoc;
 

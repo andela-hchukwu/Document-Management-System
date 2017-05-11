@@ -1,6 +1,7 @@
 export default {
   isAuthenticated: false,
   user: {},
+  loginError: null,
   users: {
     allUsers: {
       users: {

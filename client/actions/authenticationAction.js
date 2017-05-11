@@ -48,5 +48,12 @@ export function login(data) {
       localStorage.setItem('jwtToken', token);
       setAuthorizationToken(token);
       dispatch(setCurrentUser(jwtDecode(token)));
+    }).catch((error) => {
+      console.log(error.response)
+      dispatch({
+        type: 'LOGIN_ERROR',
+        payload: error.response.data.message
+      })
+      throw error;
     });
 }

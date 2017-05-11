@@ -9,6 +9,11 @@ export default (state = initialState, action = {}) => {
         isAuthenticated: !isEmpty(action.user),
         user: action.user
       };
+    case 'LOGIN_ERROR': {
+      return {
+        loginError: action.payload
+      };
+    }
     default: return state;
   }
 };

@@ -85,21 +85,19 @@ class LoginForm extends React.Component {
    * @memberOf LoginForm
    */
   render() {
-    const { errors, email, password, isLoading } = this.state;
+    const errors = this.state.errors || this.props.errors;
+    const { email, password, isLoading } = this.state;
     return (
 
         <form className="login-form" onSubmit={this.onSubmit}>
-          <h4 className="center">Login</h4>
           <div className="row margin">
           <TextFieldGroup
             icon="contact_mail"
             field="email"
             label="Email"
             value={email}
-            error={errors.email}
             onChange={this.onChange}
-            type="text"
-            required
+            type="email"
             />
           </div>
 
@@ -109,7 +107,6 @@ class LoginForm extends React.Component {
             field="password"
             label="Password"
             value={password}
-            error={errors.password}
             onChange={this.onChange}
             type="password"
             />
@@ -133,8 +130,14 @@ LoginForm.propTypes = {
   addFlashMessage: PropTypes.func.isRequired
 };
 
+function mapStateToProps(state) {
+  return {
+    errors: state.loginError
+  };
+}
+
 LoginForm.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-export default connect(null, { login, addFlashMessage })(LoginForm);
+export default connect(mapStateToProps, { login, addFlashMessage })(LoginForm);

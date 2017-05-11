@@ -1,6 +1,7 @@
 /* eslint class-methods-use-this: "off"*/
 import React from 'react';
 import PropTypes from 'prop-types';
+import toastr from 'toastr';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ReduxSweetAlert, { swal, close } from 'react-redux-sweetalert';
@@ -74,7 +75,13 @@ class ProfilePage extends React.Component {
    */
   submitData() {
     const userInfo = this.state.user;
-    return this.props.updateUserInfo(userInfo);
+    delete userInfo.id;
+    delete userInfo.email;
+    this.props.updateUserInfo(userInfo)
+     .then(() => {
+       toastr.success('Profile successfully updated');
+       $('#docDisplayModal').modal('close');
+     });
   }
 
   /**

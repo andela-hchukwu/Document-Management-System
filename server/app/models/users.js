@@ -59,7 +59,9 @@ module.exports = (sequelize, DataTypes) => {
         newUser.hashPassword();
       },
       beforeUpdate: (newUser) => {
-        newUser.hashPassword();
+        if (newUser._changed.password) {
+          newUser.hashPassword();
+        }
       }
     }
   });

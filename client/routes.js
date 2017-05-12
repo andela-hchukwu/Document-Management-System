@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { BrowserRouter as Router, Route, IndexRoute } from 'react-router';
 import App from './components/App';
 import HomePage from './components/HomePage/index';
 import AboutPage from './components/AboutPage/index';
@@ -13,7 +13,7 @@ import ProfilePage from './components/ProfilePage/index';
 import requireAuth from './components/Util/RequireAuthentication';
 import requireAdminAuth from './components/Util/RequireAdminAuthentication';
 
-export default (
+export default (.
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
     <Route path="dashboard" component={requireAuth(DashboardPage)} />

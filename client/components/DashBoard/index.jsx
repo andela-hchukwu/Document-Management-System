@@ -99,10 +99,9 @@ class DashboardPage extends React.Component {
     return (
       <div className="dashboard row">
         <form>
-        <div className="input-field col s6 push-s8">
-          <i className="material-icons prefix">search</i>
+        <div className="input-field col s3 push-s8">
           <input id="search" type="search" onChange={this.handleSearch} />
-          <label htmlFor="search"><i className="mdi mdi-name"></i>Search</label>
+          <label htmlFor="search"><i className="mdi mdi-magnify"></i>Search</label>
        </div></form>
         <div className="col s12">
           <div className="col s12 z-depth-5 card-panel">

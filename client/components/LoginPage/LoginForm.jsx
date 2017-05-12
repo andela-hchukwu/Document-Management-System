@@ -55,17 +55,15 @@ class LoginForm extends React.Component {
    */
   onSubmit(event) {
     event.preventDefault();
-    if (this.isValid()) {
-      this.setState({ errors: {}, isLoading: true });
-      this.props.login(this.state).then(
-        () => {
-          this.context.router.push('/dashboard');
-          toastr.success('Logged in Successfully!');
-        },
-        err => this.setState({ errors: err.response.data.errors,
-          isLoading: false })
-      );
-    }
+    this.setState({ errors: {}, isLoading: true });
+    this.props.login(this.state).then(
+      () => {
+        this.context.router.push('/dashboard');
+        toastr.success('Logged in Successfully!');
+      },
+      err => this.setState({ errors: err.response.data.errors,
+        isLoading: false })
+    );
   }
 
   /**
@@ -85,11 +83,11 @@ class LoginForm extends React.Component {
    * @memberOf LoginForm
    */
   render() {
-    const errors = this.state.errors || this.props.errors;
+    const errors = this.state.errors || { form: this.props.errors };
     const { email, password, isLoading } = this.state;
     return (
 
-        <form className="login-form" onSubmit={this.onSubmit}>
+      <form className="login-form" onSubmit={this.onSubmit}>
           <div className="row margin">
           <TextFieldGroup
             icon="contact_mail"
@@ -115,7 +113,7 @@ class LoginForm extends React.Component {
           <div className="center-align">
           <button disabled={isLoading} className="btn blue-grey" type="submit">
               Login<i className="material-icons right">thumb_up</i>
-            </button>
+          </button>
           {errors.form && <div className="card-panel red darken-1">{errors.form}
           </div>}
          </div>
@@ -132,7 +130,7 @@ LoginForm.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    errors: state.loginError
+    errors: state.authentication.loginError
   };
 }
 

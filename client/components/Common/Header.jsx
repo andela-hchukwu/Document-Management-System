@@ -98,11 +98,11 @@ export class Header extends React.Component {
 }
 
 Header.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object,
   location: PropTypes.object.isRequired,
   isAuthenticated: PropTypes.bool,
   logout: PropTypes.func.isRequired,
-  isAdmin: PropTypes.bool.isRequired
+  isAdmin: PropTypes.bool
 };
 
 /**

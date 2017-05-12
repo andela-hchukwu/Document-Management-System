@@ -30,7 +30,7 @@ const TextInputTemplate = ({ field, value, label, error, type, onChange,
       />
       {error && <span className="red-text">
         <i className="material-icons">error_outline</i>{error}</span>}
-      <label htmlFor={field} classnames="active">{label}</label>
+      <label htmlFor={field} classNames="active">{label}</label>
     </div>
   );
 };

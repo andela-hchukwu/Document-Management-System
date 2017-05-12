@@ -100,7 +100,7 @@ export class Header extends React.Component {
 Header.propTypes = {
   user: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool,
   logout: PropTypes.func.isRequired,
   isAdmin: PropTypes.bool.isRequired
 };
